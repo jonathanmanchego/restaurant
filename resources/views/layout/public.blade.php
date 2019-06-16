@@ -14,32 +14,32 @@
 				<img src="/img/logoPrincipal.png">
 			</div>
 			<ul>
-				<li><a href="">INICIO</a></li>
-				<li><a href="">PRODUCTOS</a></li>
-				<li><a href="">ARTICULOS</a></li>
-				<li><a href="">PEDIDO</a></li>
-				<li><a href="">LOGIN</a></li>
+				<li><a href="{{url('/')}}">INICIO</a></li>
+				<li><a href="{{url('/productos')}}">PRODUCTOS</a></li>
+				<li><a href="{{url('/articulos')}}">ARTICULOS</a></li>
+				<li><a href="{{url('/pedido')}}">PEDIDO</a></li>
+				<li><a href="{{url('/sistema/zona')}}">ZONA</a></li>
 			</ul>
 		</nav>
 		{{-- SLIDER BOOTSTRAP --}}
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="img/slider/slider1.jpg" class="d-block w-100" alt="">
+		      <img src="{{ url('img/slider/slider1.jpg')}}" class="d-block w-100" alt="">
 		    </div>
 		    <div class="carousel-item">
-		      <img src="img/slider/slider2.jpg" class="d-block w-100" alt="">
+		      <img src="{{ url('img/slider/slider2.jpg')}}" class="d-block w-100" alt="">
 		    </div>
 		    {{-- <div class="carousel-item">
 		      <img src="..." class="d-block w-100" alt="...">
 		    </div> --}}
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="carousel-control-prev-icon arrow" aria-hidden="true "></span>
 		    <span class="sr-only">Previous</span>
 		  </a>
 		  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="carousel-control-next-icon arrow" aria-hidden="true"></span>
 		    <span class="sr-only">Next</span>
 		  </a>
 		</div>

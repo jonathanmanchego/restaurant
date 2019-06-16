@@ -10,5 +10,5 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('zona','ZonasController');
+Route::resource('/sistema/zona','ZonasController');
 // Route::get('/zona','ZonasController');

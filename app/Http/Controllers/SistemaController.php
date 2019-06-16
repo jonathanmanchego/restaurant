@@ -3,9 +3,8 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\zona;
 
-class ZonasController extends Controller
+class SistemaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class ZonasController extends Controller
      */
     public function index()
     {
-        $zona = new zona();
-        $data = $zona->all();
-        return view('configuraciones/zona/index',['zonas' => $data,'title' => 'ZONAS']);
+        //
     }
 
     /**
@@ -26,9 +23,7 @@ class ZonasController extends Controller
      */
     public function create()
     {
-        $zona = new zona();
-        $data = $zona->all();
-        return view('configuraciones/zona/crear',['title' => 'ZONAS NUEVO','title' => 'ZONAS - NEW']);
+        //
     }
 
     /**
@@ -39,10 +34,7 @@ class ZonasController extends Controller
      */
     public function store(Request $request)
     {
-        $zona = new zona();
-        $zona->nombre = $request->input('nombre');
-        $zona->save();
-        return redirect('/zona');
+        //
     }
 
     /**

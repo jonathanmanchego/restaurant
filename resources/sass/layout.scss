@@ -6,7 +6,7 @@
 	.wrapp_nav{
 		display: flex;
 		width: 100%;
-		background-image: linear-gradient(to top ,#F0F0F0,#fff);
+		// background-image: linear-gradient(to top ,#F0F0F0,#fff);
 		.logo-space{
 			width: 15%;
 		}
@@ -33,15 +33,16 @@
 		}
 	}
 	.carousel{
-		width: 80%;
+		width: 50%;
 		margin: 0 auto;
-		height: 400px;
-		overflow: hidden;
-		
+		.arrow{
+			width: 50px;
+			height: 50px;
+		}
 	}
 	.wrapp-content{
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		margin-top: 5%;
 		width: 100%;
