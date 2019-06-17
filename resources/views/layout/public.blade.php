@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>@yield('title')</title>
-	<link rel="stylesheet" type="text/css" href="/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/css_boot/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/css/app.css">
+	<title>{{$title}}</title>
+	<link rel="stylesheet" type="text/css" href="{{url('/css/all.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('/css/css_boot/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('/css/app.css')}}">
 </head>
 <body>
 	<div class="wrapp">
@@ -14,11 +14,11 @@
 				<img src="/img/logoPrincipal.png">
 			</div>
 			<ul>
-				<li><a href="{{url('/')}}">INICIO</a></li>
-				<li><a href="{{url('/productos')}}">PRODUCTOS</a></li>
-				<li><a href="{{url('/articulos')}}">ARTICULOS</a></li>
-				<li><a href="{{url('/pedido')}}">PEDIDO</a></li>
-				<li><a href="{{url('/sistema/zona')}}">ZONA</a></li>
+				<li><a href="{{url('/')}}"><span>INICIO</span></a></li>
+				<li><a href="{{url('/productos')}}"><span>PRODUCTOS</span></a></li>
+				<li><a href="{{url('/articulos')}}"><span>ARTICULOS</span></a></li>
+				<li><a class="toBuy" href="{{url('/pedido')}}"><i class="far fa-clipboard"></i></a></li>
+				<li><a href="{{url('/sistema')}}"><span>SISTEMA</span></a></li>
 			</ul>
 		</nav>
 		{{-- SLIDER BOOTSTRAP --}}
@@ -45,8 +45,10 @@
 		</div>
 		{{-- CONTENIDO DE LAYOUT --}}
 		<div class="wrapp-content">
+			<div class="content">
 			@section('content')
 				@show
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>

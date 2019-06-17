@@ -11,5 +11,5 @@
 |
 */
 Route::get('/', function(){
-	return view('index');
+	return view('index',['title' => 'HOME - APP']);
 });

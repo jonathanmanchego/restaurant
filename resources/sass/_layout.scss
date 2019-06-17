@@ -1,0 +1,82 @@
+.wrapp{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0 auto;
+	.wrapp_nav{
+		display: flex;
+		width: 100%;
+		align-items: center;
+		// background-image: linear-gradient(to top ,#F0F0F0,#fff);
+		.logo-space{
+			width: 15%;
+		}
+		ul{
+			width: 100%;
+			display: flex;
+			list-style: none;
+			line-height: $line-height-base+1.2rem;
+			margin: 0;
+			li{
+				flex: 1;
+				display: flex;
+				align-items: center;
+				// justify-content: center;
+				a{
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 100%;
+					line-height: $line-height-base+1.2rem;
+					text-decoration: none;
+					text-align: center;
+					color: gray;
+					i{
+						font-size: 2rem;
+						position: relative;
+						color: #fff;
+					}
+					&:hover {
+						color: darken(gray,5);
+						background-image: linear-gradient(to top ,#F0F0F0,#fff);
+					}
+				}
+				.toBuy{
+					// background-color: orange;
+					&:hover{
+						background-image: none;
+					}
+					i{
+						&:after{
+							content: '';
+							width: 3rem;
+							height: 3rem;
+							background-color: #545454;
+							position: absolute;
+							top:50%;
+							left: 50%;
+							z-index: -1;
+							border-radius: 50%;
+							transform: translate(-50%,-50%);
+							// background-image: radial-gradient(#F5f5f5,#fff);
+						}
+						&:hover:after{
+							width: 3.2rem;
+							height: 3.2rem;
+						}
+
+					}
+				}
+			}
+		}
+	}
+	.carousel{
+		width: 50%;
+		margin: 0 auto;
+		.arrow{
+			width: 50px;
+			height: 50px;
+		}
+	}
+	
+}

@@ -10,5 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/sistema','GeneralController@index');
 Route::resource('/sistema/zona','ZonasController');
+Route::resource('/sistema/tipousuario','TipoUsuarioController');
+Route::resource('/sistema/tipodocumento','TipoDocumentoController');
 // Route::get('/zona','ZonasController');

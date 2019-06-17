@@ -3,6 +3,7 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
+use restaurant\tipo_usuario;
 
 class TipoUsuarioController extends Controller
 {
@@ -13,7 +14,15 @@ class TipoUsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $tu = new tipo_usuario();
+        $data = $tu->all();
+        $headers = Array();
+        if(!empty($data[0])){
+            // $headers = "s";
+            $headers = array_keys(json_decode($data[0],true));
+        }
+        // return $headers;
+        return view('sistema.tipo_usuario.index',['data' => $data,'title' => 'TIPOS_USUARIO','action'=> '/sistema/tipousuario','headers' => $headers]);
     }
 
     /**
@@ -23,7 +32,7 @@ class TipoUsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('sistema.tipo_usuario.crear',['title' => 'TIPOS_USUARIO NUEVO','action'=>'/sistema/tipousuario']);
     }
 
     /**
@@ -34,7 +43,10 @@ class TipoUsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tu = new tipo_usuario();
+        $tu->nombre = $request->input('nombre');
+        $tu->save();
+        return redirect('/sistema/tipousuario');
     }
 
     /**
@@ -56,7 +68,8 @@ class TipoUsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tu = tipo_usuario::find($id);
+        return view('sistema.tipo_usuario.crear',['title' => 'TIPOS_USUARIO - EDITAR','action' => '/sistema/tipousuario/'.$id, 'data' => $tu]);
     }
 
     /**
@@ -68,7 +81,10 @@ class TipoUsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tu = tipo_usuario($id);
+        $tu->nombre = $request->input('nombre');
+        $tu->save();
+        return redirect('/sistema/tipousuario/'.$id.'/edit');
     }
 
     /**
@@ -79,6 +95,8 @@ class TipoUsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tu = tipo_usuario($id);
+        $tu->delete();
+        return redirect('/sistema/tipousuario');
     }
 }
