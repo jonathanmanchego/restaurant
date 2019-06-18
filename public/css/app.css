@@ -12,6 +12,7 @@ img {
 .wrapp .wrapp_nav {
   display: flex;
   width: 100%;
+  align-items: center;
 }
 .wrapp .wrapp_nav .logo-space {
   width: 15%;
@@ -20,22 +21,51 @@ img {
   width: 100%;
   display: flex;
   list-style: none;
-  line-height: 3.7rem;
+  line-height: 4.2rem;
+  margin: 0;
 }
 .wrapp .wrapp_nav ul li {
   flex: 1;
+  display: flex;
+  align-items: center;
 }
 .wrapp .wrapp_nav ul li a {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  line-height: 3.7rem;
+  line-height: 4.2rem;
   text-decoration: none;
+  text-align: center;
   color: gray;
+}
+.wrapp .wrapp_nav ul li a i {
+  font-size: 2rem;
+  position: relative;
+  color: #fff;
 }
 .wrapp .wrapp_nav ul li a:hover {
   color: #737373;
   background-image: linear-gradient(to top, #F0F0F0, #fff);
+}
+.wrapp .wrapp_nav ul li .toBuy:hover {
+  background-image: none;
+}
+.wrapp .wrapp_nav ul li .toBuy i:after {
+  content: "";
+  width: 3rem;
+  height: 3rem;
+  background-color: #545454;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.wrapp .wrapp_nav ul li .toBuy i:hover:after {
+  width: 3.2rem;
+  height: 3.2rem;
 }
 .wrapp .carousel {
   width: 50%;
@@ -44,46 +74,6 @@ img {
 .wrapp .carousel .arrow {
   width: 50px;
   height: 50px;
-}
-.wrapp .wrapp-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5%;
-  width: 100%;
-}
-.wrapp .wrapp-content .form {
-  width: 40%;
-}
-.wrapp .wrapp-content .listado {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-}
-.wrapp .wrapp-content .listado .listado-headers {
-  display: grid;
-  grid-template-columns: 1fr 4fr 3fr;
-  background-color: #636363;
-}
-.wrapp .wrapp-content .listado .listado-headers .listado-header-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 2.5rem;
-}
-.wrapp .wrapp-content .listado .listado-item {
-  display: grid;
-  grid-template-columns: 1fr 4fr 3fr;
-  justify-content: center;
-  align-items: center;
-  background-color: #89A5FF;
-  border-bottom: 1px solid gray;
-}
-.wrapp .wrapp-content .listado .listado-item .listado-item-ele {
-  flex: 1;
-  text-align: center;
-  line-height: 2.5rem;
 }
 
 /*# sourceMappingURL=app.css.map */

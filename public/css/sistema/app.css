@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+img {
+  max-width: 100%;
+}
+
+.container-crud .form {
+  width: 40%;
+}
+.container-crud .opciones {
+  width: 25%;
+  margin: 2% 0;
+}
+.container-crud .listado {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+.container-crud .listado .listado-headers {
+  display: flex;
+  background-color: #3c8dbc;
+}
+.container-crud .listado .listado-headers .listado-header-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 3rem;
+}
+.container-crud .listado .listado-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #EAEAEA;
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+.container-crud .listado .listado-item .listado-item-ele {
+  flex: 1;
+  text-align: center;
+  line-height: 4rem;
+}
+.container-crud .listado .listado-item .listado-item-ele span {
+  color: #3490dc;
+}
+.container-crud .listado .listado-item .listado-item-ele a i {
+  font-size: 2rem;
+  color: black;
+}
+.container-crud .listado .listado-item .listado-item-ele a i:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=app.css.map */

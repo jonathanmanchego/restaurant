@@ -16,7 +16,8 @@ class ZonasController extends Controller
     {
         $zona = new zona();
         $data = $zona->all();
-        return view('configuraciones/zona/index',['zonas' => $data,'title' => 'ZONAS']);
+        $headers = $zona->getHeaders();
+        return view('sistema.zona.index',['data' => $data,'title' => 'ZONAS','headers' => $headers,'action' => '/sistema/zona']);
     }
 
     /**
@@ -26,9 +27,8 @@ class ZonasController extends Controller
      */
     public function create()
     {
-        $zona = new zona();
-        $data = $zona->all();
-        return view('configuraciones/zona/crear',['title' => 'ZONAS NUEVO','title' => 'ZONAS - NEW']);
+        $headers = zona::getHeaders();
+        return view('sistema.zona.crear',['title' => 'ZONAS NUEVO','action' => '/sistema/zona','headers' => $headers]);
     }
 
     /**
@@ -42,7 +42,7 @@ class ZonasController extends Controller
         $zona = new zona();
         $zona->nombre = $request->input('nombre');
         $zona->save();
-        return redirect('/zona');
+        return redirect('/sistema/zona');
     }
 
     /**
@@ -53,7 +53,7 @@ class ZonasController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -64,7 +64,9 @@ class ZonasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $zona = zona::find($id);
+        $headers = $zona->getHeaders();
+        return view('sistema.zona.editar',['title' => 'ZONA - EDITAR','action' => '/sistema/zona/'.$id, 'data' => $zona,'headers' => $headers]);
     }
 
     /**
@@ -76,7 +78,11 @@ class ZonasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $zona = zona::find($id);
+        $zona->nombre = $request->input('nombre');
+        $zona->save();
+        return redirect('/sistema/zona');
+        // return redirect(url($))
     }
 
     /**
@@ -87,6 +93,8 @@ class ZonasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $zona = zona::find($id);
+        $zona->delete();
+        return redirect('/sistema/zona');
     }
 }

@@ -3,7 +3,7 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use restaurant\restaurant;
 class restaurantController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class restaurantController extends Controller
      */
     public function index()
     {
-        //
+        $data = restaurant::all();
+        $headers = restaurant::getHeaders();
+        return view('sistema.restaurant.index',['data' => $data,'title' => 'RESTAURANT','action' => '/sistema/restaurant','headers' =>$headers]);
     }
 
     /**
