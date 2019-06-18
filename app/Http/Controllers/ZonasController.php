@@ -16,10 +16,7 @@ class ZonasController extends Controller
     {
         $zona = new zona();
         $data = $zona->all();
-        $headers = Array();
-        if(!empty($data[0])){
-            $headers = array_keys(json_decode($data[0],true));
-        }
+        $headers = $zona->getHeaders();
         return view('sistema.zona.index',['data' => $data,'title' => 'ZONAS','headers' => $headers,'action' => '/sistema/zona']);
     }
 
@@ -30,7 +27,8 @@ class ZonasController extends Controller
      */
     public function create()
     {
-        return view('sistema.zona.crear',['title' => 'ZONAS NUEVO','action' => '/sistema/zona']);
+        $headers = zona::getHeaders();
+        return view('sistema.zona.crear',['title' => 'ZONAS NUEVO','action' => '/sistema/zona','headers' => $headers]);
     }
 
     /**
@@ -67,7 +65,8 @@ class ZonasController extends Controller
     public function edit($id)
     {
         $zona = zona::find($id);
-        return view('sistema.zona.editar',['title' => 'ZONA - EDITAR','action' => '/sistema/zona/'.$id, 'data' => $zona]);
+        $headers = $zona->getHeaders();
+        return view('sistema.zona.editar',['title' => 'ZONA - EDITAR','action' => '/sistema/zona/'.$id, 'data' => $zona,'headers' => $headers]);
     }
 
     /**
@@ -82,7 +81,7 @@ class ZonasController extends Controller
         $zona = zona::find($id);
         $zona->nombre = $request->input('nombre');
         $zona->save();
-        return redirect('/sistema/zona/'.$id.'/edit');
+        return redirect('/sistema/zona');
         // return redirect(url($))
     }
 

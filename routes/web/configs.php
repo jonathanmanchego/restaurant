@@ -11,7 +11,11 @@
 |
 */
 Route::get('/sistema','GeneralController@index');
+// RECURSOS PRINCIPALES
 Route::resource('/sistema/zona','ZonasController');
 Route::resource('/sistema/tipousuario','TipoUsuarioController');
 Route::resource('/sistema/tipodocumento','TipoDocumentoController');
+Route::resource('/sistema/restaurant','restaurantController');
+Route::resource('/sistema/tipomenu','TipoMenuController');
+Route::resource('/sistema/estado_ordenes','TipoOrdenController');
 // Route::get('/zona','ZonasController');

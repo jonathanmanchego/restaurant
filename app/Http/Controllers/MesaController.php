@@ -3,7 +3,7 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use restaurant\mesa;
 class MesaController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class MesaController extends Controller
      */
     public function index()
     {
-        //
+        $data = mesa::all();
+        $headers = mesa::getHeaders();
+        return view('sistema.mesa.index',['data' => $data,'title' => 'MESA','action' => '/sistema/mesa','headers' =>$headers]);
     }
 
     /**

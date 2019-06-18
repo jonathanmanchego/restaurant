@@ -8,4 +8,7 @@ class estado_mesa extends Model
 {
     // protected $table = "estado_mesas";
     public $timestamps = false;
+    public static function getHeaders(){
+    	return ['id','nombre'];
+    }
 }

@@ -3,50 +3,53 @@ img {
   max-width: 100%;
 }
 
-.content {
-  width: 75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.content .form {
+.container-crud .form {
   width: 40%;
 }
-.content .opciones {
+.container-crud .opciones {
   width: 25%;
   margin: 2% 0;
 }
-.content .listado {
+.container-crud .listado {
   width: 80%;
   display: flex;
   flex-direction: column;
   color: #fff;
 }
-.content .listado .listado-headers {
+.container-crud .listado .listado-headers {
   display: flex;
-  background-color: #087EB5;
+  background-color: #3c8dbc;
 }
-.content .listado .listado-headers .listado-header-item {
+.container-crud .listado .listado-headers .listado-header-item {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   line-height: 3rem;
 }
-.content .listado .listado-item {
+.container-crud .listado .listado-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #8B8B8B;
+  background-color: #EAEAEA;
   border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
 }
-.content .listado .listado-item .listado-item-ele {
+.container-crud .listado .listado-item .listado-item-ele {
   flex: 1;
   text-align: center;
   line-height: 4rem;
 }
-.content .listado .listado-item .listado-item-ele a i {
+.container-crud .listado .listado-item .listado-item-ele span {
+  color: #3490dc;
+}
+.container-crud .listado .listado-item .listado-item-ele a i {
   font-size: 2rem;
+  color: black;
+}
+.container-crud .listado .listado-item .listado-item-ele a i:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=app.css.map */

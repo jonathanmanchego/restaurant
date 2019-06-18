@@ -3,7 +3,7 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use restaurant\tipo_menu;
 class TipoMenuController extends Controller
 {
     /**
@@ -13,7 +13,9 @@ class TipoMenuController extends Controller
      */
     public function index()
     {
-        //
+        $data = tipo_menu::all();
+        $headers = tipo_menu::getHeaders();
+        return view('sistema.tipo_menu.index',['data' => $data,'title' => 'TIPO_MENU','action' => '/sistema/tipo_menu','headers' =>$headers]);
     }
 
     /**

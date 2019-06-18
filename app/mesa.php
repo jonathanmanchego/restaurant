@@ -8,4 +8,7 @@ class mesa extends Model
 {
     protected $table = "mesa";
     public $timestamps = false;
+    public static function getHeaders(){
+    	return ['id','capacidad','estado','nombre','numero'];
+    }
 }
