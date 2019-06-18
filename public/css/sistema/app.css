@@ -3,94 +3,50 @@ img {
   max-width: 100%;
 }
 
-.wrapp {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 0 auto;
-}
-.wrapp .wrapp_nav {
-  display: flex;
-  width: 100%;
-  background-color: #4A89D6;
-}
-.wrapp .wrapp_nav .logo-space {
-  width: 15%;
-}
-.wrapp .wrapp_nav ul {
-  width: 100%;
-  display: flex;
-  list-style: none;
-  line-height: 3.7rem;
-  margin: 0;
-}
-.wrapp .wrapp_nav ul li {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-.wrapp .wrapp_nav ul li a {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  font-weight: 600;
-  line-height: 3.7rem;
-  text-decoration: none;
-  color: #f4f4f4;
-  font-size: 1.2rem;
-  color: #121212;
-}
-.wrapp .wrapp_nav ul li a:hover {
-  text-shadow: 0 0 5px #f4f4f4;
-}
-.wrapp .wrapp-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5%;
-  width: 100%;
-}
-.wrapp .wrapp-content .content {
+.content {
   width: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.wrapp .wrapp-content .content .form {
+.content .form {
   width: 40%;
 }
-.wrapp .wrapp-content .content .opciones {
+.content .opciones {
   width: 25%;
   margin: 2% 0;
 }
-.wrapp .wrapp-content .content .listado {
+.content .listado {
   width: 80%;
   display: flex;
   flex-direction: column;
   color: #fff;
 }
-.wrapp .wrapp-content .content .listado .listado-headers {
+.content .listado .listado-headers {
   display: flex;
-  background-color: #636363;
+  background-color: #087EB5;
 }
-.wrapp .wrapp-content .content .listado .listado-headers .listado-header-item {
+.content .listado .listado-headers .listado-header-item {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  line-height: 2.5rem;
+  line-height: 3rem;
 }
-.wrapp .wrapp-content .content .listado .listado-item {
+.content .listado .listado-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #89A5FF;
+  background-color: #8B8B8B;
   border-bottom: 1px solid gray;
 }
-.wrapp .wrapp-content .content .listado .listado-item .listado-item-ele {
+.content .listado .listado-item .listado-item-ele {
   flex: 1;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 4rem;
+}
+.content .listado .listado-item .listado-item-ele a i {
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=app.css.map */

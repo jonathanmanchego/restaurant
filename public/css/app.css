@@ -21,7 +21,7 @@ img {
   width: 100%;
   display: flex;
   list-style: none;
-  line-height: 3.7rem;
+  line-height: 4.2rem;
   margin: 0;
 }
 .wrapp .wrapp_nav ul li {
@@ -34,7 +34,7 @@ img {
   justify-content: center;
   align-items: center;
   width: 100%;
-  line-height: 3.7rem;
+  line-height: 4.2rem;
   text-decoration: none;
   text-align: center;
   color: gray;

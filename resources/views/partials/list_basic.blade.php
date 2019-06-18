@@ -1,5 +1,7 @@
 <div class="opciones">
-	<a class="btn btn-primary" href="{{ url($action.'/create') }}" role="button"><i class="fas fa-plus"></i><span>NUEVO</span></a>
+	<a class="btn btn-primary" href="{{ url($action.'/create') }}" role="button">
+		<i class="fas fa-plus"></i><span>NUEVO</span>
+	</a>
 </div>
 @if (!empty($data[0]))
 <div class="listado">
