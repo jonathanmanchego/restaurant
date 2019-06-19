@@ -18,4 +18,12 @@ Route::resource('/sistema/tipodocumento','TipoDocumentoController');
 Route::resource('/sistema/restaurant','restaurantController');
 Route::resource('/sistema/tipomenu','TipoMenuController');
 Route::resource('/sistema/estado_ordenes','TipoOrdenController');
+//Route::resource('menu/crear','MenuController');
 // Route::get('/zona','ZonasController');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'],function(){
+    Route::get('menu','MenuController@index')->name('menu');
+    Route::get('menu/crear','MenuController@create')->name('crear_menu');
+    Route::post('menu','MenuController@store')->name('guardar_menu');
+
+});
+//Route::get('menu/crear','MenuController@create')->name('crear_permiso');

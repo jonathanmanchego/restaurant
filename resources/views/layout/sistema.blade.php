@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{$title}}</title>
+  <title>@yield('titulo')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{url('/css/admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -24,6 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{url('/css/skins/skin-blue.min.css')}}">
   <link rel="stylesheet" href="{{url('/css/sistema/app.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -314,7 +315,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        {{$title}}
+        @yield('titulo')
         {{-- <small>Optional description</small> --}}
       </h1>
       <ol class="breadcrumb">
@@ -329,7 +330,7 @@ desired effect
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-      @yield('content')
+      @yield('contenido')
 
     </section>
     <!-- /.content -->
@@ -439,5 +440,9 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+    <script src="{{asset('assets/js/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery-validation/localization/messages_es.min.js')}}"></script>
+    <script src="{{asset('assets/js/funciones.js')}}"></script>
+    @yield("scripts")
 </body>
 </html>
