@@ -24,6 +24,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{url('/css/skins/skin-blue.min.css')}}">
   <link rel="stylesheet" href="{{url('/css/sistema/app.css')}}">
+
+  <link rel="stylesheet" href="{{asset('assets/js/toastr/toastr.min.css')}}">
+
+  @yield("styles")
   <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -440,8 +444,12 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+    @yield("scriptsPlugins")
     <script src="{{asset('assets/js/jquery-validation/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery-validation/localization/messages_es.min.js')}}"></script>
+    <script src="{{asset('assets/js/sweetalert.min.js')}}"></script>
+    <script src="{{asset('assets/js/toastr/toastr.min.js')}}"></script>
+    <script src="{{asset('assets/js/scripts.js')}}"></script>
     <script src="{{asset('assets/js/funciones.js')}}"></script>
     @yield("scripts")
 </body>

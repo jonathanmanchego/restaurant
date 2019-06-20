@@ -4,21 +4,20 @@ namespace restaurant\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use restaurant\Http\Controllers\Controller;
-use restaurant\Models\Admin\Menu;
-use restaurant\Http\Requests\ValidarMenu;
+use restaurant\Http\Requests\ValidarTipoUsuario;
+use restaurant\Models\Admin\TipoUsuario;
 
-class MenuController extends Controller
+class TipoUsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()//listar-menus
+    public function index()
     {
-        $menus = Menu::getMenu();
-        return view('admin.menu.index', compact('menus'));
-        //dd($menus);
+        $datas = TipoUsuario::orderBy('id')->get();
+        return view('admin.rol.index', compact('datas'));
     }
 
     /**
@@ -26,9 +25,9 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()//crear
+    public function create()
     {
-        return view('admin.menu.crear');
+        return view('admin.rol.crear');
     }
 
     /**
@@ -37,12 +36,10 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ValidarMenu $request)//guardar
+    public function store(ValidarTipoUsuario $request)
     {
-        //dd($request); //parecido al var_dump+died
-        //dd($request -> all());//solo imprimir los valores enviados
-        Menu::create($request -> all());
-        return redirect('admin/menu/crear')->with('mensaje','Menu creado con exito');
+        TipoUsuario::create($request->all());
+        return redirect('admin/rol')->with('mensaje', 'Rol creado con exito');
     }
 
     /**
@@ -51,10 +48,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)//mostrar
-    {
+    //public function show($id)
+    //{
         //
-    }
+    //}no se usa funcion show aqui
 
     /**
      * Show the form for editing the specified resource.
@@ -62,9 +59,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)//editar
+    public function edit($id)
     {
-        //
+        $data = TipoUsuario::findOrFail($id);//si no encontro nada devuelve un 404
+        return view('admin.rol.editar', compact('data'));
     }
 
     /**
@@ -74,9 +72,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)//actualizar
+    public function update(Request $request, $id)
     {
-        //
+        TipoUsuario::findOrFail($id)->update($request->all());
+        return redirect('admin/rol')->with('mensaje', 'Rol actualizado con exito');
     }
 
     /**
@@ -85,16 +84,14 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)//eliminar
-    {
-        //
-    }
-    public function guardarOrden(Request $request)
+    public function destroy(Request $request, $id)
     {
         if ($request->ajax()) {
-            $menu = new Menu;
-            $menu->guardarOrden($request->menu);
-            return response()->json(['respuesta' => 'ok']);
+            if (TipoUsuario::destroy($id)) {
+                return response()->json(['mensaje' => 'ok']);
+            } else {
+                return response()->json(['mensaje' => 'ng']);
+            }
         } else {
             abort(404);
         }
