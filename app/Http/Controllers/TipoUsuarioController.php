@@ -3,7 +3,8 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\tipo_usuario;
+use restaurant\models\tipo_usuario;
+use restaurant\Http\Requests\general\formAltValidacion;
 
 class TipoUsuarioController extends Controller
 {
@@ -18,7 +19,7 @@ class TipoUsuarioController extends Controller
         $data = $tu->all();
         $headers = $tu->getHeaders();
         // return $headers;
-        return view('sistema.tipo_usuario.index',['data' => $data,'title' => 'TIPOS_USUARIO','action'=> '/sistema/tipousuario','headers' => $headers]);
+        return view('sistema.tipo_usuario.index',['data' => $data,'title' => 'TIPOS_USUARIO','action'=> '/tipousuario','headers' => $headers]);
     }
 
     /**
@@ -28,8 +29,8 @@ class TipoUsuarioController extends Controller
      */
     public function create()
     {
-        $headers = tipo_usuario::getHeaders();
-        return view('sistema.tipo_usuario.crear',['title' => 'TIPOS_USUARIO NUEVO','action'=>'/sistema/tipousuario','headers' => $headers]);
+        $headers = tipo_usuario::getPull();
+        return view('sistema.tipo_usuario.crear',['title' => 'TIPOS_USUARIO NUEVO','action'=>'/tipousuario','headers' => $headers]);
     }
 
     /**
@@ -38,7 +39,7 @@ class TipoUsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(formAltValidacion $request)
     {
         $tu = new tipo_usuario();
         $tu->nombre = $request->input('nombre');
@@ -67,8 +68,8 @@ class TipoUsuarioController extends Controller
     public function edit($id)
     {
         $tu = tipo_usuario::find($id);
-        $headers = tipo_usuario::getHeaders();
-        return view('sistema.tipo_usuario.editar',['title' => 'TIPOS_USUARIO - EDITAR','action' => '/sistema/tipousuario/'.$id, 'data' => $tu,'headers' => $headers]);
+        $headers = tipo_usuario::getPull();
+        return view('sistema.tipo_usuario.editar',['title' => 'TIPOS_USUARIO - EDITAR','action' => '/tipousuario/'.$id, 'data' => $tu,'headers' => $headers]);
     }
 
     /**
@@ -78,7 +79,7 @@ class TipoUsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(formAltValidacion $request, $id)
     {
         $tu = tipo_usuario::find($id);
         $tu->nombre = $request->input('nombre');

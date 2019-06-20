@@ -10,12 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/sistema','GeneralController@index');
-// RECURSOS PRINCIPALES
-Route::resource('/sistema/zona','ZonasController');
-Route::resource('/sistema/tipousuario','TipoUsuarioController');
-Route::resource('/sistema/tipodocumento','TipoDocumentoController');
-Route::resource('/sistema/restaurant','restaurantController');
-Route::resource('/sistema/tipomenu','TipoMenuController');
-Route::resource('/sistema/estado_ordenes','TipoOrdenController');
-// Route::get('/zona','ZonasController');
+Route::group(['prefix' => 'sistema','as' => 'sistema::'], function () {
+    Route::get('/',['as' => 'index','uses'=>'GeneralController@index']);
+    // RECURSOS PRINCIPALES
+    Route::resource('/permiso','PermisoController');
+    Route::resource('/zona','ZonasController');
+    Route::resource('/tipousuario','TipoUsuarioController');
+    Route::resource('/tipodocumento','TipoDocumentoController');
+    Route::resource('/restaurant','restaurantController');
+    Route::resource('/tipomenu','TipoMenuController');
+    Route::resource('/estado_ordenes','TipoOrdenController');
+    Route::resource('/menu','MenuController');
+    Route::resource('/igv','IgvController');
+
+    // MESAS
+    Route::resource('/estado_mesas','EstadoMesaController');
+    Route::resource('/mesa','MesaController');    
+});

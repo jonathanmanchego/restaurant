@@ -3,7 +3,8 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\tipo_documento;
+use restaurant\models\tipo_documento;
+use restaurant\Http\Requests\general\formAltValidacion;
 class TipoDocumentoController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class TipoDocumentoController extends Controller
         $data = tipo_documento::all();
         $headers = tipo_documento::getHeaders();
         return view('sistema.tipo_documento.index',
-            ['data' => $data, 'title' => 'TIPOS DOCUMENTOS','headers' => $headers,'action' =>'/sistema/tipodocumento']); 
+            ['data' => $data, 'title' => 'TIPOS DOCUMENTOS','headers' => $headers,'action' =>'/tipodocumento']); 
     }
 
     /**
@@ -26,8 +27,8 @@ class TipoDocumentoController extends Controller
      */
     public function create()
     {
-        $headers = tipo_documento::getHeaders();
-        return view('sistema.tipo_documento.crear',['title' => 'TIPOS DOCUMENTOS - NUEVO', 'action' => '/sistema/tipodocumento','headers' => $headers]);
+        $headers = tipo_documento::getPull();
+        return view('sistema.tipo_documento.crear',['title' => 'TIPOS DOCUMENTOS - NUEVO', 'action' => '/tipodocumento','headers' => $headers]);
     }
 
     /**
@@ -36,7 +37,7 @@ class TipoDocumentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(formAltValidacion $request)
     {
         $tu = new tipo_documento();
         $tu->nombre = $request->input('nombre');
@@ -65,8 +66,8 @@ class TipoDocumentoController extends Controller
     public function edit($id)
     {
         $td = tipo_documento::find($id);
-        $headers = $td->getHeaders();
-        return view('sistema.tipo_documento.editar',['title' => 'TIPOS DOCUMENTOS - EDITAR','action' => '/sistema/tipodocumento/'.$id,'data' => $td,'headers' => $headers]);
+        $headers = $td->getPull();
+        return view('sistema.tipo_documento.editar',['title' => 'TIPOS DOCUMENTOS - EDITAR','action' => '/tipodocumento/'.$id,'data' => $td,'headers' => $headers]);
     }
 
     /**
@@ -76,7 +77,7 @@ class TipoDocumentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(formAltValidacion $request, $id)
     {
         $td = tipo_documento::find($id);
         $td->nombre = $request->input('nombre');

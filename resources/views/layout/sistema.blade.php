@@ -301,6 +301,20 @@ desired effect
             <li><a href="{{url('/sistema/zona')}}">Zonas</a></li>
             <li><a href="{{url('/sistema/tipodocumento')}}">Tipos de Documento</a></li>
             <li><a href="{{url('/sistema/tipousuario')}}">Tipos de Usuario</a></li>
+            <li><a href="{{url('/sistema/restaurant')}}">Restaurant</a></li>
+            <li><a href="{{url('/sistema/menu')}}">Menu</a></li>
+            <li><a href="{{url('/sistema/permiso')}}">Permiso</a></li>
+            <li><a href="{{url('/sistema/estado_mesas')}}">Estados Mesas</a></li>
+            <li class="treeview">
+              <a href="#"><i class="fas fa-hamburger"></i> <span>Patio de Ventas</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{url('/sistema/mesa')}}">Mesa</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>

@@ -3,7 +3,7 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\igv;
+use restaurant\models\igv;
 
 class IgvController extends Controller
 {
@@ -16,7 +16,7 @@ class IgvController extends Controller
     {
         $data = igv::all();
         $headers = igv::getHeaders();
-        return view('sistema.igv.index',['data' => $data,'title' => 'IGV','action' => '/sistema/igv','headers' =>$headers]);
+        return view('sistema.igv.index',['data' => $data,'title' => 'IGV','action' => '/igv','headers' =>$headers]);
     }
 
     /**

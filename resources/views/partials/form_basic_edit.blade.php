@@ -1,5 +1,5 @@
 <div class="container-crud">
-	<form class="form" action="{{url($action)}}" method="POST">
+	<form class="form" action="{{url('/sistema'.$action)}}" method="POST">
 			@csrf
 		    @method('PUT')
 			@foreach ($headers as $head)
@@ -19,7 +19,7 @@
 		  <button type="submit" class="btn btn-primary">GUARDAR</button>
 		  <button form="del" type="submit" class="btn btn-danger">ELIMINAR</button>
 	</form>
-	<form id="del" action="{{url($action)}}" method="POST">
+	<form id="del" action="{{url('/sistema'.$action)}}" method="POST">
 		@csrf
 		@method('DELETE')
 	</form>

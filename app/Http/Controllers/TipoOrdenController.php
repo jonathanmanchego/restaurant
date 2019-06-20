@@ -3,7 +3,7 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\tipo_orden;
+use restaurant\models\tipo_orden;
 class TipoOrdenController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class TipoOrdenController extends Controller
     {
         $data = tipo_orden::all();
         $headers = tipo_orden::getHeaders();
-        return view('sistema.tipo_orden.index',['data' => $data,'title' => 'TIPO_ORDEN','action' => '/sistema/tipo_orden','headers' =>$headers]);
+        return view('sistema.tipo_orden.index',['data' => $data,'title' => 'TIPO_ORDEN','action' => '/tipo_orden','headers' =>$headers]);
     }
 
     /**

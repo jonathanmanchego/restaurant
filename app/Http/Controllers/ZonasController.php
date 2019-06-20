@@ -3,7 +3,8 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\zona;
+use restaurant\models\zona;
+use restaurant\Http\Requests\zonas\formValidacion;
 
 class ZonasController extends Controller
 {
@@ -17,7 +18,7 @@ class ZonasController extends Controller
         $zona = new zona();
         $data = $zona->all();
         $headers = $zona->getHeaders();
-        return view('sistema.zona.index',['data' => $data,'title' => 'ZONAS','headers' => $headers,'action' => '/sistema/zona']);
+        return view('sistema.zona.index',['data' => $data,'title' => 'ZONAS','headers' => $headers,'action' => '/zona']);
     }
 
     /**
@@ -27,8 +28,8 @@ class ZonasController extends Controller
      */
     public function create()
     {
-        $headers = zona::getHeaders();
-        return view('sistema.zona.crear',['title' => 'ZONAS NUEVO','action' => '/sistema/zona','headers' => $headers]);
+        $headers = zona::getPull();
+        return view('sistema.zona.crear',['title' => 'ZONAS NUEVO','action' => '/zona','headers' => $headers]);
     }
 
     /**
@@ -37,7 +38,7 @@ class ZonasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(formValidacion $request)
     {
         $zona = new zona();
         $zona->nombre = $request->input('nombre');
@@ -65,8 +66,8 @@ class ZonasController extends Controller
     public function edit($id)
     {
         $zona = zona::find($id);
-        $headers = $zona->getHeaders();
-        return view('sistema.zona.editar',['title' => 'ZONA - EDITAR','action' => '/sistema/zona/'.$id, 'data' => $zona,'headers' => $headers]);
+        $headers = $zona->getPull();
+        return view('sistema.zona.editar',['title' => 'ZONA - EDITAR','action' => '/zona/'.$id, 'data' => $zona,'headers' => $headers]);
     }
 
     /**
@@ -76,7 +77,7 @@ class ZonasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(formValidacion $request, $id)
     {
         $zona = zona::find($id);
         $zona->nombre = $request->input('nombre');

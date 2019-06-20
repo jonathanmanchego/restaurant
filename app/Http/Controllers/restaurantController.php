@@ -3,7 +3,8 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\restaurant;
+use restaurant\models\restaurant;
+use restaurant\Http\Requests\restaurant\formValidacion;
 class restaurantController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class restaurantController extends Controller
     {
         $data = restaurant::all();
         $headers = restaurant::getHeaders();
-        return view('sistema.restaurant.index',['data' => $data,'title' => 'RESTAURANT','action' => '/sistema/restaurant','headers' =>$headers]);
+        return view('sistema.restaurant.index',['data' => $data,'title' => 'RESTAURANT','action' => '/restaurant','headers' =>$headers]);
     }
 
     /**
@@ -25,7 +26,8 @@ class restaurantController extends Controller
      */
     public function create()
     {
-        //
+        $headers = restaurant::getPull();
+        return view('sistema.restaurant.crear',['title' => 'RESTAURANT NUEVO' , 'action'=>'/restaurant','headers'=>$headers]);
     }
 
     /**
@@ -34,9 +36,18 @@ class restaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(formValidacion $request)
     {
-        //
+        $rest = new restaurant();
+        $rest->nombre = $request->input('nombre');
+        $rest->direccion = $request->input('direccion');
+        $rest->telefono1 = $request->input('telefono1');
+        $rest->telefono2 = $request->input('telefono2');
+        $rest->celular1 = $request->input('celular1');
+        $rest->celular2 = $request->input('celular2');
+        $rest->ruc = $request->input('ruc');
+        $rest->save();
+        return redirect('/sistema/restaurant');
     }
 
     /**
@@ -47,7 +58,7 @@ class restaurantController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -58,7 +69,9 @@ class restaurantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rest = restaurant::find($id);
+        $headers = restaurant::getPull();
+        return view('sistema.restaurant.editar',['title'=>'RESTAURANT - EDITAR','action' => '/restaurant/'.$id,'data' => $rest,'headers' => $headers]);
     }
 
     /**
@@ -68,9 +81,11 @@ class restaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(formValidacion $request, $id)
     {
-        //
+        $rest = restaurant::find($id);
+        $rest->update($request->all());
+        return redirect('/sistema/restaurant');
     }
 
     /**
@@ -81,6 +96,8 @@ class restaurantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rest = restaurant::find($id);
+        $rest->delete();
+        return redirect('/sistema/restaurant');
     }
 }

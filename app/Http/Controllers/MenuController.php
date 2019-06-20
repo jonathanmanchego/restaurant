@@ -3,7 +3,8 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\menu;
+use restaurant\models\menu;
+use restaurant\Http\Requests\menu\MenuValidacion;
 class MenuController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class MenuController extends Controller
     {
         $data = menu::all();
         $headers = menu::getHeaders();
-        return view('sistema.menu.index',['data' => $data,'title' => 'MENU','action' => '/sistema/menu','headers' =>$headers]);
+        return view('sistema.menu.index',['data' => $data,'title' => 'MENU','action' => '/menu','headers' =>$headers]);
     }
 
     /**
@@ -25,7 +26,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        $headers = menu::getPull();
+        return view('sistema.zona.crear',['title' => 'MENU NUEVO','action' => '/menu','headers'=>$headers]);
     }
 
     /**
@@ -34,9 +36,11 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MenuValidacion $request)
     {
-        //
+        menu::create($request->all());
+        // $menu->save();
+        return redirect('/sistema/menu')->with('confirmacion',"Menu creado con exito");
     }
 
     /**
@@ -58,7 +62,7 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
