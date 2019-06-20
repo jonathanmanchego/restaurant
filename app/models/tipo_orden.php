@@ -13,5 +13,8 @@ class tipo_orden extends Model
     public static function getHeaders(){
     	return ['id','nombre'];
     }
-    
+    public static function getPull(){
+        return ['nombre'];
+    }
+
 }

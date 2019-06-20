@@ -25,7 +25,8 @@ class TipoOrdenController extends Controller
      */
     public function create()
     {
-        //
+        $headers = tipo_orden::getPull();
+        return view('sistema.tipo_orden.crear',['title' => 'TIPO ORDEN - NUEVO', 'action' => '/tipo_orden','headers' => $headers]);
     }
 
     /**
