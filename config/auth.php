@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => restaurant\User::class,
+            'model' => restaurant\models\usuario::class,
         ],
 
         // 'users' => [

@@ -203,49 +203,15 @@ desired effect
           </li>
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
+          <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <img src="/img/avatar2.png" class="user-image" alt="Manchego Sosa Jonathan">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Robin Manchego</span>
+              <span class="hidden-xs">{{ Auth::user()->nombre}}</span>
             </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <img src="/img/avatar2.png" class="img-circle" alt="Manchego Sosa Jonathan">
-
-                <p>
-                  Robinson Manchego - Chef
-                  <small>Miembro desde feb. 2019</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Tareas</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Horario</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Reuniones</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Salir</a>
-                </div>
-              </li>
-            </ul>
-          </li>
+          @include('partials.user-info.drop-user')
+        </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fas fa-cogs"></i></a>
@@ -266,8 +232,8 @@ desired effect
         {{-- <small>Optional description</small> --}}
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fas fa-tachometer-alt"></i> Level</a></li>
-        <li class="active">Here</li>
+        <li><a href="{{url('/sistema')}}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li class="active">{{$title}}</li>
       </ol>
     </section>
 
@@ -288,8 +254,13 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      <a href="{{url('/')}}">
+      {{-- <a href="{{route('logout')}}">
         <i class="fas fa-sign-out-alt fa-lg"></i>
+      </a> --}}
+      <a href="{{ route('logout') }}"
+         onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+          <i class="fas fa-sign-out-alt fa-lg"></i>
       </a>
     </div>
     <!-- Default to the left -->

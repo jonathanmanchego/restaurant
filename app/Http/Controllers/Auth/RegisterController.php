@@ -2,11 +2,14 @@
 
 namespace restaurant\Http\Controllers\Auth;
 
-use restaurant\User;
+use restaurant\models\usuario;
 use restaurant\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use restaurant\models\tipo_documento;
+use restaurant\models\tipo_usuario;
+use restaurant\models\usuario_tipousuario;
 
 class RegisterController extends Controller
 {
@@ -28,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/sistema';
 
     /**
      * Create a new controller instance.
@@ -39,6 +42,13 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    public function showRegistrationForm()
+    {
+        $tipo_usu = tipo_usuario::all();
+        $tipo_docs = tipo_documento::all();
+        return view('auth.register',['tipo_docs' => $tipo_docs,'tipo_usu' => $tipo_usu]);
+    }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -49,9 +59,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nombre' => ['required', 'string', 'max:100'],
+            'apellido' => ['required', 'string', 'max:100'],
+            'username' => ['required', 'string', 'max:45'],
+            'password' => ['required', 'string', 'min:4'],
+            'nrodocumento' => ['required', 'string', 'max:20'],
+            'celular' => ['required', 'string', 'max:20'],
+            'direccion' => ['required', 'string', 'max:100']
         ]);
     }
 
@@ -63,10 +77,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        $usu = usuario::create([
+            'nombre' => $data['nombre'],
+            'apellido' => $data['apellido'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
+            'tipo_documento_id' => $data['tipo_documento'],
+            'nrodocumento' => $data['nrodocumento'],
+            'telefono' => $data['telefono'],
+            'celular' => $data['celular'],
+            'direccion' => $data['direccion']
         ]);
+        usuario_tipousuario::create([
+            'usuario_id' => $usu['id'],
+            'tipo_usuario_id' => $data['tipo_usuario_id'],
+            'estado' => '1'
+        ]);
+        return $usu;
     }
 }

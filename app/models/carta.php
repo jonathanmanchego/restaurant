@@ -14,6 +14,6 @@ class carta extends Model
         return ['id','version','fecha'];
     }
     public static function getPull(){
-    	return ['id','nombre'];
+    	return ['id','version'];
     }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>{{$title}}</title>
+	<title>{{ config('app.name') }}</title>
 	<link rel="stylesheet" type="text/css" href="{{url('/css/all.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/css_boot/bootstrap.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/app.css')}}">
@@ -18,7 +18,36 @@
 				<li><a href="{{url('/productos')}}"><span>PRODUCTOS</span></a></li>
 				<li><a href="{{url('/articulos')}}"><span>ARTICULOS</span></a></li>
 				<li><a class="toBuy" href="{{url('/pedido')}}"><i class="far fa-clipboard"></i></a></li>
-				<li><a href="{{url('/sistema')}}"><span>SISTEMA</span></a></li>
+			
+				<!-- Authentication Links -->
+				@guest
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+					</li>
+					@if (Route::has('register'))
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+						</li>
+					@endif
+				@else
+					<li class="nav-item dropdown">
+						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+							{{ Auth::user()->name }} <span class="caret"></span>
+						</a>
+
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{ route('logout') }}"
+							   onclick="event.preventDefault();
+											 document.getElementById('logout-form').submit();">
+								{{ __('Logout') }}
+							</a>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+						</div>
+					</li>
+				@endguest
 			</ul>
 		</nav>
 		{{-- SLIDER BOOTSTRAP --}}
@@ -45,7 +74,7 @@
 		</div>
 		{{-- CONTENIDO DE LAYOUT --}}
 		<div class="wrapp-content">
-			<div class="content">
+			<div class="container mt-3">
 			@section('content')
 				@show
 			</div>
