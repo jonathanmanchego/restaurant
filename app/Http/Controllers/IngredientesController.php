@@ -73,7 +73,7 @@ class IngredientesController extends Controller
         $data = ingrediente::getOne($id);
         $headers = ingrediente::getPull();
         $unidad = unidad_medida::all();
-        return view('sistema.ingredientes.editar',['title' => "INGREDIENTE - EDITAR",'action' => '/ingrediente/'.$id,'data' => $data,'headers' => $headers,'medidas'=> $unidad]);
+        return view('sistema.ingredientes.editar',['title' => "INGREDIENTE - EDITAR",'action' => '/ingredientes/'.$id,'data' => $data,'headers' => $headers,'medidas'=> $unidad]);
     }
 
     /**
@@ -85,7 +85,13 @@ class IngredientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $c = ingrediente::find($id);
+        $c->nombre = $request->nombre;
+        $c->cantidad = $request->cantidad;
+        $c->precio_compra = $request->precio_compra;
+        $c->unidad_medida_id = $request->unidadMedida;
+        $c->save();
+        return redirect('/sistema/ingredientes');
     }
 
     /**
@@ -96,6 +102,8 @@ class IngredientesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $in = ingrediente::find($id);
+        $in->delete();
+        return redirect('/sistema/ingredientes');
     }
 }
