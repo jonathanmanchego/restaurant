@@ -3,10 +3,10 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\models\estado_ordenes;
-use restaurant\Http\Requests\general\estadoOrdenValidacion;
+use restaurant\models\tipo_empleado;
+use restaurant\Http\Requests\general\formAltValidacion;
 
-class EstadoOrdenController extends Controller
+class TipoEmpleadoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class EstadoOrdenController extends Controller
      */
     public function index()
     {
-        $tu = new estado_ordenes();
+        $tu = new tipo_empleado();
         $data = $tu->all();
         $headers = $tu->getHeaders();
         // return $headers;
-        return view('sistema.estado_ordenes.index',['data' => $data,'title' => 'ESTADO_ORDENES','action'=> '/estado_ordenes','headers' => $headers]);
+        return view('sistema.tipo_empleado.index',['data' => $data,'title' => 'TIPOS_EMPLEADOS','action'=> '/tipoempleado','headers' => $headers]);
     }
 
     /**
@@ -29,8 +29,8 @@ class EstadoOrdenController extends Controller
      */
     public function create()
     {
-        $headers = estado_ordenes::getPull();
-        return view('sistema.estado_ordenes.crear',['title' => 'ESTADO_ORDENES NUEVO','action'=>'/estado_ordenes','headers' => $headers]);
+        $headers = tipo_empleado::getPull();
+        return view('sistema.tipo_empleado.crear',['title' => 'TIPOS_EMPLEADOS NUEVO','action'=>'/tipoempleado','headers' => $headers]);
     }
 
     /**
@@ -39,12 +39,12 @@ class EstadoOrdenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(estadoOrdenValidacion $request)
+    public function store(formAltValidacion $request)
     {
-        $tu = new estado_ordenes();
+        $tu = new tipo_empleado();
         $tu->nombre = $request->input('nombre');
         $tu->save();
-        return redirect('/sistema/estado_ordenes');
+        return redirect('/sistema/tipoempleado');
     }
 
     /**
@@ -66,9 +66,9 @@ class EstadoOrdenController extends Controller
      */
     public function edit($id)
     {
-        $tu = estado_ordenes::find($id);
-        $headers = estado_ordenes::getPull();
-        return view('sistema.estado_ordenes.editar',['title' => 'ESTADO_ORDENES - EDITAR','action' => '/estado_ordenes/'.$id, 'data' => $tu,'headers' => $headers]);
+        $tu = tipo_empleado::find($id);
+        $headers = tipo_empleado::getPull();
+        return view('sistema.tipo_empleado.editar',['title' => 'TIPOS_EMPLEADOS - EDITAR','action' => '/tipoempleado/'.$id, 'data' => $tu,'headers' => $headers]);
     }
 
     /**
@@ -78,12 +78,12 @@ class EstadoOrdenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(estadoOrdenValidacion $request, $id)
+    public function update(formAltValidacion $request, $id)
     {
-        $tu = estado_ordenes::find($id);
+        $tu = tipo_empleado::find($id);
         $tu->nombre = $request->input('nombre');
         $tu->save();
-        return redirect('/sistema/estado_ordenes');
+        return redirect('/sistema/tipoempleado');
     }
 
     /**
@@ -94,8 +94,8 @@ class EstadoOrdenController extends Controller
      */
     public function destroy($id)
     {
-        $tu = estado_ordenes::find($id);
+        $tu = tipo_empleado::find($id);
         $tu->delete();
-        return redirect('/sistema/estado_ordenes');
+        return redirect('/sistema/tipoempleado');
     }
 }

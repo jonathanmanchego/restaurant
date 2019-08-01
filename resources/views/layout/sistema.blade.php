@@ -208,7 +208,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="/img/avatar2.png" class="user-image" alt="Manchego Sosa Jonathan">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{ Auth::user()->nombre}}</span>
+              {{-- <span class="hidden-xs">{{ Auth::user()->nombre}}</span> --}}
             </a>
           @include('partials.user-info.drop-user')
         </li>

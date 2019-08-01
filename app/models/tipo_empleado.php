@@ -3,10 +3,10 @@
 namespace restaurant\models;
 
 use Illuminate\Database\Eloquent\Model;
-use restaurant\models\carta;
-class tipo_carta extends Model
+
+class tipo_empleado extends Model
 {
-    protected $table = "tipo_carta";
+    protected $table = "tipo_empleado";
     protected $fillable = ['nombre'];
     protected $guarded = ['id'];
     public $timestamps = false;
@@ -14,9 +14,11 @@ class tipo_carta extends Model
     	return ['id','nombre'];
     }
     public static function getPull(){
-        return ['nombre'];
+    	return ['nombre'];
     }
-    public function getCarta(){
-		return $this->hasMany(carta::class);
-	}
+    public function __construct($id = 0, $nombre = "")
+    {
+        $this->id = $id;
+        $this->nombre = $nombre;
+    }
 }

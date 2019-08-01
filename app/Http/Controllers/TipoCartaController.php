@@ -3,10 +3,10 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\models\estado_ordenes;
-use restaurant\Http\Requests\general\estadoOrdenValidacion;
+use restaurant\models\tipo_carta;
+use restaurant\Http\Requests\general\formAltValidacion;
 
-class EstadoOrdenController extends Controller
+class TipoCartaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,10 @@ class EstadoOrdenController extends Controller
      */
     public function index()
     {
-        $tu = new estado_ordenes();
-        $data = $tu->all();
-        $headers = $tu->getHeaders();
-        // return $headers;
-        return view('sistema.estado_ordenes.index',['data' => $data,'title' => 'ESTADO_ORDENES','action'=> '/estado_ordenes','headers' => $headers]);
+        $data = tipo_carta::all();
+        $headers = tipo_carta::getHeaders();
+        return view('sistema.tipo_carta.index',
+            ['data' => $data, 'title' => 'TIPOS_CARTA','headers' => $headers,'action' =>'/tipo_carta']); 
     }
 
     /**
@@ -29,8 +28,8 @@ class EstadoOrdenController extends Controller
      */
     public function create()
     {
-        $headers = estado_ordenes::getPull();
-        return view('sistema.estado_ordenes.crear',['title' => 'ESTADO_ORDENES NUEVO','action'=>'/estado_ordenes','headers' => $headers]);
+        $headers = tipo_carta::getPull();
+        return view('sistema.tipo_carta.crear',['title' => 'TIPOS_CARTA - NUEVO', 'action' => '/tipo_carta','headers' => $headers]);
     }
 
     /**
@@ -39,12 +38,12 @@ class EstadoOrdenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(estadoOrdenValidacion $request)
+    public function store(formAltValidacion $request)
     {
-        $tu = new estado_ordenes();
+        $tu = new tipo_carta();
         $tu->nombre = $request->input('nombre');
         $tu->save();
-        return redirect('/sistema/estado_ordenes');
+        return redirect('/sistema/tipo_carta');
     }
 
     /**
@@ -66,9 +65,9 @@ class EstadoOrdenController extends Controller
      */
     public function edit($id)
     {
-        $tu = estado_ordenes::find($id);
-        $headers = estado_ordenes::getPull();
-        return view('sistema.estado_ordenes.editar',['title' => 'ESTADO_ORDENES - EDITAR','action' => '/estado_ordenes/'.$id, 'data' => $tu,'headers' => $headers]);
+        $td = tipo_carta::find($id);
+        $headers = $td->getPull();
+        return view('sistema.tipo_carta.editar',['title' => 'TIPOS_CARTA - EDITAR','action' => '/tipo_carta/'.$id,'data' => $td,'headers' => $headers]);
     }
 
     /**
@@ -78,12 +77,12 @@ class EstadoOrdenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(estadoOrdenValidacion $request, $id)
+    public function update(formAltValidacion $request, $id)
     {
-        $tu = estado_ordenes::find($id);
-        $tu->nombre = $request->input('nombre');
-        $tu->save();
-        return redirect('/sistema/estado_ordenes');
+        $td = tipo_carta::find($id);
+        $td->nombre = $request->input('nombre');
+        $td->save();
+        return redirect('/sistema/tipo_carta');
     }
 
     /**
@@ -94,8 +93,8 @@ class EstadoOrdenController extends Controller
      */
     public function destroy($id)
     {
-        $tu = estado_ordenes::find($id);
-        $tu->delete();
-        return redirect('/sistema/estado_ordenes');
+        $td = tipo_carta::find($id);
+        $td->delete();
+        return redirect('/sistema/tipo_carta');
     }
 }

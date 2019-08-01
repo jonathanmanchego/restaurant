@@ -4,7 +4,8 @@ namespace restaurant\Http\Requests\general;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class formAltValidacion extends FormRequest
+
+class estadoOrdenValidacion extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,7 @@ class formAltValidacion extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:45|unique:tipo_documento,nombre,'.$this->route('id')
+            'nombre' => 'required|max:45|unique:estado_ordenes,nombre,'.$this->route('id')
         ];
     }
 }

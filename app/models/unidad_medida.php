@@ -3,20 +3,17 @@
 namespace restaurant\models;
 
 use Illuminate\Database\Eloquent\Model;
-use restaurant\models\carta;
-class tipo_carta extends Model
+
+class unidad_medida extends Model
 {
-    protected $table = "tipo_carta";
+    protected $table = "unidad_medida";
+    public $timestamps = false;
     protected $fillable = ['nombre'];
     protected $guarded = ['id'];
-    public $timestamps = false;
     public static function getHeaders(){
     	return ['id','nombre'];
     }
     public static function getPull(){
         return ['nombre'];
     }
-    public function getCarta(){
-		return $this->hasMany(carta::class);
-	}
 }

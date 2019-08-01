@@ -1,11 +1,11 @@
   <ul class="dropdown-menu">
     <!-- The user image in the menu -->
-    <li class="user-header">
+    {{-- <li class="user-header">
       <img src="/img/avatar2.png" class="img-circle" alt="{{ Auth::user()->nombre }}">
       <p>
         {{ Auth::user()->nombre . ' ' .Auth::user()->apellido }}
       </p>
-    </li>
+    </li> --}}
     <!-- Menu Body -->
     <li class="user-body">
       <div class="row">

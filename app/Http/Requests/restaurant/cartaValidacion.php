@@ -1,10 +1,10 @@
 <?php
 
-namespace restaurant\Http\Requests\general;
+namespace restaurant\Http\Requests\restaurant;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class formAltValidacion extends FormRequest
+class cartaValidacion extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class formAltValidacion extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:45|unique:tipo_documento,nombre,'.$this->route('id')
+            'version' => 'string|max:10|required'
         ];
     }
 }

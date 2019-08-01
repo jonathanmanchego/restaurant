@@ -3,10 +3,10 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\models\tipo_usuario;
+use restaurant\models\unidad_medida;
 use restaurant\Http\Requests\general\formAltValidacion;
 
-class TipoUsuarioController extends Controller
+class UnidadMedidaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,10 @@ class TipoUsuarioController extends Controller
      */
     public function index()
     {
-        $tu = new tipo_usuario();
-        $data = $tu->all();
-        $headers = $tu->getHeaders();
-        // return $headers;
-        return view('sistema.tipo_usuario.index',['data' => $data,'title' => 'TIPOS_USUARIO','action'=> '/tipousuario','headers' => $headers]);
+        $data = unidad_medida::all();
+        $headers = unidad_medida::getHeaders();
+        return view('sistema.unidad_medida.index',
+            ['data' => $data, 'title' => 'UNIDAD DE MEDIDAS','headers' => $headers,'action' =>'/unidad_medida']); 
     }
 
     /**
@@ -29,8 +28,8 @@ class TipoUsuarioController extends Controller
      */
     public function create()
     {
-        $headers = tipo_usuario::getPull();
-        return view('sistema.tipo_usuario.crear',['title' => 'TIPOS_USUARIO NUEVO','action'=>'/tipousuario','headers' => $headers]);
+        $headers = unidad_medida::getPull();
+        return view('sistema.unidad_medida.crear',['title' => 'UNIDAD DE MEDIDAS - NUEVO', 'action' => '/unidad_medida','headers' => $headers]);
     }
 
     /**
@@ -41,11 +40,10 @@ class TipoUsuarioController extends Controller
      */
     public function store(formAltValidacion $request)
     {
-        $tu = new tipo_usuario();
+        $tu = new unidad_medida();
         $tu->nombre = $request->input('nombre');
-        $tu->descripcion = $request->input('descripcion');
         $tu->save();
-        return redirect('/sistema/tipousuario');
+        return redirect('/sistema/unidad_medida');
     }
 
     /**
@@ -67,9 +65,9 @@ class TipoUsuarioController extends Controller
      */
     public function edit($id)
     {
-        $tu = tipo_usuario::find($id);
-        $headers = tipo_usuario::getPull();
-        return view('sistema.tipo_usuario.editar',['title' => 'TIPOS_USUARIO - EDITAR','action' => '/tipousuario/'.$id, 'data' => $tu,'headers' => $headers]);
+        $td = unidad_medida::find($id);
+        $headers = $td->getPull();
+        return view('sistema.unidad_medida.editar',['title' => 'UNIDAD DE MEDIDAS - EDITAR','action' => '/unidad_medida/'.$id,'data' => $td,'headers' => $headers]);
     }
 
     /**
@@ -81,11 +79,10 @@ class TipoUsuarioController extends Controller
      */
     public function update(formAltValidacion $request, $id)
     {
-        $tu = tipo_usuario::find($id);
-        $tu->nombre = $request->input('nombre');
-        $tu->descripcion = $request->input('descripcion');
-        $tu->save();
-        return redirect('/sistema/tipousuario');
+        $td = unidad_medida::find($id);
+        $td->nombre = $request->input('nombre');
+        $td->save();
+        return redirect('/sistema/unidad_medida');
     }
 
     /**
@@ -96,8 +93,8 @@ class TipoUsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $tu = tipo_usuario($id);
-        $tu->delete();
-        return redirect('/sistema/tipousuario');
+        $td = unidad_medida::find($id);
+        $td->delete();
+        return redirect('/sistema/unidad_medida');
     }
 }

@@ -3,10 +3,10 @@
 namespace restaurant\models;
 
 use Illuminate\Database\Eloquent\Model;
-use restaurant\models\usuario;
-
-class zona extends Model
+use restaurant\models\carta_item;
+class categoria extends Model
 {
+    protected $table = "categoria";
     protected $fillable = ['nombre'];
     protected $guarded = ['id'];
     public $timestamps = false;
@@ -18,8 +18,8 @@ class zona extends Model
     {
         return ['nombre'];
     }
-    public function getUsuarios()
+    public function getItem()
     {
-        return $this->hasMany(usuario::class);
+        return $this->hasMany(carta_item::class);
     }
 }
