@@ -26,12 +26,12 @@ class productoValidacion extends FormRequest
         return [
             'nombre' => 'required|max:100',
             'descripcion' => 'max:250',
-            'imagen' => 'max:100|required',
+            'image' => 'image|nullable',
             'precio' => 'required',
-            'codigo' => 'required|max:10',
-            'eliminado' => 'nullable',
+            'codigo' => 'required|max:10|unique:producto,codigo,'.$this->producto,
+            'eliminado' => 'nullable|required',
             'tiempo_espera' => 'required',
-            'video' => 'max:100|required'
+            'video' => 'file|nullable'
         ];
     }
 }

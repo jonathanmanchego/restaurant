@@ -34,7 +34,7 @@ class carta extends Model
         return ['id','version','fecha','estado','tipo'];
     }
     public static function getPull(){
-    	return ['id','version','estado'];
+    	return ['id','version'];
     }
     public static function getAll(){
         $data = carta::all();

@@ -44,7 +44,7 @@ class CartaController extends Controller
     {
         $c = new carta();
         $c->version = $request->version;
-        $c->estado = $request->estado;
+        $c->estado = FALSE;
         $c->tipo_carta_id = $request->tipoCarta;
         $c->save();
         return redirect('/sistema/carta');

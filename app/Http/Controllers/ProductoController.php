@@ -5,6 +5,8 @@ namespace restaurant\Http\Controllers;
 use Illuminate\Http\Request;
 use restaurant\models\producto;
 use restaurant\Http\Requests\general\productoValidacion;
+use restaurant\models\ingrediente;
+
 class ProductoController extends Controller
 {
     /**
@@ -27,7 +29,14 @@ class ProductoController extends Controller
     public function create()
     {
         $headers = producto::getPull();
-        return view('sistema.producto.crear',['title' => 'PRODUCTO - NUEVO' ,'action' => '/producto','headers' => $headers]);
+        $types = producto::getTypes();
+        $datos_aux = [
+            'title' => 'Ingredientes',
+            'headers' => ingrediente::getPull(),
+            'content' => ingrediente::getAll()
+        ];
+        // return $datos_aux;
+        return view('sistema.producto.crear',['datos_aux' => $datos_aux,'title' => 'PRODUCTO - NUEVO' ,'action' => '/producto','headers' => $headers,'tipos' => $types]);
     }
 
     /**
@@ -36,9 +45,32 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(productoValidacion $request)
     {
-        producto::create($request->all());
+        $p = new producto();
+        $p->nombre = $request->nombre;
+        $p->imagen = null;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $name = $request->nombre.'.'.$file->extension();
+            $file->move(public_path().'/uploads',$name);
+            $p->imagen = $name;
+        }
+        $p->video = null;
+        if($request->hasFile('video')){
+            $file2 = $request->file('video');
+            $name = $request->nombre.'.'.$file2->extension();
+            $file2->move(public_path().'/uploads',$name);
+            $p->video = $name;
+        }
+        $p->descripcion = $request->descripcion;
+        $p->precio = $request->precio;
+        $p->codigo = $request->codigo;
+        $p->eliminado = $request->eliminado;
+        $p->tiempo_espera = $request->tiempo_espera;
+        $p->fecha_validez = $request->fecha_validez;
+        $p->save();
+        // return $name;
         return redirect('/sistema/producto');
     }
 
@@ -61,7 +93,10 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = producto::getOne($id);
+        $headers = producto::getPull();
+        $ing = ingrediente::getAll();
+        return view('sistema.producto.editar',['title' => "PRODUCTO - EDITAR",'action' => '/producto/'.$id,'data' => $data,'headers' => $headers,'ingredientes' => $ing]);
     }
 
     /**
@@ -71,9 +106,30 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(productoValidacion $request, $id)
     {
-        //
+        $p = producto::find($id);
+        $p->nombre = $request->nombre;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $name = $request->nombre.'.'.$file->extension();
+            $file->move(public_path().'/uploads',$name);
+            $p->imagen = $name;
+        }
+        if($request->hasFile('video')){
+            $file2 = $request->file('video');
+            $name = $request->nombre.'.'.$file2->extension();
+            $file2->move(public_path().'/uploads',$name);
+            $p->video = $name;
+        }
+        $p->descripcion = $request->descripcion;
+        $p->precio = $request->precio;
+        $p->eliminado = $request->eliminado;
+        $p->tiempo_espera = $request->tiempo_espera;
+        $p->fecha_validez = $request->fecha_validez;
+        $p->save();
+        // return $name;
+        return redirect('/sistema/producto');
     }
 
     /**
@@ -84,6 +140,8 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $p = producto::find($id);
+        $p->delete();
+        return redirect('/sistema/producto');
     }
 }
