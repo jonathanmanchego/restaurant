@@ -36,6 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -349,12 +350,12 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="/css/admin/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{url('/css/admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/css/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{url('/css/admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="/css/admin/js/adminlte.min.js"></script>
-
+<script src="{{url('/css/admin/js/adminlte.min.js')}}"></script>
+<script src="{{url('/js/customs/helper.js')}}"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

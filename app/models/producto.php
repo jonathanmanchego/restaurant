@@ -3,7 +3,7 @@
 namespace restaurant\models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use restaurant\models\productos_composicion;
 class producto extends Model
 {
     protected $table = "producto";
@@ -28,5 +28,12 @@ class producto extends Model
         $d = producto::find($id);
         $d->ingredientes;
         return $d;
+    }
+    public function addIngrediente($id){
+        $p_i = new productos_composicion();
+        $p_i->producto_id = $this->id;
+        $p_i->ingredientes_id = $id;
+        $p_i->cantidad = 0;
+        $p_i->save();
     }
 }

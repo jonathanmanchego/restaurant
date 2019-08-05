@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 @section('content')
-	<div class="container-crud">
+	<div class="container-crud d-flex">
 	@if ($errors->any())
 		<div class="alert alert-warning alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 	@endif
-	<form class="form" action="{{url('/sistema'.$action)}}" method="POST">
+	<form class="form " action="{{url('/sistema'.$action)}}" method="POST" style="width: 60%;margin: 0 auto;">
 		@csrf
 	    @method('PUT')
 		@foreach ($headers as $head)
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-		    <div class="col-md-5">
+		    <div class="col-md-6">
 		    	<label for="VideoInput">VIDEO</label>
 		    	<input id="VideoInput" class="form-control-file" type="file" name="video" >
 		    </div>
@@ -74,6 +74,37 @@
 		@csrf
 		@method('DELETE')
 	</form>
+	<div class="w-100 mt-3">
+		<button id="" type="button" class="btn btn-primary btn-flat w-50" data-toggle="modal" data-target="#modal-datos" ><span class="fa fa-list"></span> AÑADIR INGREDIENTES</button>
+		@if (count($data->ingredientes) != 0)		
+		<table class="table table-hover">
+	  		<thead class="thead-dark" style="background-color: #343a40;color:#fff">
+				<tr>
+					@foreach ($datos_aux['headers'] as $head)
+	        			<th  scope="col">{{$head}}</th>
+	   				@endforeach
+	   					<th scope="col">ELIMINAR</th>
+				</tr>
+	  		</thead>
+		  	<tbody>
+			    @foreach ($data->ingredientes as $item)
+					<tr>
+						<td>{{$item->id}}</td>
+						<td>{{$item->nombre}}</td>
+						<td>0</td>
+						<td>{{$item->precio_compra}}</td>
+						<td>
+			                <button type="button" class="btn btn-success btn-agregarprod">
+			                    <span class="fa fa-plus"></span>
+			                </button>
+				        </td>
+					</tr>
+				@endforeach
+		  	</tbody>
+		</table>
+		@endif
+	</div>
 </div>
-
+	@include('sistema.producto.modal_datos')
+<script src="{{url('/js/customs/producto/script.js')}}"></script>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layout.sistema')
 @section('content')
-<div class="container-crud d-flex">
+<div class="container-crud">
 	@if ($errors->any())
 		<div class="alert alert-warning alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -13,7 +13,7 @@
 			</ul>
 		</div>
 	@endif
-	<form class="form col-md-6" action="{{url('/sistema'.$action)}}" method="POST" enctype="multipart/form-data">
+	<form class="form" action="{{url('/sistema'.$action)}}" method="POST" enctype="multipart/form-data">
 		@csrf
 		@foreach ($headers as $key => $head)
 	  	<div class="form-group">
@@ -51,8 +51,5 @@
 		<button type="submit" class="btn btn-primary">GUARDAR</button>
 	</form>
 </div>
-<div class="col-md-6">
-	<button id="" type="button" class="btn btn-primary btn-flat w-50" data-toggle="modal" data-target="#modal-datos" ><span class="fa fa-list"></span>  LISTA DE INGREDIENTES</button>
-</div>
-@include('sistema.producto.modal_datos')
+
 @endsection

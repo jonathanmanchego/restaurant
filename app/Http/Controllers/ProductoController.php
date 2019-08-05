@@ -30,13 +30,9 @@ class ProductoController extends Controller
     {
         $headers = producto::getPull();
         $types = producto::getTypes();
-        $datos_aux = [
-            'title' => 'Ingredientes',
-            'headers' => ingrediente::getPull(),
-            'content' => ingrediente::getAll()
-        ];
+        
         // return $datos_aux;
-        return view('sistema.producto.crear',['datos_aux' => $datos_aux,'title' => 'PRODUCTO - NUEVO' ,'action' => '/producto','headers' => $headers,'tipos' => $types]);
+        return view('sistema.producto.crear',['title' => 'PRODUCTO - NUEVO' ,'action' => '/producto','headers' => $headers,'tipos' => $types]);
     }
 
     /**
@@ -95,10 +91,17 @@ class ProductoController extends Controller
     {
         $data = producto::getOne($id);
         $headers = producto::getPull();
-        $ing = ingrediente::getAll();
-        return view('sistema.producto.editar',['title' => "PRODUCTO - EDITAR",'action' => '/producto/'.$id,'data' => $data,'headers' => $headers,'ingredientes' => $ing]);
+        $datos_aux = [
+            'title' => 'Ingredientes',
+            'headers' => ingrediente::getPull(),
+            'content' => ingrediente::getAll()
+        ];
+        return view('sistema.producto.editar',['datos_aux' => $datos_aux,'title' => "PRODUCTO - EDITAR",'action' => '/producto/'.$id,'data' => $data,'headers' => $headers]);
     }
-
+    public function addIngrediente(Request $data){
+        $p = producto::find($data->id);
+        $p->addIngrediente($data->ingrediente);
+    }
     /**
      * Update the specified resource in storage.
      *
