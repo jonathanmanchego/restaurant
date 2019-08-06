@@ -32,11 +32,11 @@
 		<div class="form-group">
 			<label>ESTADO DEL PRODUCTO</label>
 			<div class="form-check form-check-inline">
-			  	<input class="form-check-input" type="checkbox" id="boxEliminado" name="eliminado" value="0">
+			  	<input class="form-check-input" type="radio" id="boxEliminado" name="eliminado" value="0">
 			  	<label class="form-check-label" for="boxEliminado">Inactivo</label>
 			</div>
 			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="box2Eliminado" name="eliminado" value="1">
+				<input class="form-check-input" type="radio" id="box2Eliminado" name="eliminado" value="1">
 			  	<label class="form-check-label" for="box2Eliminado">Activo</label>
 			</div>
 		</div>

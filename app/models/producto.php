@@ -36,4 +36,8 @@ class producto extends Model
         $p_i->cantidad = 0;
         $p_i->save();
     }
+    public function removeIngrediente($id){
+        $p_i = productos_composicion::where('producto_id','=',$this->id)->where('ingredientes_id','=',$id);
+        $p_i->delete();
+    }
 }

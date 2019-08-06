@@ -35,6 +35,7 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::'/*, 'middleware' => 'auth
     // PRODUCTO ENVIRONMENT
     Route::resource('/producto', 'ProductoController');
     Route::post('/producto/addIngrediente','ProductoController@addIngrediente');
+    Route::post('/producto/removeIngrediente','ProductoController@removeIngrediente');
     Route::resource('/unidad_medida','UnidadMedidaController');
     Route::resource('/ingredientes','IngredientesController');
 });

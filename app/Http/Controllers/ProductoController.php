@@ -96,11 +96,16 @@ class ProductoController extends Controller
             'headers' => ingrediente::getPull(),
             'content' => ingrediente::getAll()
         ];
+        // return $data;
         return view('sistema.producto.editar',['datos_aux' => $datos_aux,'title' => "PRODUCTO - EDITAR",'action' => '/producto/'.$id,'data' => $data,'headers' => $headers]);
     }
     public function addIngrediente(Request $data){
         $p = producto::find($data->id);
         $p->addIngrediente($data->ingrediente);
+    }
+    public function removeIngrediente(Request $data){
+        $p = producto::find($data->id);
+        $p->removeIngrediente($data->ingrediente);
     }
     /**
      * Update the specified resource in storage.

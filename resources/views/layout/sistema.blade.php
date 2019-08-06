@@ -12,6 +12,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>{{$title}}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  {{-- BOOSTRAP CSS ONLINE --}}
+  {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
+  {{-- BOOSTRAP CSS OFFLINE --}}
+  {{-- <link rel="stylesheet" type="text/css" href="{{url('/bootstrap-4.3.1-dist/css_boot/bootstrap.min.css')}}"> --}}
   <link rel="stylesheet" href="{{url('/css/admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{url('/css/admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
@@ -353,6 +357,10 @@ desired effect
 <script src="{{url('/css/admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{url('/css/admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+{{-- BOOTSTRAP JS ONLINE --}}
+{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --}}
+{{-- BOOTSTRAP JS OFFLINE --}}
+{{-- <script type="text/javascript" src="{{url('/bootstrap-4.3.1-dist/js_boot/bootstrap.min.js')}}"></script> --}}
 <!-- AdminLTE App -->
 <script src="{{url('/css/admin/js/adminlte.min.js')}}"></script>
 <script src="{{url('/js/customs/helper.js')}}"></script>
