@@ -119,4 +119,31 @@ class CartaController extends Controller
         $c->delete();
         return redirect('/sistema/carta')->with("success","Carta Eliminada");
     }
+    public function pedido()
+    {
+        $arr = array (
+            array("nombre" => "CHICHARRON DE CHANCHO",  
+            "descripcion" => "Descripcion del plato CHICRRRON , bebida, producto, corta descripcion del producto en este lugar.", 
+            "foto" => "testchicharron.jpg",
+            "id" => "1"),
+             array("nombre" => "CHICHARRON DE CUY",  
+            "descripcion" => "Descripcion del plato CHICRRRON cuy, bebida, producto, corta descripcion del producto en este lugar.", 
+            "foto" => "testcuy.jpg",
+            "id" => "2"),
+             array("nombre" => "GASEOSA",  
+            "descripcion" => "Descripcion del plato , bebida GASEOSA, producto, corta descripcion del producto en este lugar.", 
+            "foto" => "testgaseosa.jpg",
+            "id" => "3"),
+            array("nombre" => "AGUA",  
+            "descripcion" => "Descripcion del plato , bebida AGUA, producto, corta descripcion del producto en este lugar.", 
+            "foto" => "testagua.jpg",
+            "id" => "8"),
+            array("nombre" => "GASEOSA",  
+            "descripcion" => "Descripcion del plato , bebida GASEOSA 2LITROSSS, producto, corta descripcion del producto en este lugar.", 
+            "foto" => "testgaseosa.jpg",
+            "id" => "10")
+            );
+        $carta=json_encode($arr);
+        return view('sistema.delivery.carta',['title' => "CARTA DEL DÍA",'data' => $arr]);
+    }
 }

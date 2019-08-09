@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/pedido','CartaController@pedido');
 Route::group(['prefix' => 'sistema','as' => 'sistema::'/*, 'middleware' => 'auth'*/], function () {
     Route::get('/',['uses'=>'GeneralController@index'])->name('home');
     // RECURSOS PRINCIPALES
