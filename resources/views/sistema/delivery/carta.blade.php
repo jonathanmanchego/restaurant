@@ -50,7 +50,7 @@
                 </table> 
             </div>
          @if ($key%2!=0)
-          </div>
+          </div><br>
         @endif 
             
        @endforeach

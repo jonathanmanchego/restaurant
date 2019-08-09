@@ -138,9 +138,9 @@ class CartaController extends Controller
             "descripcion" => "Descripcion del plato , bebida AGUA, producto, corta descripcion del producto en este lugar.", 
             "foto" => "testagua.jpg",
             "id" => "8"),
-            array("nombre" => "GASEOSA",  
-            "descripcion" => "Descripcion del plato , bebida GASEOSA 2LITROSSS, producto, corta descripcion del producto en este lugar.", 
-            "foto" => "testgaseosa.jpg",
+            array("nombre" => "CALDO DE GALLINA",  
+            "descripcion" => "Descripcion del plato Caldo de gallina, bebida , producto, corta descripcion del producto en este lugar.", 
+            "foto" => "testcaldo.jpg",
             "id" => "10")
             );
         $carta=json_encode($arr);
