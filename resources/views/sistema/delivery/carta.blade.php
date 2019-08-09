@@ -15,13 +15,17 @@
             <option value="">BEBIDAS</option>
         </select>
     </div>
-    <div class="col-sm-6 col-md-6 col-lg-6 text-center"> 
-        <label for="in-buscar">Buscar en Carta:</label>
-        <input type="text" class="form-control" id="in-buscar">
+    <div class="col-sm-5 col-md-5 col-lg-5 text-center"> 
+        <label for="in-buscar"></label>
+        <input type="text" class="form-control" id="in-buscar" placeholder="Buscar en Carta">
     </div>
     <div class="col-sm-3 col-md-3 col-lg-3 text-center"> 
         <label for="btn-buscar"></label>
-        <button type="button" class="btn btn-warning form-control" id="btn-buscar">Buscar</button>
+        <button type="button" class="btn btn-warning form-control" id="btn-buscar">Buscar <i class="fa fa-search" aria-hidden="true"></i>
+</button>
+    </div>
+    <div class="col-sm-1 col-md-1 col-lg-1 text-center"> 
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bd-modal-pedido"> <i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></button>
     </div>
 </div><br><br>
     @if (!empty($data[0]))
@@ -56,5 +60,53 @@
        @endforeach
     </div>
     @endif
-    
+<!-- Large modal -->
+<div class="modal fade bd-modal-pedido" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="container"> 
+            <br>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                    <b>Pedido</b>
+                    <br><br>
+                </div>
+                
+            </div>
+            <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>CHICHARRON DE CHANCHO</td>
+                        <td>40.00</td>
+                        <td>2</td>
+                        <td>80.00</td>
+                    </tr>
+                     <tr>
+                        <td>2</td>
+                        <td>CHICHARRON DE CUY</td>
+                        <td>45.00</td>
+                        <td>1</td>
+                        <td>45.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="right"><b>Total</b></td>
+                        <td>125.00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+  </div>
+</div>  
+
 @endsection
