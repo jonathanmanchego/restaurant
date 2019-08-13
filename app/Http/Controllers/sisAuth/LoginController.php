@@ -1,9 +1,10 @@
 <?php
 
-namespace restaurant\Http\Controllers\Auth;
+namespace restaurant\Http\Controllers\sisAuth;
 
 use restaurant\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -25,8 +26,10 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
-
+    protected $redirectTo = '/sistema';
+    protected function guard(){
+        return Auth::guard('sis');
+    }
     /**
      * Create a new controller instance.
      *
@@ -34,19 +37,24 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        
         $this->middleware('guest')->except('logout');
     }
     protected function loggedOut()
     {
-        return redirect('/login')->with('success','Sesion Finalizada');
+        return redirect('/empleados/login')->with('success','Sesion Finalizada');
     }
 
     protected function authenticated()
     {
-        return redirect('/')->with('success','Ingreso Exitoso');
+        return redirect('/sistema')->with('success','Ingreso Exitoso');
     }
 
     public function username(){
         return 'username';
+    }
+    public function showLoginForm()
+    {
+        return view('sis-auth.login');
     }
 }

@@ -78,9 +78,16 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        //
+        $dato = producto::find($id);
+    	return view('productos.producto',compact('dato'));
     }
-
+    /**
+     * Exhibicion de los productos
+     */
+    public function exhibicion(){
+        $data = producto::all();
+    	return view('productos.productos',compact('data'));	
+    }
     /**
      * Show the form for editing the specified resource.
      *

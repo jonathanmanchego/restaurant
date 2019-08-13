@@ -262,7 +262,7 @@ desired effect
       {{-- <a href="{{route('logout')}}">
         <i class="fas fa-sign-out-alt fa-lg"></i>
       </a> --}}
-      <a href="{{ route('logout') }}"
+      <a href="#"
          onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
           <i class="fas fa-sign-out-alt fa-lg"></i>

@@ -11,10 +11,10 @@
                 <div class="alert alert-danger ">{{session('fail')}}</div>
             @endif
             <div class="card">
-                <div class="card-header">{{ __('Ingresar') }}</div>
+                <div class="card-header">{{ __('Ingreso Empleados') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('sis-login-post') }}">
                         @csrf
 
                         <div class="form-group row">

@@ -10,8 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix' => 'sistema','as' => 'sistema::'/*, 'middleware' => 'auth'*/], function () {
+Route::get('/empleados/login','sisAuth\LoginController@showLoginForm')->name('sis-login');
+Route::post('/empleados/login','sisAuth\LoginController@login')->name('sis-login-post');
+
+
+Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => 'sisAuth:sis'], function () {
     Route::get('/',['uses'=>'GeneralController@index'])->name('home');
+    Route::post('/logout','sisAuth\LoginController@logout')->name('sis-logout');
     // RECURSOS PRINCIPALES
     Route::resource('/permiso','PermisoController');
     Route::resource('/zona','ZonasController');
@@ -38,4 +43,6 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::'/*, 'middleware' => 'auth
     Route::post('/producto/removeIngrediente','ProductoController@removeIngrediente');
     Route::resource('/unidad_medida','UnidadMedidaController');
     Route::resource('/ingredientes','IngredientesController');
+    // EMPLEADOS RRHH
+    Route::resource('/empleados','EmpleadoController');
 });

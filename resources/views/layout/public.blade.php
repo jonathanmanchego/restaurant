@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{{ config('app.name') }}</title>
+	{{-- META DE VALIDADCION DE CSRF --}}
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/all.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/css_boot/bootstrap.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/app.css')}}">
@@ -32,7 +34,7 @@
 				@else
 					<li class="nav-item dropdown">
 						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-							{{ Auth::user()->name }} <span class="caret"></span>
+							{{ Auth::user()->nombre }} <span class="caret"></span>
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -74,13 +76,18 @@
 		</div>
 		{{-- CONTENIDO DE LAYOUT --}}
 		<div class="wrapp-content">
+			@if (session('success'))
+                <div class="alert alert-success ">{{session('success')}}</div>
+            @endif
 			<div class="container mt-3">
 			@section('content')
 				@show
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-	<script type="text/javascript" src="/js/js_boot/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{url('/js/jquery-3.4.1.min.js')}}"></script>
+	<script src="{{url('/js/customs/helper.js')}}"></script>
+	<script type="text/javascript" src="{{url('/js/js_boot/bootstrap.min.js')}}"></script>
+	<script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

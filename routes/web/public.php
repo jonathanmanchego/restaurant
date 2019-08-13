@@ -15,7 +15,15 @@ Route::get('/', function(){
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/lista','CarritoController@index');
-Route::post('/lista/add','CarritoController@add')->name('addToCar');
+// CARRITO ROUTES
+Route::get('/carrito/reset','CarritoController@reset')->name('reset');
+Route::get('/carrito/add/{producto}/{cantidadAdd}','CarritoController@add')->name('addToCar');
+Route::get('/carrito/update/{producto}/{cantidadAdd}','CarritoController@update')->name('updateCar');
+Route::get('/carrito/remove/{producto}/{cantidadRemove}','CarritoController@remove')->name('removeToCar');
+Route::get('/carrito/show','CarritoController@show')->name('Carrito');
+
+// PRODUCTOS ROUTES
+Route::get('/productos','ProductoController@exhibicion')->name('productos');
+Route::get('/productos/{id}','ProductoController@show')->name('productoMostrar')->middleware('auth');

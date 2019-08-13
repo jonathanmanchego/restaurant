@@ -9,9 +9,9 @@
           <img src="/img/avatar2.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          {{-- <p>{{ Auth::user()->nombre . ' ' .Auth::user()->apellido }}</p> --}}
+          <p>{{ Auth::user()->nombre . ' ' .Auth::user()->apellido }}</p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Conectado</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> {{Auth::user()->tipo->nombre}}</a>
         </div>
       </div>
 
@@ -48,6 +48,16 @@
             <li><a href="{{url('/sistema/restaurant')}}">Restaurant</a></li>
             <li><a href="{{url('/sistema/menu')}}">Menu</a></li>
             <li><a href="{{url('/sistema/permiso')}}">Permiso</a></li>
+          </ul>
+        </li>
+                <li class="treeview">
+          <a href="#"><i class="fas fa-hamburger"></i> <span>Empleados</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url('/sistema/empleados')}}">Nuevo Empleado</a></li>
           </ul>
         </li>
         <li class="treeview">

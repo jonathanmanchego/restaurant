@@ -1,11 +1,11 @@
   <ul class="dropdown-menu">
     <!-- The user image in the menu -->
-    {{-- <li class="user-header">
-      <img src="/img/avatar2.png" class="img-circle" alt="{{ Auth::user()->nombre }}">
+    <li class="user-header">
+      <img src="/img/avatar2.png" class="img-circle" alt="{{ Auth::user()->nombre}}">
       <p>
         {{ Auth::user()->nombre . ' ' .Auth::user()->apellido }}
       </p>
-    </li> --}}
+    </li>
     <!-- Menu Body -->
     <li class="user-body">
       <div class="row">
@@ -27,13 +27,13 @@
         <a href="#" class="btn btn-default btn-flat">Profile</a>
       </div>
       <div class="pull-right">
-        <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
+        <a class="btn btn-default btn-flat" href="#"
            onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
             {{ __('Salir') }}
         </a>
 
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ route('sistema::sis-logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
       </div>
