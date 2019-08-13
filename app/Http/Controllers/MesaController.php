@@ -5,6 +5,8 @@ namespace restaurant\Http\Controllers;
 use Illuminate\Http\Request;
 use restaurant\models\mesa;
 use restaurant\Http\Requests\general\mesaValidacion;
+use restaurant\models\estado_mesa;
+
 class MesaController extends Controller
 {
     /**
@@ -27,7 +29,8 @@ class MesaController extends Controller
     public function create()
     {
         $headers = mesa::getPull();
-        return view('sistema.mesa.crear',['title' => 'MESAS NUEVO','action' => '/mesa','headers' => $headers]);
+        $estados = estado_mesa::all();
+        return view('sistema.mesa.crear',['title' => 'MESAS NUEVO','action' => '/mesa','headers' => $headers,'estados' => $estados]);
     }
 
     /**

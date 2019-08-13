@@ -40,7 +40,7 @@
 						<span>{{$ele->nombre}}</span>
 					</div>
 					<div class="listado-item-ele">
-						<span>{{$ele->apellido}}</span>
+						<span>{{$ele->tipo->nombre}}</span>
 					</div>
 					<div class="listado-item-ele">
 						<span>{{$ele->celular}}</span>

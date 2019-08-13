@@ -11,9 +11,12 @@ class mesa extends Model
     protected $fillable = ['numero','capacidad','estado_mesas_id'];
     protected $guarded = ['id'];
     public static function getHeaders(){
-    	return ['id','capacidad','numero','estado_mesas_id'];
+    	return ['id','capacidad','numero'];
     }
     public static function getPull(){
-        return ['numero','capacidad'];
+        return ['id','nombre','numero','capacidad'];
+    }
+    public function estado(){
+        return $this->belongsTo(estado_mesa::class,'estado_mesas_id');
     }
 }

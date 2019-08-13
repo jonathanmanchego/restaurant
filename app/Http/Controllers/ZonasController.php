@@ -77,7 +77,7 @@ class ZonasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(formValidacion $request, $id)
+    public function update(Request $request, $id)
     {
         $zona = zona::find($id);
         $zona->nombre = $request->input('nombre');

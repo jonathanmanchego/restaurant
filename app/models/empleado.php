@@ -15,9 +15,8 @@ class empleado extends Authenticatable
     public function doc(){
         return $this->belongsTo(tipo_documento::class,'tipo_documento_id');
     }
-    public static function getHeaders()
-    {
-        return usuario::getHeaders();
+    public static function getHeaders(){
+        return ['id','nombre','tipo','celular','username','documento'];
     }
     public static function getPull()
     {
