@@ -19,3 +19,4 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/lista','CarritoController@index');
 Route::post('/lista/add','CarritoController@add')->name('addToCar');
+

@@ -44,9 +44,9 @@ class RegisterController extends Controller
     }
     public function showRegistrationForm()
     {
-        $tipo_usu = tipo_usuario::all();
-        $tipo_docs = tipo_documento::all();
-        return view('auth.register',['tipo_docs' => $tipo_docs,'tipo_usu' => $tipo_usu]);
+        //$tipo_usu = tipo_usuario::all();
+        //$tipo_docs = tipo_documento::all();
+        return view('auth.register'/*,['tipo_docs' => $tipo_docs,'tipo_usu' => $tipo_usu]*/);
     }
 
 
