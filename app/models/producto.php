@@ -11,7 +11,7 @@ class producto extends Model
     protected $guarded = ['id'];
     public $timestamps = false;
     public static function getHeaders(){
-        return ['id','nombre','descripcion','precio','codigo','fecha_validez','tiempo_espera'];
+        return ['id','nombre','precio','codigo','fecha_validez','tiempo_espera'];
     }
     public static function getPull(){
         return ['id','nombre','descripcion','precio','codigo','tiempo_espera'];

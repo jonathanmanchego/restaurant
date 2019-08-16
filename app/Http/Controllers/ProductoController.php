@@ -5,6 +5,7 @@ namespace restaurant\Http\Controllers;
 use Illuminate\Http\Request;
 use restaurant\models\producto;
 use restaurant\Http\Requests\general\productoValidacion;
+use restaurant\models\categoria;
 use restaurant\models\ingrediente;
 
 class ProductoController extends Controller
@@ -30,9 +31,9 @@ class ProductoController extends Controller
     {
         $headers = producto::getPull();
         $types = producto::getTypes();
-        
+        $cate = categoria::all();
         // return $datos_aux;
-        return view('sistema.producto.crear',['title' => 'PRODUCTO - NUEVO' ,'action' => '/producto','headers' => $headers,'tipos' => $types]);
+        return view('sistema.producto.crear',['title' => 'PRODUCTO - NUEVO' ,'action' => '/producto','headers' => $headers,'tipos' => $types,'categorias' => $cate]);
     }
 
     /**
@@ -65,6 +66,7 @@ class ProductoController extends Controller
         $p->eliminado = $request->eliminado;
         $p->tiempo_espera = $request->tiempo_espera;
         $p->fecha_validez = $request->fecha_validez;
+        $p->categoria_id = $request->categoria;
         $p->save();
         // return $name;
         return redirect('/sistema/producto');
@@ -81,13 +83,7 @@ class ProductoController extends Controller
         $dato = producto::find($id);
     	return view('productos.producto',compact('dato'));
     }
-    /**
-     * Exhibicion de los productos
-     */
-    public function exhibicion(){
-        $data = producto::all();
-    	return view('productos.productos',compact('data'));	
-    }
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,8 +99,9 @@ class ProductoController extends Controller
             'headers' => ingrediente::getPull(),
             'content' => ingrediente::getAll()
         ];
+        $cate = categoria::all();
         // return $data;
-        return view('sistema.producto.editar',['datos_aux' => $datos_aux,'title' => "PRODUCTO - EDITAR",'action' => '/producto/'.$id,'data' => $data,'headers' => $headers]);
+        return view('sistema.producto.editar',['datos_aux' => $datos_aux,'title' => "PRODUCTO - EDITAR",'action' => '/producto/'.$id,'data' => $data,'headers' => $headers,'categorias' => $cate]);
     }
     public function addIngrediente(Request $data){
         $p = producto::find($data->id);
@@ -142,6 +139,7 @@ class ProductoController extends Controller
         $p->eliminado = $request->eliminado;
         $p->tiempo_espera = $request->tiempo_espera;
         $p->fecha_validez = $request->fecha_validez;
+        $p->categoria_id = $request->categoria;
         $p->save();
         // return $name;
         return redirect('/sistema/producto');

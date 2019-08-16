@@ -22,6 +22,14 @@
 		</div>
 		@endforeach
 		<div class="form-group">
+			<label for="categoriaInput">CATEGORIA</label>
+			<select name="categoria" class="form-control" id="">
+				@foreach ($categorias as $cate)
+					<option value="{{$cate->id}}">{{$cate->nombre}}</option>
+				@endforeach
+			</select>
+		</div>
+		<div class="form-group">
 		    <label for="ImagenInput">IMAGEN</label>
 		    <input id="ImagenInput" class="form-control-file" type="file" name="image" >
 		</div>

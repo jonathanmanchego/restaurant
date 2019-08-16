@@ -3,11 +3,8 @@
 namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
-use restaurant\models\mesa;
-use restaurant\Http\Requests\general\mesaValidacion;
-use restaurant\models\estado_mesa;
 
-class MesaController extends Controller
+class CartaItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +13,7 @@ class MesaController extends Controller
      */
     public function index()
     {
-        $data = mesa::all();
-        $headers = mesa::getHeaders();
-        return view('sistema.mesa.index',['data' => $data,'title' => 'MESA','action' => '/mesa','headers' =>$headers]);
+        //
     }
 
     /**
@@ -28,9 +23,7 @@ class MesaController extends Controller
      */
     public function create()
     {
-        $headers = mesa::getPull();
-        $estados = estado_mesa::all();
-        return view('sistema.mesa.crear',['title' => 'MESAS NUEVO','action' => '/mesa','headers' => $headers,'estados' => $estados]);
+        //
     }
 
     /**
@@ -39,10 +32,9 @@ class MesaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(mesaValidacion $request)
+    public function store(Request $request)
     {
-        mesa::create($request->all());
-        return redirect('/sistema/mesa');
+        //
     }
 
     /**
@@ -64,10 +56,7 @@ class MesaController extends Controller
      */
     public function edit($id)
     {
-        $mesa = mesa::find($id);
-        $headers = mesa::getPull();
-        $estados = estado_mesa::all();
-        return view('sistema.mesa.editar',['title' => 'MESA - EDITAR','action' => '/mesa/'.$id,'data' => $mesa,'headers' => $headers,'estados' => $estados]);
+        //
     }
 
     /**
@@ -77,10 +66,9 @@ class MesaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(mesaValidacion $request, $id)
+    public function update(Request $request, $id)
     {
-        mesa::find($id)->update($request->all());
-        return redirect('/sistema/mesa');
+        //
     }
 
     /**
@@ -91,7 +79,6 @@ class MesaController extends Controller
      */
     public function destroy($id)
     {
-        mesa::destroy($id);
-        return redirect('/sistema/mesa');
+        //
     }
 }

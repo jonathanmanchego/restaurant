@@ -36,7 +36,9 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => 'sisAut
     Route::resource('/tipo_carta','TipoCartaController');
     Route::resource('/categoria','CategoriaController');
     Route::resource('/carta','CartaController');
+    Route::post('/carta/instanciando','CartaController@instanciando');
     Route::post('/carta/change-state','CartaController@changeEstado');
+    Route::get('/carta/activa','CartaController@activa');
     // PRODUCTO ENVIRONMENT
     Route::resource('/producto', 'ProductoController');
     Route::post('/producto/addIngrediente','ProductoController@addIngrediente');
@@ -45,4 +47,7 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => 'sisAut
     Route::resource('/ingredientes','IngredientesController');
     // EMPLEADOS RRHH
     Route::resource('/empleados','EmpleadoController');
+    ///MOZO
+    Route::get('ordenes/agregar', 'OrdenController@create')->name('agregar_venta');
+    Route::resource('/orden','OrdenController');
 });

@@ -66,7 +66,10 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-md-3"><strong>{{__('Total Pedido')}}</strong> S/.<span id="totalCarrito">{{$total}}</span></div>
-                            <div class="col-md-3 ml-auto"><strong>{{__('Cantidad Productos')}}</strong>{{$items}}</div>
+                            <div class="col-md-6">
+                                <div class="btn btn-primary btn-block">{{__('Realizar Pedido')}}</div>
+                            </div>
+                            <div class="col-md-3 ml-auto"><strong>{{__('Cantidad Productos')}}</strong><span id="total_items">{{$items}}</span></div>
                         </div>
                     </div>
                 </div>
@@ -79,8 +82,10 @@
  function add(x){
     $.ajax({
         url: `/carrito/update/${x}/1`,
-        success(data){
-            if(data){
+        success(res){
+        console.log(res);
+            if(res.out == 'success'){
+                // console.log("jaja");
                 let total = $(`#total_${x}`).val();
                 total = parseInt(total)+1;
                 $(`#total_${x}`).val(total);
@@ -91,6 +96,9 @@
                 let totalCarrito = parseFloat($('#totalCarrito').text());
                 totalCarrito += pU;
                 $('#totalCarrito').text(totalCarrito);
+                let total_items = $('#total_items').text();
+                total_items++;
+                $('#total_items').text(total_items);
             }
             
         },
@@ -103,7 +111,7 @@
     $.ajax({
         url: `/carrito/remove/${x}/1`,
         success(data){
-            if(data == 'success'){
+            if(data.out == 'success'){
                 let total = $(`#total_${x}`).val();
                 total = parseInt(total)-1;
                 $(`#total_${x}`).val(total);
@@ -113,11 +121,26 @@
                 console.log(pU);
                 $(`#subTotal_${x}`).val((sT - pU).toFixed(2));
                 let totalCarrito = parseFloat($('#totalCarrito').text());
-                totalCarrito += pU;
+                totalCarrito -= pU;
                 $('#totalCarrito').text(totalCarrito);
-            }else if(data == 'redirect'){
+                let total_items = $('#total_items').text();
+                total_items--;
+                $('#total_items').text(total_items);
+            }else if(data.out == 'redirect'){
                 location.reload();
             }
+            
+        },
+        error(e){
+            console.log(e);
+        }
+    });
+ }
+ function hacerPedido(){
+    $.ajax({
+        url: `/carrito/completo`,
+        success(data){
+            
             
         },
         error(e){

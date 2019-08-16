@@ -4,11 +4,13 @@ img {
 }
 
 .container-crud .form {
-  width: 40%;
+  width: 60%;
+  margin: 0 auto;
 }
 .container-crud .opciones {
-  width: 25%;
+  width: 30%;
   margin: 2% 0;
+  display: flex;
 }
 .container-crud .listado {
   width: 80%;

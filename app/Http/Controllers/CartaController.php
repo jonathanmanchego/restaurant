@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use restaurant\models\carta;
 use restaurant\models\tipo_carta;
 use restaurant\Http\Requests\restaurant\cartaValidacion;
-
+use restaurant\models\producto;
+use restaurant\models\carta_item;
 class CartaController extends Controller
 {
     /**
@@ -18,8 +19,9 @@ class CartaController extends Controller
     {
         $data = carta::getAll();
         $headers = carta::getHeaders();
-        // return $data;
-        return view('sistema.carta.index',['data' => $data,'title' =>'CARTA','action'=> '/carta','headers' => $headers]);
+        $cartaCurrent = carta::where('estado','1')->first();
+        $productos = producto::all();
+        return view('sistema.carta.index', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers,'carta_activa' => $cartaCurrent,'productos' => $productos]);
     }
 
     /**
@@ -31,7 +33,7 @@ class CartaController extends Controller
     {
         $headers = carta::getPull();
         $tipos = tipo_carta::all();
-        return view('sistema.carta.crear',['title' =>'CARTA','action'=> '/carta','headers' => $headers,'tiposCarta' => $tipos]);
+        return view('sistema.carta.crear', ['title' => 'CARTA', 'action' => '/carta', 'headers' => $headers, 'tiposCarta' => $tipos]);
     }
 
     /**
@@ -58,7 +60,8 @@ class CartaController extends Controller
      */
     public function show($id)
     {
-        //
+        // $cartaCurrent = carta::where('estado','1')->first();
+        // return $cartaCurrent;
     }
 
     /**
@@ -73,7 +76,7 @@ class CartaController extends Controller
         $data = $c->getOne();
         $headers = $c->getPull();
         $tipos = tipo_carta::all();
-        return view('sistema.carta.editar',['title' => "CARTA - EDITAR",'action' => '/carta/'.$id,'data' => $data,'headers' => $headers,'tiposCarta'=>$tipos]);
+        return view('sistema.carta.editar', ['title' => "CARTA - EDITAR", 'action' => '/carta/' . $id, 'data' => $data, 'headers' => $headers, 'tiposCarta' => $tipos]);
     }
 
     /**
@@ -92,15 +95,16 @@ class CartaController extends Controller
         $c->tipo_carta_id = $request->tipoCarta;
         $c->save();
         // return $c;
-        
+
         return redirect('/sistema/carta');
     }
     /**
      * CAMBIAMOS EL ESTADO DE LA CARTA
      */
-    public function changeEstado( Request $request){
+    public function changeEstado(Request $request)
+    {
         $c1 = carta::where('estado', 1)->first();
-        if($c1 != null){
+        if ($c1 != null) {
             $c1->update(['estado' => 0]);
         }
         carta::where('id', $request->id)->update(['estado' => 1]);
@@ -117,6 +121,14 @@ class CartaController extends Controller
     {
         $c = carta::find($id);
         $c->delete();
-        return redirect('/sistema/carta')->with("success","Carta Eliminada");
+        return redirect('/sistema/carta')->with("success", "Carta Eliminada");
+    }
+    public function activa(){
+        $cartaCurrent = carta::where('estado','1')->first();
+        return $cartaCurrent;
+    }
+    public function instanciando(Request $request){
+        carta_item::create($request->all());
+        //return $request->input('carta_id') ." - ".$request->input('producto_id') ." - " .$request->input('stock');
     }
 }

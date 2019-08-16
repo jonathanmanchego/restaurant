@@ -19,7 +19,7 @@
 				<li><a href="{{url('/')}}"><span>INICIO</span></a></li>
 				<li><a href="{{url('/productos')}}"><span>PRODUCTOS</span></a></li>
 				<li><a href="{{url('/articulos')}}"><span>ARTICULOS</span></a></li>
-				<li><a class="toBuy" href="{{url('/pedido')}}"><i class="far fa-clipboard"></i></a></li>
+				<li><a class="toBuy" href="{{route('Carrito')}}"><i class="far fa-clipboard"></i></a></li>
 			
 				<!-- Authentication Links -->
 				@guest

@@ -15,9 +15,10 @@
 		@endif
 		
 		<div class="opciones">
-			<a class="btn btn-primary" href="{{ url('/sistema'.$action.'/create') }}" role="button">
+			<a class="btn btn-primary btn-block" href="{{ url('/sistema'.$action.'/create') }}" role="button">
 				<i class="fas fa-plus"></i><span>NUEVO</span>
 			</a>
+			{{-- <a class="btn btn-primary btn-flat btn-block" data-toggle="modal" data-target="#modal-default1" ><span class="fa fa-list"></span>  INSTANCIAR</a> --}}
 		</div>
 		@if (!empty($data[0]))
 		<div class="listado">
@@ -35,7 +36,7 @@
 				</div>
 			</div>
 			@foreach ($data as $key => $ele)
-				<div class="listado-item">
+				<div class="listado-item" >
 					<div class="listado-item-ele">
 						<span>{{$ele->id}}</span>
 					</div>
@@ -46,7 +47,7 @@
 						<span>{{$ele->fecha}}</span>
 					</div>
 					<div class="listado-item-ele" >
-						<span id="cartaEstado{{$ele->id}}">@if ($ele->estado == 1) <b>ACTIVA</b> @else INACTIVA @endif</span>
+						<span id="cartaEstado{{$ele->id}}" data-id="{{$ele->id}}" @if ($ele->estado == 1) data-name="activa"> <b>ACTIVA</b> @else data-name="inactiva" > INACTIVA @endif</span>
 					</div>
 					<div class="listado-item-ele">
 						<span>{{$ele->tipo->nombre}}</span>
@@ -64,5 +65,59 @@
 		</div>
 		@endif
 	</div>
+	<div class="container-crud">
+		<div class="opciones">
+			<a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-default1" ><span class="fa fa-list"></span>  INSTANCIAR</a>
+		</div>
+		<div class="box-body">
+				
+				<table class="table table-bordered table-hover dataTable" id="tabla-data-productos">
+					<thead>                    	
+						<tr>
+								<th>#</th>
+								<th>PRODUCTO</th>
+								<th>CODIGO PRODUCTO</th>
+								<th>STOCK</th>
+								<th>CATEGORIA</th>
+								<th>Quitar</th>
+						</tr>                
+					</thead>
+					<tbody id="productos_body">
+						@foreach ($carta_activa->getProductos as $key => $items)
+						<tr>
+							
+							<td>{{$items->id}}</td>
+							<td>{{$items->productos[0]['nombre']}}</td>
+							<td>{{$items->productos[0]['codigo']}}</td>
+										<!--@foreach ($items->productos as  $prod)
+											<td>{{$prod->codigo}}</td>
+											<td>{{$prod->nombre}}</td>
+										@endforeach-->
+							<td><input type="number" value="0" min="0" max="1000" step="1"/></td>
+							<td>
+								<select id="pet-select">
+									<option value="">Seleccionar</option>
+									<option value="entrada">Entrada</option>
+									<option value="extra">Extra</option>
+									<option value="bebida">Bebida</option>
+								</select>
+							</td>
+							<td>
+										
+								<div class="listado-item-ele"><button onclick="eliminarFila({{$items->id}})" class="btn btn-danger">X</button></div>
+							</td>
+						</tr>
+						@endforeach
+		
+					</tbody>
+				</table>
+			</div>
+	</div>
+	<div class="col-xs-12">
+		<div class="text-center">
+			<button  type="button" class="btn btn-success" id="guardarPedido()">Guardar</button>
+		</div>
+	</div>
+	@include('sistema.carta.modal-producto')
 	<script src="{{url('/js/customs/carta/script.js')}}"></script>
 @endsection

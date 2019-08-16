@@ -23,6 +23,14 @@
 					    <input id="{{$head}}Input" class="form-control" type="text" name="{{$head}}" placeholder="{{$head}}" @if ($head == 'id') readonly @else {{""}} @endif value="{{$data->$head}}">
 					</div>
 				@endforeach
+				<div class="form-group">
+					<label for="categoriaInput">CATEGORIA</label>
+					<select name="categoria" class="form-control" id="">
+						@foreach ($categorias as $cate)
+							<option value="{{$cate->id}}">{{$cate->nombre}}</option>
+						@endforeach
+					</select>
+				</div>
 				<div class="form-group row">
 					<div class="col-md-5">
 					    <label for="ImagenInput">IMAGEN</label>

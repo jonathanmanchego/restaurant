@@ -49,6 +49,10 @@ class carta extends Model
         $data->tipo;
         return $data;
     }
+    public function getProductos(){
+        return $this->belongsToMany(producto::class,'carta_item','carta_id','producto_id');
+        // return $this->belongsToMany(ingrediente::class,'productos_composicion','producto_id','ingredientes_id');
+    }
     public function tipo(){
         return $this->belongsTo(tipo_carta::class,'tipo_carta_id');
     }
