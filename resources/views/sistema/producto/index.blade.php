@@ -27,6 +27,9 @@
 				</div>
 			@endforeach
 			<div class="listado-header-item">
+				<span>{{strtoupper("categoria")}}</span>
+			</div>
+			<div class="listado-header-item">
 					<span>{{strtoupper("eliminado")}}</span>
 				</div>
 			<div class="listado-header-item">
@@ -40,6 +43,9 @@
 						<span>{{$ele->$header}}</span>
 					</div>
 				@endforeach
+				<div class="listado-item-ele">
+					<span>{{$ele->categoria->nombre}}</span>
+				</div>
 				<div class="listado-item-ele">
 						<span>{{$ele->eliminado?"ACTIVO":"DESACTIVADO"}}</span>
 					</div>

@@ -21,6 +21,9 @@ class producto extends Model
         $x[5] = 'number';
         return $x;
     }
+    public function categoria(){
+        return $this->belongsTo(categoria::class,'categoria_id');
+    }
     public function ingredientes(){
         return $this->belongsToMany(ingrediente::class,'productos_composicion','producto_id','ingredientes_id');
     }
