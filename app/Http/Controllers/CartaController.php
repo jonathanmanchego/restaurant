@@ -8,6 +8,7 @@ use restaurant\models\tipo_carta;
 use restaurant\Http\Requests\restaurant\cartaValidacion;
 use restaurant\models\producto;
 use restaurant\models\carta_item;
+use JavaScript;
 class CartaController extends Controller
 {
     /**
@@ -21,6 +22,10 @@ class CartaController extends Controller
         $headers = carta::getHeaders();
         $cartaCurrent = carta::where('estado','1')->first();
         $productos = producto::all();
+        JavaScript::put([
+            'carta_actual' => $cartaCurrent,
+            // 'productos' => $productos
+		]);
         return view('sistema.carta.index', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers,'carta_activa' => $cartaCurrent,'productos' => $productos]);
     }
 
@@ -128,7 +133,10 @@ class CartaController extends Controller
         return $cartaCurrent;
     }
     public function instanciando(Request $request){
-        carta_item::create($request->all());
+        foreach($request->productos as $prod){
+            carta_item::create($prod); 
+        }
+        // carta_item::create($request->all());
         //return $request->input('carta_id') ." - ".$request->input('producto_id') ." - " .$request->input('stock');
     }
 }

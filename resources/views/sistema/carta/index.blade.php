@@ -82,17 +82,13 @@
 								<th>Quitar</th>
 						</tr>                
 					</thead>
-					<tbody id="productos_body">
+					<tbody id="carta_items">
 						@foreach ($carta_activa->getProductos as $key => $items)
 						<tr>
 							
 							<td>{{$items->id}}</td>
-							<td>{{$items->productos[0]['nombre']}}</td>
-							<td>{{$items->productos[0]['codigo']}}</td>
-										<!--@foreach ($items->productos as  $prod)
-											<td>{{$prod->codigo}}</td>
-											<td>{{$prod->nombre}}</td>
-										@endforeach-->
+							<td>{{$items->nombre}}</td>
+							<td>{{$items->codigo}}</td>
 							<td><input type="number" value="0" min="0" max="1000" step="1"/></td>
 							<td>
 								<select id="pet-select">
@@ -115,9 +111,10 @@
 	</div>
 	<div class="col-xs-12">
 		<div class="text-center">
-			<button  type="button" class="btn btn-success" id="guardarPedido()">Guardar</button>
+			<button  type="button" class="btn btn-success" onclick="guardarPedido()">Guardar</button>
 		</div>
 	</div>
 	@include('sistema.carta.modal-producto')
+	@include('partials.scripts.index')
 	<script src="{{url('/js/customs/carta/script.js')}}"></script>
 @endsection
