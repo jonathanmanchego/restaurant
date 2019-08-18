@@ -50,4 +50,7 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => 'sisAut
     ///MOZO
     Route::get('ordenes/agregar', 'OrdenController@create')->name('agregar_venta');
     Route::resource('/orden','OrdenController');
+    //CHEF
+    Route::get('/chef','OrdenController@listar');
+    Route::post('/orden/detalle', 'OrdenController@detalle');
 });

@@ -10,6 +10,32 @@ use restaurant\models\carta_item;
 
 class OrdenController extends Controller
 {
+    public function listar()
+    {
+        $arr = array (
+            array("id" => "1",
+            "mesa" => "03",  
+            "estado" => "atendido",
+            "hora" => "19:34:24"
+            ),
+            array("id" => "2",
+            "mesa" => "04",  
+            "estado" => "pendiente",
+            "hora" => "19:39:10"
+            ),
+            array("id" => "3",
+            "mesa" => "02",  
+            "estado" => "pendiente",
+            "hora" => "19:40:13"
+            )
+            );
+        return view('sistema.chef.index',['title' => 'ORDENES','data' => $arr]);
+    }
+    public function detalle(Request $request)
+    {
+        $mesas = mesa::where('id', $request->id)->first();//es ejemplo para mostrar
+        return $mesas;
+    }
     /**
      * Display a listing of the resource.
      *

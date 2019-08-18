@@ -41,7 +41,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   
-  <!-- JQUERY PRINT -->
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -356,8 +355,6 @@ desired effect
 
 <!-- jQuery 3 -->
 <script src="{{url('/css/admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
-
-@yield('scripts')
 <!-- Bootstrap 3.3.7 -->
 <script src="{{url('/css/admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 {{-- BOOTSTRAP JS ONLINE --}}
