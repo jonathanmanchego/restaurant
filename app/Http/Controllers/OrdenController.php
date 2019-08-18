@@ -59,7 +59,7 @@ class OrdenController extends Controller
         $cartaActiva = carta::where('estado', 1)->first();
         // $productos = carta_item::with('productos')->where('carta_id', $cartaActiva->id)->get();
         // return $productos;
-        return view('sistema.orden.crear', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'productos' => $productos]);
+        return view('sistema.orden.crear', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'productos' => $cartaActiva->getProductos]);
         //return view('sistema.orden.crear',['title' => 'NUEVA ORDEN','action' => '/orden']);
     }
 
