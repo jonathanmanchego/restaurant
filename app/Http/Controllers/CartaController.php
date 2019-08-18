@@ -22,11 +22,12 @@ class CartaController extends Controller
         $headers = carta::getHeaders();
         $cartaCurrent = carta::where('estado','1')->first();
         $productos = producto::all();
+        $productosActuales = carta_item::where('carta_id',$cartaCurrent->id)->get();
         JavaScript::put([
             'carta_actual' => $cartaCurrent,
-            // 'productos' => $productos
+            'productos_actual' => $productosActuales
 		]);
-        return view('sistema.carta.index', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers,'carta_activa' => $cartaCurrent,'productos' => $productos]);
+        return view('sistema.carta.index', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers,'carta_activa' => $cartaCurrent,'productos' => $productos,'productos_actual' => $productosActuales]);
     }
 
     /**
@@ -133,10 +134,20 @@ class CartaController extends Controller
         return $cartaCurrent;
     }
     public function instanciando(Request $request){
+        $data = null;
         foreach($request->productos as $prod){
-            carta_item::create($prod); 
+            $aux = carta_item::where('carta_id',$prod['carta_id'])->where('producto_id',$prod['producto_id'])->first();
+            if($aux){
+                $c_i = carta_item::find($aux->id);
+                $c_i->stock = $prod['stock'];
+                $c_i->save();
+            }else{
+                carta_item::create($prod); 
+            }            
         }
-        // carta_item::create($request->all());
-        //return $request->input('carta_id') ." - ".$request->input('producto_id') ." - " .$request->input('stock');
+    }
+    public function renovando(Request $request){
+        $aux = carta_item::where('carta_id',$request['carta_id'])->where('producto_id',$request['producto_id'])->first();
+        $aux->delete();
     }
 }

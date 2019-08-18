@@ -32,7 +32,7 @@
 
     @include('sistema.chef.modal-descripcion')
 @endsection
+<script src="{{url('/js/customs/chef/script.js')}}"></script>
 @section('scripts')
   <script src="{{url('/js/jQuery.print.js')}}"></script><!-- tiene que cargar despues del jquery-->
-  <script src="{{url('/js/customs/chef/script.js')}}"></script>
 @endsection

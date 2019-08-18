@@ -1,4 +1,3 @@
-
 async function changeEstado(id){
     var data = {
         id
@@ -39,19 +38,17 @@ function changeData(ans,lx){
 }
 ////////////////////
 /**
-*DONOVAN XD
+DATOS JS DE LARAVEL
 */
 
 // INSTANCIANDO CARTA SCRIPTS
-let productos_carta = [];
-let total = 0;
+let productos_carta = productos_actual || [];
 function insertarItem(data){
     productos_carta.push({
         carta_id : carta_actual.id,
         producto_id : data,
         stock : 0
     });
-    total++;
 }
 function add(x){
     let counter_actual = $(`#counter_${x}`).val();
@@ -65,22 +62,30 @@ function add(x){
 }
 function remove(x){
     let counter_actual = $(`#counter_${x}`).val();
-    counter_actual--;
-    $(`#counter_${x}`).val(counter_actual);
-    productos_carta.forEach((pos,key)=> {
-        if(pos.producto_id == x){
-            pos.stock--;
-        }    
-    });
+    if(counter_actual != 0){
+        counter_actual--;
+        $(`#counter_${x}`).val(counter_actual);
+        productos_carta.forEach((pos,key)=> {
+            if(pos.producto_id == x){
+                pos.stock--;
+            }    
+        });    
+    }
 }
 async function eliminarProd(x){
     productos_carta = productos_carta.filter(pos=> pos.producto_id!=x );
-    total--;
-    $(`#ele-carta-item-${x}`).remove();
+    let data = {
+        producto_id : x,
+        carta_id : carta_actual.id
+    };
+    let ans = await ajaxRequest('/sistema/carta/removiendo/',data);
+    if(ans.out){
+        $(`#ele-carta-item-${x}`).remove();    
+    }
 }
 async function agregarProd(x){
     let id_item = $(x).data('id'),nombre_item = $(x).data('nombre'),codigo_item = $(x).data('codigo'),
-    categoria_item = $(x).data('categoria');
+    categoria_item = $(x).data('categoria'),precio_item = $(x).data('precio');
     insertarItem(id_item);
     let ans = `<tr id="ele-carta-item-${id_item}">
     <td>${id_item}</td>
@@ -89,10 +94,11 @@ async function agregarProd(x){
     <td>
         <div class="btn-group" role="group" aria-label="Basic example" style="display:flex">
             <button onclick="javascript:remove(${id_item})" type="button" class="btn btn-primary"> - </button>
-            <input type="text" class="borde border-secondary text-center form-control-plaintext" id="counter_${id_item}" value="0" style="width:15%">
+            <input type="text" class="borde border-secondary text-center form-control-plaintext" min="0" id="counter_${id_item}" value="0" style="width:15%">
             <button onclick="javascript:add(${id_item})" type="button" class="btn btn-danger"> + </button>
         </div>
     </td>
+    <td>${precio_item}</td>
     <td>${categoria_item}</td>
     <td><button class="btn btn-danger" onclick="eliminarProd(${id_item})"><span class="fa fa-close"></span></button></td>
         </tr>`;

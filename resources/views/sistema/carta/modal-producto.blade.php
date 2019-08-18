@@ -41,7 +41,7 @@
                                     <td>{{$producto->categoria->nombre}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <button class="btn btn-success" id="btn-agregarprod" onclick="agregarProd(this)" data-id="{{$producto->id}}"data-codigo="{{$producto->codigo}}" data-nombre="{{$producto->nombre}}" data-categoria="{{$producto->categoria->nombre}}">
+                                            <button class="btn btn-success" id="btn-agregarprod" onclick="agregarProd(this)" data-id="{{$producto->id}}"data-codigo="{{$producto->codigo}}" data-nombre="{{$producto->nombre}}" data-categoria="{{$producto->categoria->nombre}}" data-precio="{{number_format($producto->precio, 2)}}">
                                                 <span class="fa fa-plus"></span>
                                             </button>
                                         </div>

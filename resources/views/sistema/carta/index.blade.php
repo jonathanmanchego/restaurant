@@ -78,29 +78,33 @@
 								<th>PRODUCTO</th>
 								<th>CODIGO PRODUCTO</th>
 								<th>STOCK</th>
+								<th>PRECIO</th>
 								<th>CATEGORIA</th>
 								<th>Quitar</th>
 						</tr>                
 					</thead>
 					<tbody id="carta_items">
 						@foreach ($carta_activa->getProductos as $key => $items)
-						<tr>
+						<tr id="ele-carta-item-{{$items->id}}">
 							
 							<td>{{$items->id}}</td>
 							<td>{{$items->nombre}}</td>
 							<td>{{$items->codigo}}</td>
-							<td><input type="number" value="0" min="0" max="1000" step="1"/></td>
 							<td>
-								<select id="pet-select">
-									<option value="">Seleccionar</option>
-									<option value="entrada">Entrada</option>
-									<option value="extra">Extra</option>
-									<option value="bebida">Bebida</option>
-								</select>
+								<div class="btn-group" role="group" aria-label="Basic example" style="display:flex">
+						            <button onclick="javascript:remove({{$items->id}})" type="button" class="btn btn-primary"> - </button>
+						            <input type="text" class="borde border-secondary text-center form-control-plaintext" id="counter_{{$items->id}}" min="0" value="{{$productos_actual[$key]->stock}}" style="width:15%">
+						            <button onclick="javascript:add({{$items->id}})" type="button" class="btn btn-danger"> + </button>
+						        </div>
 							</td>
 							<td>
-										
-								<div class="listado-item-ele"><button onclick="eliminarFila({{$items->id}})" class="btn btn-danger">X</button></div>
+								{{$items->precio}}
+							</td>
+							<td>
+								{{$items->categoria->nombre}}
+							</td>
+							<td>
+								<button class="btn btn-danger" onclick="eliminarProd({{$items->id}})"><span class="fa fa-close"></span></button>
 							</td>
 						</tr>
 						@endforeach
