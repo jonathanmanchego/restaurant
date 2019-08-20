@@ -5,6 +5,8 @@ namespace restaurant\Http\Controllers;
 use Illuminate\Http\Request;
 use restaurant\models\restaurant;
 use restaurant\Http\Requests\restaurant\formValidacion;
+use restaurant\models\sucursal;
+
 class restaurantController extends Controller
 {
     /**
@@ -99,5 +101,22 @@ class restaurantController extends Controller
         $rest = restaurant::find($id);
         $rest->delete();
         return redirect('/sistema/restaurant');
+    }
+
+    public function slider($id,Request $archivos){
+        foreach($archivos->file('imagen') as $file){
+        // $file = $archivos->file('imagen');
+            $path = public_path() . '/img/slider';
+            $fileName = uniqid() . 'imagen_slider';
+            $file->move($path, $fileName);
+
+            $slider = new sucursal();
+            $slider->restaurant_id = $id;
+            $slider->nombre = $fileName;
+            $slider->save();
+        }
+
+        return redirect('/sistema/restaurant');
+        // return view('sistema.index');
     }
 }

@@ -10,7 +10,7 @@ class usuario extends Authenticatable
 	protected $model = 'models';
     protected $table = "usuario";
     protected $fillable = ['nombre','apellido','username','password','tipo_documento_id',
-                            'nrodocumento','telefono','celular','direccion','zonas_id'];
+                            'nrodocumento','telefono','celular','direccion','zonas_id','correo'];
     protected $hidden = ['password'];  
     public $timestamps = false;
     public static function getHeaders(){

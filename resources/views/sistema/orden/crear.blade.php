@@ -15,7 +15,7 @@
                 </div>
             </div>
             <form action="" id="form-general" class="form-horizontal" method="POST" autocomplete="off">
-                {{ csrf_field() }}
+                @csrf
                 <div class="box-body">
                     <div class="form-group">                     
                         <div class="col-xs-4  col-md-3">
@@ -23,13 +23,11 @@
                             <select name="mesas" id="mesas" class="form-control" required>
                                 <option value="">Seleccione la Mesa</option>
                                 @foreach ($mesas as $key => $mesa)
-                                    <option value="0">Mesa #{{$mesa->numero}}</option>
+                                    @if($mesa->estado->nombre == 'LIBRE')
+                                        <option value="{{$mesa->id}}">Mesa #{{$mesa->numero}}</option>
+                                    @endif
                                 @endforeach
                             </select>
-                            <input type="hidden" id="idmesa" name="idmesa">
-                            <input type="hidden" id="capacidad" name="capacidad">
-                            <input type="hidden" id="estado_mesa_id" name="estado_mesa_id">
-                            <input type="hidden" id="estado" name="estado">
                         </div>   
                         <div class="col-xs-4 col-md-6">
                             <label for="">Cliente:</label>
@@ -64,8 +62,16 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-
+                        <tbody id="listaOrden">
+                            {{-- <tr v-for="item in listado">
+                                <td>{{item.codigo}}</td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.precio}}</td>
+                                <td>{{item.stock}}</td>
+                                <td><input type="number" min="1" max="{{item.stock}}" v-model="item.cantidad"></td>
+                                <td>{{item.subtotal}}</td>
+                                <td><button class="btn btn-danger" onclick="eliminarProd({{item.id}})"><span class="fa fa-close"></span></button></td>
+                            </tr> --}}
                         </tbody>
                     </table>
 
@@ -131,23 +137,49 @@
          $("#fecha").val(y+"-"+m+"-"+d);
          console.log("fecha"+d+"/"+m+"/"+y);
 
-    })
+    });
+    let orden_actual = {
+        mesa : 0,
+        total: 0,
+        total_redondeado : 0,
+        tiempo_espera_total : 0,
+        detalle : []
+        };
+    function insertarItem(data){
+        orden_actual.detalle.push({
+            producto_id : data.id,
+            cantidad : 1,
+            subtotal : parseFloat(data.precio),
+            promociones_id : null,
+            comentario: data.comentario
+        });
+        // app.data.listado.push({
+        //     data.id,
+        //     data.nombre,
+        //     data.precio,
+        //     data.stock,
+        //     cantidad : 1,
+        //     subtotal : data.precio
+        // });
+    }
     $(".btn-agregar2").on("click",function(){
-        data = $(this).val();
-            infoproducto = data.split("*");
-            html = "<tr>";
-            html += "<td><input type='hidden' name='idproductos[]' value='"+infoproducto[0]+"'>"+infoproducto[1]+"</td>";
-            html += "<td>"+infoproducto[2]+"</td>";
-            html += "<td><input type='hidden' name='precios[]' value='"+infoproducto[3]+"'>"+infoproducto[3]+"</td>";
-            html += "<td>"+infoproducto[4]+"</td>";
-            html += "<td><input type='text' name='cantidades[]' value='1' class='cantidades'></td>";
-            html += "<td><input type='hidden' name='importes[]' value='"+infoproducto[3]+"'><p>"+infoproducto[3]+"</p></td>";
-            html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class='fa fa-remove'></span></button></td>";
-            html += "</tr>";
+        let id_item = $(this).data('id'),nombre_item = $(this).data('nombre'),codigo_item = $(this).data('codigo'),categoria_item = $(this).data('categoria'),precio_item = $(this).data('precio'),stock = $(this).data('stock');
+            if(stock>0){
+                insertarItem(this.dataset);
+                html = `<tr>
+                <td>${codigo_item}</td>
+                <td>${nombre_item}</td>
+                <td>${precio_item}</td>
+                <td>${stock}</td>
+                <td><input type="number" min="1" max="${stock}" value="1"></td>
+                <td>${precio_item}</td>
+                <td><button class="btn btn-danger" onclick="eliminarProd(${id_item})"><span class="fa fa-close"></span></button></td>
+                </tr>`;
+            }
             $("#tbventas tbody").append(html);
-            sumar();
-            $("#btn-agregar").val(null);
-            $("#producto").val(null);
+            // // sumar();
+            // $("#btn-agregar").val(null);
+            // $("#producto").val(null);
      
     });
     $(document).on("click",".btn-remove-producto", function(){
@@ -162,21 +194,21 @@
         $(this).closest("tr").find("td:eq(5)").children("input").val(importe.toFixed(2));
         sumar();
     });
-    function sumar()
-    {
-        subtotal = 0;
-        $("#tbventas tbody tr").each(function(){
-            subtotal = subtotal + Number($(this).find("td:eq(5)").text());
-        });
-        $("input[name=subtotal]").val(subtotal.toFixed(2));
-        porcentaje = /*$("#igv").val();*/18;
-        igv = subtotal * (porcentaje/100);
-        $("input[name=igv]").val(igv.toFixed(2));
-        descuento = /*$("input[name=descuento]").val();*/0;
-        total = subtotal + igv - descuento;
-        $("input[name=total]").val(total.toFixed(2));
+    // function sumar()
+    // {
+    //     subtotal = 0;
+    //     $("#tbventas tbody tr").each(function(){
+    //         subtotal = subtotal + Number($(this).find("td:eq(5)").text());
+    //     });
+    //     $("input[name=subtotal]").val(subtotal.toFixed(2));
+    //     porcentaje = $("#igv").val();18;
+    //     igv = subtotal * (porcentaje/100);
+    //     $("input[name=igv]").val(igv.toFixed(2));
+    //     descuento = /*$("input[name=descuento]").val();*/0;
+    //     total = subtotal + igv - descuento;
+    //     $("input[name=total]").val(total.toFixed(2));
 
-    }
+    // }
 
 </script>
 @endsection

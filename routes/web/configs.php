@@ -23,7 +23,7 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => 'sisAut
     Route::resource('/tipoempleado','TipoEmpleadoController');
     Route::resource('/tipodocumento','TipoDocumentoController');
     Route::resource('/restaurant','restaurantController');
-    
+    Route::post('/restaurant/{id}/slider','restaurantController@slider');
     Route::resource('/menu','MenuController');
     Route::resource('/igv','IgvController');
     // ORDENES

@@ -6,7 +6,8 @@ async function changeEstado(id){
     console.log(result);
     if(result.out){
         console.log(result);
-        changeData(result,id);
+        location.reload();
+        // changeData(result,id);
     }
 }
 // async function ajaxRequest (url, data) {
@@ -51,9 +52,9 @@ function insertarItem(data){
     });
 }
 function add(x){
-    let counter_actual = $(`#counter_${x}`).val();
+    let counter_actual = $(`#counter_${x}`).text();
     counter_actual++;
-    $(`#counter_${x}`).val(counter_actual);
+    $(`#counter_${x}`).text(counter_actual);
     productos_carta.forEach((pos,key)=> {
         if(pos.producto_id == x){
             pos.stock++;
@@ -61,10 +62,10 @@ function add(x){
     });
 }
 function remove(x){
-    let counter_actual = $(`#counter_${x}`).val();
+    let counter_actual = $(`#counter_${x}`).text();
     if(counter_actual != 0){
         counter_actual--;
-        $(`#counter_${x}`).val(counter_actual);
+        $(`#counter_${x}`).text(counter_actual);
         productos_carta.forEach((pos,key)=> {
             if(pos.producto_id == x){
                 pos.stock--;
@@ -94,7 +95,7 @@ async function agregarProd(x){
     <td>
         <div class="btn-group" role="group" aria-label="Basic example" style="display:flex">
             <button onclick="javascript:remove(${id_item})" type="button" class="btn btn-primary"> - </button>
-            <input type="text" class="borde border-secondary text-center form-control-plaintext" min="0" id="counter_${id_item}" value="0" style="width:15%">
+            <span class="borde border-secondary text-center form-control-plaintext" id="counter_${id_item}" style="width:15%">0</span>
             <button onclick="javascript:add(${id_item})" type="button" class="btn btn-danger"> + </button>
         </div>
     </td>

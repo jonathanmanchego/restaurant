@@ -101,6 +101,21 @@
                         </div>
                         <div class="form-group row">
                             <div class="row col-md-6">
+                                <label for="correo" class="col-md-4 col-form-label text-md-right">{{ __('E-mail') }}</label>
+
+                                <div class="col-md-8">
+                                    <input id="correo" type="email" class="form-control @error('correo') is-invalid @enderror" name="correo" value="{{ old('correo') }}"  autocomplete="correo" autofocus>
+
+                                    @error('correo')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="row col-md-6">
                                 <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
 
                                 <div class="col-md-8">

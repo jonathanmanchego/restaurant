@@ -63,7 +63,7 @@ class ProductoController extends Controller
         $p->descripcion = $request->descripcion;
         $p->precio = $request->precio;
         $p->codigo = $request->codigo;
-        $p->eliminado = $request->eliminado;
+        $p->eliminado = $request->eliminado;            
         $p->tiempo_espera = $request->tiempo_espera;
         $p->fecha_validez = $request->fecha_validez;
         $p->categoria_id = $request->categoria;

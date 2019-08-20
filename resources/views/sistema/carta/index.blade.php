@@ -93,7 +93,7 @@
 							<td>
 								<div class="btn-group" role="group" aria-label="Basic example" style="display:flex">
 						            <button onclick="javascript:remove({{$items->id}})" type="button" class="btn btn-primary"> - </button>
-						            <input type="text" class="borde border-secondary text-center form-control-plaintext" id="counter_{{$items->id}}" min="0" value="{{$productos_actual[$key]->stock}}" style="width:15%">
+						            <span class="borde border-secondary text-center form-control-plaintext" id="counter_{{$items->id}}" style="width:15%">{{$productos_actual[$key]->stock}}</span>
 						            <button onclick="javascript:add({{$items->id}})" type="button" class="btn btn-danger"> + </button>
 						        </div>
 							</td>

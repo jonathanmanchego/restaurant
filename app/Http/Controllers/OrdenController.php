@@ -7,7 +7,7 @@ use restaurant\models\mesa;
 use restaurant\models\producto;
 use restaurant\models\carta;
 use restaurant\models\carta_item;
-
+use JavaScript;
 class OrdenController extends Controller
 {
     public function listar()
@@ -57,9 +57,22 @@ class OrdenController extends Controller
         $mesas = mesa::all();
         $productos = producto::all();
         $cartaActiva = carta::where('estado', 1)->first();
+        $itemActiva = carta_item::where('carta_id',$cartaActiva->id)->get();
+        $productos = $cartaActiva->getProductos;
+        foreach($productos as $y){
+            foreach($itemActiva as $item){
+                if($y->id == $item->producto_id){
+                    $y->stock = $item->stock;
+                    break;
+                }
+            }
+        }
+        JavaScript::put([
+
+        ]);
         // $productos = carta_item::with('productos')->where('carta_id', $cartaActiva->id)->get();
         // return $productos;
-        return view('sistema.orden.crear', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'productos' => $cartaActiva->getProductos]);
+        return view('sistema.orden.crear', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'productos' => $productos]);
         //return view('sistema.orden.crear',['title' => 'NUEVA ORDEN','action' => '/orden']);
     }
 

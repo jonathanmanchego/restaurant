@@ -66,7 +66,8 @@ class RegisterController extends Controller
             'telefono' => ['nullable'],
             'celular' => ['required', 'string', 'max:20'],
             'direccion' => ['required', 'string', 'max:100'],
-            'zona' => ['numeric']
+            'zona' => ['numeric'],
+            'correo' => ['email']
         ]);
     }
 
@@ -88,7 +89,8 @@ class RegisterController extends Controller
             'telefono' => $data['telefono'],
             'celular' => $data['celular'],
             'direccion' => $data['direccion'],
-            'zonas_id' => $data['zona']
+            'zonas_id' => $data['zona'],
+            'correo' => $data['correo']
         ]);
         return $usu;
     }

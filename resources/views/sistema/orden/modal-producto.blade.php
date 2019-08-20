@@ -22,7 +22,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Codigo</th>
+                                    <th>Stock</th>
                                     <th>Nombre</th>
                                     <th>Precio</th>
                                    
@@ -36,14 +36,14 @@
                                 @foreach ($productos as $key => $producto)
                                 <tr>
                                     <td>{{$producto->id}}</td>
-                                    <td>{{$producto->codigo}}</td>
+                                    <td>{{$producto->stock}}</td>
                                     <td>{{$producto->nombre}}</td>
                                     <td>{{number_format($producto->precio, 2)}}</td>
                                     
                                     <td>{{$producto->categoria->nombre}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-success btn-agregar2" value="{{$producto->id}}*{{$producto->productos[0]['codigo']}}*{{$producto->productos[0]['nombre']}}*{{number_format($producto->productos[0]['precio'], 2)}}*stock0*categoria0">
+                                            <button type="button" class="btn btn-success btn-agregar2" data-id="{{$producto->id}}"data-codigo="{{$producto->codigo}}" data-nombre="{{$producto->nombre}}" data-categoria="{{$producto->categoria->nombre}}" data-precio="{{number_format($producto->precio, 2)}}" data-stock="{{$producto->stock}}" onclick="agregarItem()">
                                                 <span class="fa fa-plus"></span>
                                             </button>
                                         </div>

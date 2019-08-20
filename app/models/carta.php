@@ -4,6 +4,7 @@ namespace restaurant\models;
 
 use Illuminate\Database\Eloquent\Model;
 use restaurant\models\tipo_carta;
+use restaurant\models\carta_item;
 class carta extends Model
 {
     protected $table = "carta";
@@ -50,7 +51,17 @@ class carta extends Model
         return $data;
     }
     public function getProductos(){
-        return $this->belongsToMany(producto::class,'carta_item','carta_id','producto_id');
+        $x = $this->belongsToMany(producto::class,'carta_item','carta_id','producto_id');
+        // $itemActiva = carta_item::where('carta_id',$this->id)->get();
+        // foreach($x as $y){
+        //     foreach($itemActiva as $item){
+        //         if($y->id == $item->producto_id){
+        //             $y->stock = $item->stock;
+        //         }
+        //     }
+        //     return $x;
+        // }
+        return $x;
         // return $this->belongsToMany(ingrediente::class,'productos_composicion','producto_id','ingredientes_id');
     }
     public function tipo(){
