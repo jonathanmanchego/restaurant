@@ -19,25 +19,7 @@ class OrdenController extends Controller
     public function listar()
     {
         $ordenes = orden::all();
-        
-        $arr = array (
-            array("id" => "1",
-            "mesa" => "03",  
-            "estado" => "atendido",
-            "hora" => "19:34:24"
-            ),
-            array("id" => "2",
-            "mesa" => "04",  
-            "estado" => "pendiente",
-            "hora" => "19:39:10"
-            ),
-            array("id" => "3",
-            "mesa" => "02",  
-            "estado" => "pendiente",
-            "hora" => "19:40:13"
-            )
-            );
-        return view('sistema.chef.index',['title' => 'ORDENES','data' => $arr]);
+        return view('sistema.chef.index',['title' => 'ORDENES','data' => $ordenes]);
     }
     public function detalle(Request $request)
     {
@@ -93,24 +75,24 @@ class OrdenController extends Controller
     public function store(Request $request)
     {
         /////DIFERENCIAMOS SI ES LOCAL O DELIVERY
-        $tipo = tipo_orden::where('id',$request->tipo)->first();
+        $tipo = tipo_orden::where('nombre',$request->tipo)->first();///tipo debe ser DELIVERY || LOCAL || ETC si hubiese otro
         $estado = estado_ordenes::where('nombre','PREPARANDOSE')->first();////LUEGO HAREMOS QUE LAS ORDENES SIEMPRE ESTEN ORDENADAS DE LA PRIMERA = PASO 1 ...
         /////instanciamos valores de la orden
         $orden = new orden();
         $orden->total = $request->total;
         $orden->total_redondeado = floor($request->total);
         $orden->comprobante = $request->comprobante;///AQUI LLEGARA EL NUMERO DEL SISTEMA DE FACTURACION, MANDAR NUMERO 1111
-        $orden->tiempo_espera_total = $request->tiempo_espera;
+        $orden->tiempo_espera_total = $request->tiempo_espera;///el tiempo de espera por ahora mandalo como la sumatoria de todos los tiempo de espera dividos entre 2 
         $orden->estado_ordenes_id = $estado->id;
-        $orden->tipo_orden_id = $request->tipo;
+        $orden->tipo_orden_id = $request->tipo->id;
         $orden->mesa_id = $request->mesa;
         if($tipo->nombre == 'LOCAL'){
-            $user = usuario::where('nombre','local')->first();
+            $user = usuario::where('nombre','local')->first();/////DEBEMOS TENER UN USUARIO REGISTRADO CON NOMBRE "LOCAL" asi en mayusculas
             $orden->empleado_usuario_id = Auth::user()->id;
             $orden->usuario_id = $user->id;
             $orden->save();
         }else if($tipo->nombre == 'DELIVERY'){
-            $user = empleado::where('nombre','DELIVERY')->first();
+            $user = empleado::where('nombre','DELIVERY')->first();////DEBEMOS TENER UN EMPLEADO QUE SE LLAME DELIVERY
             $orden->empleado_usuario_id = $user->id;
             $orden->usuario_id = Auth::user()->id;
         }

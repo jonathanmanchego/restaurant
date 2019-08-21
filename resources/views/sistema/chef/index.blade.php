@@ -19,10 +19,10 @@
                 @foreach ($data as $key => $item)
                     <tr>
                     <td > <b>{{$key+1}}</b> </td>
-                    <td > <b>{{$item["mesa"]}}</b> </td>
-                    <td > <b>{{$item["estado"]}}</b> </td> 
-                    <td > <b>{{$item["hora"]}}</b> </td> 
-                    <td ><button id="btn-{{$item["id"]}}" onclick='imprimir({{$item["id"]}})' class="btn btn-warning">Imprimir orden ID {{$item["id"]}}</button></td>
+                    <td > <b>{{$item->mesa->numero}}</b> </td>
+                    <td > <b>{{$item->estado->nombre}}</b> </td> 
+                    <td > <b>{{$item->fecha}}</b> </td> 
+                    <td ><button id="btn-{{$item->id}}" onclick='imprimir({{$item->id}})' class="btn btn-warning">Imprimir orden ID {{$item->id}}</button></td>
                     </tr>
                 @endforeach
             </table> 
