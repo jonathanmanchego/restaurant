@@ -131,7 +131,7 @@ class CartaController extends Controller
     }
     public function activa(){
         $cartaCurrent = carta::where('estado','1')->first();
-        return $cartaCurrent;
+        return $cartaCurrent->getProductos;
     }
     public function instanciando(Request $request){
         $data = null;

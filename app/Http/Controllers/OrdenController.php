@@ -8,10 +8,18 @@ use restaurant\models\producto;
 use restaurant\models\carta;
 use restaurant\models\carta_item;
 use JavaScript;
+use restaurant\models\detalle_orden;
+use restaurant\models\empleado;
+use restaurant\models\estado_ordenes;
+use restaurant\models\orden;
+use restaurant\models\tipo_orden;
+
 class OrdenController extends Controller
 {
     public function listar()
     {
+        $ordenes = orden::all();
+        
         $arr = array (
             array("id" => "1",
             "mesa" => "03",  
@@ -68,7 +76,7 @@ class OrdenController extends Controller
             }
         }
         JavaScript::put([
-
+            'productos' => $productos
         ]);
         // $productos = carta_item::with('productos')->where('carta_id', $cartaActiva->id)->get();
         // return $productos;
@@ -84,7 +92,39 @@ class OrdenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /////DIFERENCIAMOS SI ES LOCAL O DELIVERY
+        $tipo = tipo_orden::where('id',$request->tipo)->first();
+        $estado = estado_ordenes::where('nombre','PREPARANDOSE')->first();////LUEGO HAREMOS QUE LAS ORDENES SIEMPRE ESTEN ORDENADAS DE LA PRIMERA = PASO 1 ...
+        /////instanciamos valores de la orden
+        $orden = new orden();
+        $orden->total = $request->total;
+        $orden->total_redondeado = floor($request->total);
+        $orden->comprobante = $request->comprobante;///AQUI LLEGARA EL NUMERO DEL SISTEMA DE FACTURACION, MANDAR NUMERO 1111
+        $orden->tiempo_espera_total = $request->tiempo_espera;
+        $orden->estado_ordenes_id = $estado->id;
+        $orden->tipo_orden_id = $request->tipo;
+        $orden->mesa_id = $request->mesa;
+        if($tipo->nombre == 'LOCAL'){
+            $user = usuario::where('nombre','local')->first();
+            $orden->empleado_usuario_id = Auth::user()->id;
+            $orden->usuario_id = $user->id;
+            $orden->save();
+        }else if($tipo->nombre == 'DELIVERY'){
+            $user = empleado::where('nombre','DELIVERY')->first();
+            $orden->empleado_usuario_id = $user->id;
+            $orden->usuario_id = Auth::user()->id;
+        }
+        foreach($request->productos as $key => $item){
+            $det_orden = new detalle_orden();
+            $det_orden->producto_id = $item->producto_id;
+            $det_orden->orden_id = $orden->id;
+            $det_orden->cantidad = $item->cantidad;
+            $det_orden->subtotal = $item->subtotal;
+            $det_orden->promociones_id = null;
+            $det_orden->comentario = $item->comentario;
+            $det_orden->save();
+        }
+
     }
 
     /**

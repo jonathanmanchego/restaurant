@@ -52,15 +52,6 @@ class carta extends Model
     }
     public function getProductos(){
         $x = $this->belongsToMany(producto::class,'carta_item','carta_id','producto_id');
-        // $itemActiva = carta_item::where('carta_id',$this->id)->get();
-        // foreach($x as $y){
-        //     foreach($itemActiva as $item){
-        //         if($y->id == $item->producto_id){
-        //             $y->stock = $item->stock;
-        //         }
-        //     }
-        //     return $x;
-        // }
         return $x;
         // return $this->belongsToMany(ingrediente::class,'productos_composicion','producto_id','ingredientes_id');
     }

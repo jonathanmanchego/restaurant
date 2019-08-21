@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="shortcut icon" href="{{url('/img/favicon.ico')}}" type="image/x-icon">
   <title>{{$title}}</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   {{-- BOOSTRAP CSS ONLINE --}}
@@ -66,7 +67,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <!-- Main Header -->
   <header class="main-header">
@@ -246,7 +247,7 @@ desired effect
     </section>
 
     <!-- Main content -->
-    <section class="content container-fluid">
+    <section class="content container-fluid" id="app">
 
       <!--------------------------
         | Your Page Content Here |
@@ -352,6 +353,7 @@ desired effect
   immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
+{{-- @include('partials.scripts.index') --}}
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
@@ -369,6 +371,7 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{url('/css/admin/js/adminlte.min.js')}}"></script>
 <script src="{{url('/js/customs/helper.js')}}"></script>
+{{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

@@ -73,7 +73,7 @@
 		</div>
 		@show
 		{{-- CONTENIDO DE LAYOUT --}}
-		<div class="wrapp-content">
+		<div class="wrapp-content" >
 			@if (session('success'))
                 <div class="alert alert-success ">{{session('success')}}</div>
             @endif

@@ -119,6 +119,7 @@
 		</div>
 	</div>
 	@include('sistema.carta.modal-producto')
-	@include('partials.scripts.index')
-	<script src="{{url('/js/customs/carta/script.js')}}"></script>
+	
 @endsection
+@include('partials.scripts.index')
+	<script src="{{url('/js/customs/carta/script.js')}}"></script>

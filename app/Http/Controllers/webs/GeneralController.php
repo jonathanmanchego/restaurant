@@ -11,7 +11,7 @@ use restaurant\models\sucursal;
 class GeneralController extends Controller
 {
     public function index(){
-        $sli = sucursal::take(3)->get();
+        $sli = sucursal::take(3)->orderBy('id','desc')->get();
         return view('index',['title' => 'RESTAURANT','sli' => $sli]);
     }
     /**

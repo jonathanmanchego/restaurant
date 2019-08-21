@@ -5,7 +5,7 @@ namespace restaurant\Http\Controllers\sisAuth;
 use restaurant\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-
+use restaurant\models\sucursal;
 class LoginController extends Controller
 {
     /*
@@ -55,6 +55,7 @@ class LoginController extends Controller
     }
     public function showLoginForm()
     {
-        return view('sis-auth.login');
+        $sli = sucursal::take(3)->get();
+        return view('sis-auth.login',['sli' => $sli]);
     }
 }

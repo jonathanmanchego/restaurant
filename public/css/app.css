@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito");
-img {
+@import url(https://fonts.googleapis.com/css?family=Nunito);img {
   max-width: 100%;
 }
 
@@ -9,14 +8,17 @@ img {
   width: 100%;
   margin: 0 auto;
 }
+
 .wrapp .wrapp_nav {
   display: flex;
   width: 100%;
   align-items: center;
 }
+
 .wrapp .wrapp_nav .logo-space {
   width: 15%;
 }
+
 .wrapp .wrapp_nav ul {
   width: 100%;
   display: flex;
@@ -24,11 +26,13 @@ img {
   line-height: 4.2rem;
   margin: 0;
 }
+
 .wrapp .wrapp_nav ul li {
   flex: 1;
   display: flex;
   align-items: center;
 }
+
 .wrapp .wrapp_nav ul li a {
   display: flex;
   justify-content: center;
@@ -39,18 +43,22 @@ img {
   text-align: center;
   color: gray;
 }
+
 .wrapp .wrapp_nav ul li a i {
   font-size: 2rem;
   position: relative;
   color: #fff;
 }
+
 .wrapp .wrapp_nav ul li a:hover {
   color: #737373;
   background-image: linear-gradient(to top, #F0F0F0, #fff);
 }
+
 .wrapp .wrapp_nav ul li .toBuy:hover {
   background-image: none;
 }
+
 .wrapp .wrapp_nav ul li .toBuy i:after {
   content: "";
   width: 3rem;
@@ -63,17 +71,19 @@ img {
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
+
 .wrapp .wrapp_nav ul li .toBuy i:hover:after {
   width: 3.2rem;
   height: 3.2rem;
 }
+
 .wrapp .carousel {
   width: 50%;
   margin: 0 auto;
 }
+
 .wrapp .carousel .arrow {
   width: 50px;
   height: 50px;
 }
 
-/*# sourceMappingURL=app.css.map */
