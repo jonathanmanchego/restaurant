@@ -32,21 +32,29 @@
                             </thead>
                             <tbody id="busqueda_producto">
                                 @foreach ($productos as $producto)
-                                <tr>
-                                    <td>{{$producto->id}}</td>
-                                    <td>{{$producto->codigo}}</td>
-                                    <td>{{$producto->nombre}}</td>
-                                    <td>{{number_format($producto->precio, 2)}} </td>
-                                    
-                                    <td>{{$producto->categoria->nombre}}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-success" id="btn-agregarprod" onclick="agregarProd(this)" data-id="{{$producto->id}}"data-codigo="{{$producto->codigo}}" data-nombre="{{$producto->nombre}}" data-categoria="{{$producto->categoria->nombre}}" data-precio="{{number_format($producto->precio, 2)}}">
-                                                <span class="fa fa-plus"></span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    @php $aux = 0 @endphp
+                                    @foreach($carta_activa->getProductos as $list)
+                                        @if($producto->id != $list->id)
+                                            @php $aux++ @endphp
+                                        @endif
+                                    @endforeach
+                                    @if($aux == count($carta_activa->getProductos))
+                                        <tr id="item-productos-{{$producto->id}}">
+                                            <td>{{$producto->id}}</td>
+                                            <td>{{$producto->codigo}}</td>
+                                            <td>{{$producto->nombre}}</td>
+                                            <td>{{number_format($producto->precio, 2)}} </td>
+                                            
+                                            <td>{{$producto->categoria->nombre}}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-success" id="btn-agregarprod" onclick="agregarProd(this)" data-id="{{$producto->id}}"data-codigo="{{$producto->codigo}}" data-nombre="{{$producto->nombre}}" data-categoria="{{$producto->categoria->nombre}}" data-precio="{{number_format($producto->precio, 2)}}">
+                                                        <span class="fa fa-plus"></span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                                         
                             </tbody>

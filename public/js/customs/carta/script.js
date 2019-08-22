@@ -79,10 +79,10 @@ async function eliminarProd(x){
         producto_id : x,
         carta_id : carta_actual.id
     };
-    let ans = await ajaxRequest('/sistema/carta/removiendo/',data);
-    if(ans.out){
-        $(`#ele-carta-item-${x}`).remove();    
-    }
+    productos_alt = productos_actual.filter(pos=> pos.producto_id!=x );
+    $(`#ele-carta-item-${x}`).remove();     
+    $(`#item-productos-${x}`).show();   
+    let ans = await ajaxRequest('/sistema/carta/removiendo/',data);    
 }
 async function agregarProd(x){
     let id_item = $(x).data('id'),nombre_item = $(x).data('nombre'),codigo_item = $(x).data('codigo'),
@@ -93,17 +93,14 @@ async function agregarProd(x){
     <td>${nombre_item}</td>
     <td>${codigo_item}</td>
     <td>
-        <div class="btn-group" role="group" aria-label="Basic example" style="display:flex">
-            <button onclick="javascript:remove(${id_item})" type="button" class="btn btn-primary"> - </button>
-            <span class="borde border-secondary text-center form-control-plaintext" id="counter_${id_item}" style="width:15%">0</span>
-            <button onclick="javascript:add(${id_item})" type="button" class="btn btn-danger"> + </button>
-        </div>
+        <input type="number"  value="0" class="borde border-secondary text-center form-control-plaintext" id="counter_${id_item}" style="width:35%">
     </td>
     <td>${precio_item}</td>
     <td>${categoria_item}</td>
     <td><button class="btn btn-danger" onclick="eliminarProd(${id_item})"><span class="fa fa-close"></span></button></td>
         </tr>`;
     $('#carta_items').append(ans);
+    $(`#item-productos-${id_item}`).hide();
     // $('#btn-agregarprod').click(async()=>{
         // valores = x.value;
         // valor_item = valores.split("*");
@@ -121,8 +118,13 @@ async function agregarProd(x){
     // });
 }
 async function guardarPedido(){
+    productos_carta.forEach(act => {
+        act.stock = $(`#counter_${act.producto_id}`)[0].value;
+    });
     let y = await ajaxRequest('/sistema/carta/instanciando', {productos:productos_carta});
-    console.log(y.data);
+    if(y.out){
+        location.reload();
+    }
 }
     // $("#buscarprod").on("keyup", function(){
     //     console.log($(this).val());

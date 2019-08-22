@@ -14,6 +14,10 @@ async function ajaxRequest (url, data) {
         }
     }).fail((x)=>{
     	console.log(x);
+        result = {
+            out: false,
+            data : x
+        }
     });
     return result;
 }

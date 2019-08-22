@@ -15,6 +15,12 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
+//RESTAURANT INFO
+Route::get('/articulos','GeneralController@profile')->name('profile');
+Route::get('/contacto','webs\GeneralController@contacto')->name('contacto');
+Route::get('/nosotros','webs\GeneralController@nosotros')->name('nosotros');
+Route::get('/articulos','webs\GeneralController@articulos')->name('articulos');
+
 // CARRITO ROUTES
 Route::get('/carrito/reset','CarritoController@reset')->name('reset');
 Route::get('/carrito/add/{producto}/{cantidadAdd}','CarritoController@add')->name('addToCar');
@@ -25,3 +31,6 @@ Route::get('/carrito/completo','CarritoController@hacerPedido');
 // PRODUCTOS ROUTES
 Route::get('/productos','webs\GeneralController@exhibicion')->name('productos');
 Route::get('/productos/{id}','ProductoController@show')->name('productoMostrar')->middleware('auth:web');
+
+//CONFIGURACION DE PERFIL
+Route::get('/profile','GeneralController@profile')->name('profile');

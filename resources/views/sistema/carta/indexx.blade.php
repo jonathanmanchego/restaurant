@@ -69,45 +69,7 @@
 		<div class="opciones">
 			<a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-default1" ><span class="fa fa-list"></span>  INSTANCIAR</a>
 		</div>
-		<div class="box-body">
-				
-				<table class="table table-bordered table-hover dataTable" id="tabla-data-productos">
-					<thead>                    	
-						<tr>
-								<th>#</th>
-								<th>PRODUCTO</th>
-								<th>CODIGO PRODUCTO</th>
-								<th>STOCK</th>
-								<th>PRECIO</th>
-								<th>CATEGORIA</th>
-								<th>Quitar</th>
-						</tr>                
-					</thead>
-					<tbody id="carta_items">
-						@foreach ($carta_activa->getProductos as $key => $items)
-						<tr id="ele-carta-item-{{$items->id}}">
-							
-							<td>{{$items->id}}</td>
-							<td>{{$items->nombre}}</td>
-							<td>{{$items->codigo}}</td>
-							<td>
-								<input type="number" class="borde border-secondary text-center form-control-plaintext" id="counter_{{$items->id}}" autocomplete="off" style="width:35%" value="{{$productos_actual[$key]->stock}}">
-							</td>
-							<td>
-								{{number_format($items->precio,2)}}
-							</td>
-							<td>
-								{{$items->categoria->nombre}}
-							</td>
-							<td>
-								<button class="btn btn-danger" onclick="eliminarProd({{$items->id}})"><span class="fa fa-close"></span></button>
-							</td>
-						</tr>
-						@endforeach
-		
-					</tbody>
-				</table>
-			</div>
+		<tabla-carta></tabla-carta>
 	</div>
 	<div class="col-xs-12">
 		<div class="text-center">

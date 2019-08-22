@@ -37,7 +37,7 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => 'sisAut
     Route::resource('/categoria','CategoriaController');
     Route::resource('/carta','CartaController');
     Route::post('/carta/instanciando','CartaController@instanciando');
-    Route::post('/carta/removiendo/','CartaController@renovando');
+    Route::post('/carta/removiendo','CartaController@renovando');
     Route::post('/carta/change-state','CartaController@changeEstado');
     Route::get('/carta/activa','CartaController@activa');
     // PRODUCTO ENVIRONMENT

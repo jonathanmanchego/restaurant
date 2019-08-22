@@ -85,7 +85,7 @@ class OrdenController extends Controller
         $orden->tiempo_espera_total = $request->tiempo_espera;///el tiempo de espera por ahora mandalo como la sumatoria de todos los tiempo de espera dividos entre 2 
         $orden->estado_ordenes_id = $estado->id;
         $orden->tipo_orden_id = $request->tipo->id;
-        $orden->mesa_id = $request->mesa;
+        $orden->mesa_id = ($request->mesa!=0) ? null:$request->mesa;
         if($tipo->nombre == 'LOCAL'){
             $user = usuario::where('nombre','local')->first();/////DEBEMOS TENER UN USUARIO REGISTRADO CON NOMBRE "LOCAL" asi en mayusculas
             $orden->empleado_usuario_id = Auth::user()->id;

@@ -9,6 +9,7 @@ use restaurant\Http\Requests\restaurant\cartaValidacion;
 use restaurant\models\producto;
 use restaurant\models\carta_item;
 use JavaScript;
+
 class CartaController extends Controller
 {
     /**
@@ -16,18 +17,23 @@ class CartaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        $data = carta::getAll();
-        $headers = carta::getHeaders();
-        $cartaCurrent = carta::where('estado','1')->first();
-        $productos = producto::all();
-        $productosActuales = carta_item::where('carta_id',$cartaCurrent->id)->get();
-        JavaScript::put([
-            'carta_actual' => $cartaCurrent,
-            'productos_actual' => $productosActuales
-		]);
-        return view('sistema.carta.index', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers,'carta_activa' => $cartaCurrent,'productos' => $productos,'productos_actual' => $productosActuales]);
+        if($req->ajax()){
+            return self::activa();
+        }else{
+            $data = carta::getAll();
+            $headers = carta::getHeaders();
+            $cartaCurrent = carta::where('estado', '1')->first();
+            $productos = producto::all();
+            $productosActuales = carta_item::where('carta_id', $cartaCurrent->id)->get();
+            JavaScript::put([
+                'carta_actual' => $cartaCurrent,
+                'productos_actual' => $productosActuales
+            ]);
+            return view('sistema.carta.index', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers, 'carta_activa' => $cartaCurrent, 'productos' => $productos, 'productos_actual' => $productosActuales]);
+        }
+        
     }
 
     /**
@@ -129,25 +135,30 @@ class CartaController extends Controller
         $c->delete();
         return redirect('/sistema/carta')->with("success", "Carta Eliminada");
     }
-    public function activa(){
-        $cartaCurrent = carta::where('estado','1')->first();
+    public function activa()
+    {
+        $cartaCurrent = carta::where('estado', '1')->first();
         return $cartaCurrent->getProductos;
     }
-    public function instanciando(Request $request){
+    public function instanciando(Request $request)
+    {
         $data = null;
-        foreach($request->productos as $prod){
-            $aux = carta_item::where('carta_id',$prod['carta_id'])->where('producto_id',$prod['producto_id'])->first();
-            if($aux){
-                $c_i = carta_item::find($aux->id);
-                $c_i->stock = $prod['stock'];
-                $c_i->save();
-            }else{
-                carta_item::create($prod); 
-            }            
+        if(!empty($request->productos)){
+            foreach ($request->productos as $prod) {
+                $aux = carta_item::where('carta_id', $prod['carta_id'])->where('producto_id', $prod['producto_id'])->first();
+                if ($aux) {
+                    $c_i = carta_item::find($aux->id);
+                    $c_i->stock = $prod['stock'];
+                    $c_i->save();
+                } else {
+                    carta_item::create($prod);
+                }
+            }
         }
     }
-    public function renovando(Request $request){
-        $aux = carta_item::where('carta_id',$request['carta_id'])->where('producto_id',$request['producto_id'])->first();
+    public function renovando(Request $request)
+    {
+        $aux = carta_item::where('carta_id', $request['carta_id'])->where('producto_id', $request['producto_id'])->first();
         $aux->delete();
     }
 }
