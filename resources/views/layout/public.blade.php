@@ -56,11 +56,13 @@
 		@section('slider-carousel')
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		  <div class="carousel-inner">
+		  	@isset($sli)
 		  	@foreach($sli as $key => $s)
 		    <div class="carousel-item @if($key == 0) active @endif">
 		      <img src="{{ url('/img/slider/'.$s->nombre)}}" class="d-block w-100" alt="">
 		    </div>
 		    @endforeach
+		    @endisset
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 		    <span class="carousel-control-prev-icon arrow" aria-hidden="true "></span>

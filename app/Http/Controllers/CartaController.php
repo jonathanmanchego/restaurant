@@ -31,7 +31,7 @@ class CartaController extends Controller
                 'carta_actual' => $cartaCurrent,
                 'productos_actual' => $productosActuales
             ]);
-            return view('sistema.carta.index', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers, 'carta_activa' => $cartaCurrent, 'productos' => $productos, 'productos_actual' => $productosActuales]);
+            return view('sistema.carta.indexx', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers, 'carta_activa' => $cartaCurrent, 'productos' => $productos, 'productos_actual' => $productosActuales]);
         }
         
     }
