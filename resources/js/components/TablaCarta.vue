@@ -13,7 +13,7 @@
 				</tr>                
 			</thead>
 			<tbody id="carta_items">
-				<item-carta></item-carta>
+				<item-carta v-for="(producto,key) in productos" v-bind:key="key" v-bind:item="producto"></item-carta>
 			</tbody>
 		</table>
 	</div>

@@ -10,7 +10,7 @@
 			{{item.precio}}
 		</td>
 		<td>
-			{{item.categoria}}
+			{{item.cat}}
 		</td>
 		<td>
 			<button class="btn btn-danger" @click="eliminarProd(item.id)"><span class="fa fa-close"></span></button>
@@ -24,15 +24,18 @@
 		},
 		data(){
 			return {
-				item : {
-					id : 10,
-					codigo : "asa",
-					nombre : "papa ..",
-					stock : 50,
-					precio : 23.50,
-					categoria: "desayuno"
-				}
+				// item : {
+				// 	id : 10,
+				// 	codigo : "asa",
+				// 	nombre : "papa ..",
+				// 	stock : 50,
+				// 	precio : 23.50,
+				// 	categoria: "desayuno"
+				// }
 			}
+		},
+		props:{
+			item: Object
 		},
 		methods:{
 

@@ -33,4 +33,4 @@ Route::get('/productos','webs\GeneralController@exhibicion')->name('productos');
 Route::get('/productos/{id}','ProductoController@show')->name('productoMostrar')->middleware('auth:web');
 
 //CONFIGURACION DE PERFIL
-Route::get('/profile','GeneralController@profile')->name('profile');
+Route::get('/profile','webs\GeneralController@profile')->name('profile');

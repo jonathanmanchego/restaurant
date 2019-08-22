@@ -54,13 +54,9 @@
                                 <label for="zona" class="col-md-4 col-form-label text-md-right">{{ __('Zonas') }}</label>
                                 <div class="col-md-8">
                                     <select name="zona" id="zona" class="form-control">
+                                        <option selected value="{{Auth::user()->zona->id}}">{{Auth::user()->zona->nombre}}</option>
                                         @foreach ($zonas as $zona)
-                                            @if($zona['id'] == Auth::user()->zonas_id )
-                                                <option selected value="{{$zona['id']}}">{{$zona['nombre']}}</option>
-                                            @endif
-                                            @if($zona['id'] != Auth::user()->zonas_id)
-                                                <option value="{{$zona['id']}}">{{$zona['nombre']}}</option>
-                                            @endif
+                                            <option value="{{$zona->id}}">{{$zona->nombre}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -80,14 +76,9 @@
 
                                 <div class="col-md-8">
                                     <select name="tipo_documento" id="tipo_documento" class="form-control @error('tipo_documento') is-invalid @enderror">
+                                        <option value="{{Auth::user()->doc->id}}">{{Auth::user()->doc->nombre}}</option>
                                         @foreach ($tipo_docs as $tipo_doc)
-                                            <option value="{{$tipo_doc['id']}}">{{$tipo_doc['nombre']}}</option>
-                                             @if($zona['id'] == Auth::user()->zonas_id )
-                                                <option selected value="{{$tipo_doc['id']}}">{{$tipo_doc['nombre']}}</option>
-                                            @endif
-                                            @if($zona['id'] != Auth::user()->zonas_id)
-                                                <option value="{{$tipo_doc['id']}}">{{$tipo_doc['nombre']}}</option>
-                                            @endif
+                                            <option value="{{$tipo_doc->id}}">{{$tipo_doc->nombre}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -138,7 +138,13 @@ class CartaController extends Controller
     public function activa()
     {
         $cartaCurrent = carta::where('estado', '1')->first();
-        return $cartaCurrent->getProductos;
+        $productosActuales = carta_item::where('carta_id', $cartaCurrent->id)->get();
+        $datos = $cartaCurrent->getProductos;
+        foreach( $datos as $key => $prod){
+            $prod->stock = $productosActuales[$key]->stock;
+            $prod->cat = $prod->categoria->nombre;
+        }
+        return $datos;
     }
     public function instanciando(Request $request)
     {

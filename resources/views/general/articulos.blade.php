@@ -1,4 +1,4 @@
-@extends('layout.public-noslider')
+@extends('layout.public')
 @section('content')
     <div class="container">
     <div class="row">

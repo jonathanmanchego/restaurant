@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{{url('/css/app.css')}}">
 </head>
 <body>
-	<div class="wrapp">
+	<div class="wrapp" id="app">
 		<nav class="wrapp_nav">
 			<div class="logo-space">
 				<img src="/img/logoPrincipal.png">

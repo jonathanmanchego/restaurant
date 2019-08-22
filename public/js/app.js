@@ -1719,16 +1719,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {},
   data: function data() {
-    return {
-      item: {
-        id: 10,
-        codigo: "asa",
-        nombre: "papa ..",
-        stock: 50,
-        precio: 23.50,
-        categoria: "desayuno"
-      }
+    return {// item : {
+      // 	id : 10,
+      // 	codigo : "asa",
+      // 	nombre : "papa ..",
+      // 	stock : 50,
+      // 	precio : 23.50,
+      // 	categoria: "desayuno"
+      // }
     };
+  },
+  props: {
+    item: Object
   },
   methods: {}
 });
@@ -37116,7 +37118,7 @@ var render = function() {
     _vm._v(" "),
     _c("td", [_vm._v("\n\t\t" + _vm._s(_vm.item.precio) + "\n\t")]),
     _vm._v(" "),
-    _c("td", [_vm._v("\n\t\t" + _vm._s(_vm.item.categoria) + "\n\t")]),
+    _c("td", [_vm._v("\n\t\t" + _vm._s(_vm.item.cat) + "\n\t")]),
     _vm._v(" "),
     _c("td", [
       _c(
@@ -37166,7 +37168,14 @@ var render = function() {
       [
         _vm._m(0),
         _vm._v(" "),
-        _c("tbody", { attrs: { id: "carta_items" } }, [_c("item-carta")], 1)
+        _c(
+          "tbody",
+          { attrs: { id: "carta_items" } },
+          _vm._l(_vm.productos, function(producto, key) {
+            return _c("item-carta", { key: key, attrs: { item: producto } })
+          }),
+          1
+        )
       ]
     )
   ])
