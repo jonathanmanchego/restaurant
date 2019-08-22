@@ -16,8 +16,15 @@
 			<ul>
 				<li><a href="{{url('/')}}"><span>INICIO</span></a></li>
 				<li><a href="{{url('/productos')}}"><span>PRODUCTOS</span></a></li>
+<<<<<<< Updated upstream
 				<li><a href="{{url('/articulos')}}"><span>ARTICULOS</span></a></li>
 				<li><a class="toBuy" href="{{url('/pedido')}}"><i class="far fa-clipboard"></i></a></li>
+=======
+				<li><a href="{{url('/articulos')}}"><span>ARTÍCULOS</span></a></li>
+				<li><a href="{{url('/contacto')}}"><span>CONTACTO</span></a></li>
+				<li><a href="{{url('/articulos')}}"><span>NOSOTROS</span></a></li>
+				<li><a class="toBuy" href="{{route('Carrito')}}"><i class="far fa-clipboard"></i></a></li>
+>>>>>>> Stashed changes
 			
 				<!-- Authentication Links -->
 				@guest
@@ -36,6 +43,7 @@
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{{ route('profile') }}">{{ __('Perfil') }}</a>
 							<a class="dropdown-item" href="{{ route('logout') }}"
 							   onclick="event.preventDefault();
 											 document.getElementById('logout-form').submit();">
@@ -74,6 +82,12 @@
 		</div>
 		{{-- CONTENIDO DE LAYOUT --}}
 		<div class="wrapp-content">
+<<<<<<< Updated upstream
+=======
+			@if (session('success'))
+                <div class="alert alert-success ">{{session('success')}}</div>
+            @endif
+>>>>>>> Stashed changes
 			<div class="container mt-3">
 			@section('content')
 				@show
