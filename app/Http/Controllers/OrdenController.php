@@ -16,6 +16,7 @@ use restaurant\models\tipo_orden;
 
 class OrdenController extends Controller
 {
+    
     public function listar()
     {
         $ordenes = orden::all();
@@ -81,21 +82,21 @@ class OrdenController extends Controller
         $orden = new orden();
         $orden->total = $request->total;
         $orden->total_redondeado = floor($request->total);
-        $orden->comprobante = $request->comprobante;///AQUI LLEGARA EL NUMERO DEL SISTEMA DE FACTURACION, MANDAR NUMERO 1111
+        $orden->comprobante = 0;//$request->comprobante;///AQUI LLEGARA EL NUMERO DEL SISTEMA DE FACTURACION, MANDAR NUMERO 1111
         $orden->tiempo_espera_total = $request->tiempo_espera;///el tiempo de espera por ahora mandalo como la sumatoria de todos los tiempo de espera dividos entre 2 
         $orden->estado_ordenes_id = $estado->id;
         $orden->tipo_orden_id = $request->tipo->id;
-        $orden->mesa_id = ($request->mesa!=0) ? null:$request->mesa;
+        $orden->mesa_id = ($request->mesa!=0) ? $request->mesa:null;
         if($tipo->nombre == 'LOCAL'){
             $user = usuario::where('nombre','local')->first();/////DEBEMOS TENER UN USUARIO REGISTRADO CON NOMBRE "LOCAL" asi en mayusculas
             $orden->empleado_usuario_id = Auth::user()->id;
             $orden->usuario_id = $user->id;
-            $orden->save();
         }else if($tipo->nombre == 'DELIVERY'){
             $user = empleado::where('nombre','DELIVERY')->first();////DEBEMOS TENER UN EMPLEADO QUE SE LLAME DELIVERY
             $orden->empleado_usuario_id = $user->id;
             $orden->usuario_id = Auth::user()->id;
         }
+        $orden->save();
         foreach($request->productos as $key => $item){
             $det_orden = new detalle_orden();
             $det_orden->producto_id = $item->producto_id;

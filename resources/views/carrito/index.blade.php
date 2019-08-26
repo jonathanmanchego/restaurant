@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class="col-md-3"><strong>{{__('Total Pedido')}}</strong> S/.<span id="totalCarrito">{{$total}}</span></div>
                             <div class="col-md-6">
-                                <div class="btn btn-primary btn-block">{{__('Realizar Pedido')}}</div>
+                                <a class="btn btn-primary btn-block" href="{{route('payOrden')}}"><span>{{__('Realizar Pedido')}}</span></a>
                             </div>
                             <div class="col-md-3 ml-auto"><strong>{{__('Cantidad Productos')}}</strong><span id="total_items">{{$items}}</span></div>
                         </div>

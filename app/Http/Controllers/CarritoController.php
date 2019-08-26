@@ -5,10 +5,6 @@ namespace restaurant\Http\Controllers;
 use Illuminate\Http\Request;
 use restaurant\Models\producto as ProductosModel;
 use restaurant\Models\CarritoModel;
-use restaurant\models\estado_ordenes;
-use restaurant\models\orden;
-use restaurant\models\tipo_orden;
-
 class CarritoController extends Controller
 {
     public function __construct()
@@ -62,22 +58,8 @@ class CarritoController extends Controller
     }
     public function hacerPedido(){
         $car = \Session::get('carrito');
-        $tipo_orden = tipo_orden::where('nombre','DELIVERY')->first();
-        $mesa = mesa::where('nombre','DELIVERY')->first();
-        // $estado_orden = estado_ordenes::where('nombre','')
-        $orden = new orden();
-        $orden->tipo_orden_id = $tipo_orden->id;
-        $orden->mesa_id = $mesa->id;
-        $orden->total = $car->getTotal();
-        $orden->total_redondeado = $car->getTotal();
-        $orden->comprobante = 0;////ESTE VALOR SE OBTENDRA DEL SISTEMA DE FACTURAS ELECTRONICAS
-        foreach($car->getProductos() as $prod){
-            $orden->tiempo_espera += $prod->tiempo_espera;
-        }
-
-        foreach($car->getProductos() as $prod){
-
-        }
-        // $new detalle_orden()
+        $car->saveProductos();
+        $car->reset();
+        return redirect()->route('productos');
     }
 }

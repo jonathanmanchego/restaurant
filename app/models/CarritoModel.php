@@ -4,7 +4,11 @@ namespace restaurant\Models;
 
 // use Illuminate\Database\Eloquent\Model;
 use restaurant\Models\producto;
-
+use restaurant\models\estado_ordenes;
+use restaurant\models\orden;
+use restaurant\models\tipo_orden;
+use restaurant\models\empleado;
+use Auth;
 class CarritoModel
 {
 	private $productos = array();
@@ -29,6 +33,7 @@ class CarritoModel
 		} else {
 			$producto->total += 1;
 			$producto->subTotal = $cant * $producto->precio;
+			$producto->comentario = "nada";
 			$this->total += $producto->subTotal;
 			$this->productos[] = $producto;
 			$this->cantidadTotal += 1;
@@ -63,6 +68,40 @@ class CarritoModel
 			unset($this->productos[$N]);
 		}
 		return array('out' => "success");
+	}
+	public function saveProductos(){
+		$tipo_orden = tipo_orden::where('nombre','DELIVERY')->first();
+        $mesa = mesa::where('nombre','DELIVERY')->first();
+        $estado = estado_ordenes::where('nombre','PREPARANDOSE')->first();////LUEGO HAREMOS QUE LAS ORDENES SIEMPRE ESTEN ORDENADAS DE LA PRIMERA = PASO 1 ...
+        $orden = new orden();
+        $orden->tipo_orden_id = $tipo_orden->id;
+        $orden->mesa_id = $mesa->id;
+        $orden->total = $this->total;
+        $orden->total_redondeado = $this->total;
+        $orden->comprobante = 0;////ESTE VALOR SE OBTENDRA DEL SISTEMA DE FACTURAS ELECTRONICAS
+        $orden->tiempo_espera_total = $this->tiempoEspera();
+		$orden->estado_ordenes_id = $estado->id;
+		$emp = empleado::where('nombre','DELIVERY')->first();////DEBEMOS TENER UN EMPLEADO QUE SE LLAME DELIVERY
+        $orden->empleado_usuario_id = $emp->id;
+        $orden->usuario_id = Auth::user()->id;
+        $orden->save();
+		foreach($this->productos as $key => $item){
+            $det_orden = new detalle_orden();
+            $det_orden->producto_id = $item->id;
+            $det_orden->orden_id = $orden->id;
+            $det_orden->cantidad = $item->total;
+            $det_orden->subtotal = $item->subTotal;
+            $det_orden->promociones_id = null;
+            $det_orden->comentario = $item->comentario;
+            $det_orden->save();
+        }
+	}
+	public function tiempoEspera(){
+		$total = 0;
+		foreach($this->productos as $prod){
+			$total += $prod->tiempo_espera;
+		}
+		return $total;
 	}
 	public function getItem()
 	{

@@ -28,7 +28,7 @@ Route::get('/carrito/update/{producto}/{cantidadAdd}','CarritoController@update'
 Route::get('/carrito/remove/{producto}/{cantidadRemove}','CarritoController@remove')->name('removeToCar');
 Route::get('/carrito/remove/{id}','CarritoController@removeItem')->name('del-item');
 Route::get('/carrito/show','CarritoController@show')->name('Carrito');
-Route::get('/carrito/completo','CarritoController@hacerPedido');
+Route::get('/carrito/completo','CarritoController@hacerPedido')->name('payOrden');
 // PRODUCTOS ROUTES
 Route::get('/productos','webs\GeneralController@exhibicion')->name('productos');
 Route::get('/productos/{id}','ProductoController@show')->name('productoMostrar')->middleware('auth:web');
