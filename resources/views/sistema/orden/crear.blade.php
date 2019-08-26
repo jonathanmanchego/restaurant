@@ -2,7 +2,6 @@
 
 
 @section('content')
-<example></example>
 <div class="row">
     <div class="col-lg-12">
         <div class="box box-danger">
@@ -14,8 +13,6 @@
                     </a>
                 </div>
             </div>
-            <form  id="orden" class="form-horizontal" method="POST" autocomplete="off">
-                @csrf
                 <div class="box-body">
                     <div class="form-group">                     
                         <div class="col-md-3">
@@ -64,7 +61,6 @@
                             </tr> --}}
                         </tbody>
                     </table>
-                    <comp-ex />
                     <div class="form-group">
                         <div class="col-xs-6 col-md-3">
                             <div class="input-group">
@@ -97,12 +93,11 @@
                     <div class="col-lg-6">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success btn-flat">Enviar</button>
+                                    <button class="btn btn-success btn-flat" onclick="send()">Enviar</button>
                                 </div>     
                             </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div> 

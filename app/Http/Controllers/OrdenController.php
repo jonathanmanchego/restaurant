@@ -13,7 +13,7 @@ use restaurant\models\empleado;
 use restaurant\models\estado_ordenes;
 use restaurant\models\orden;
 use restaurant\models\tipo_orden;
-
+use Auth;
 class OrdenController extends Controller
 {
     
@@ -76,7 +76,7 @@ class OrdenController extends Controller
     public function store(Request $request)
     {
         /////DIFERENCIAMOS SI ES LOCAL O DELIVERY
-        $tipo = tipo_orden::where('nombre',$request->tipo)->first();///tipo debe ser DELIVERY || LOCAL || ETC si hubiese otro
+        $tipo = tipo_orden::where('nombre','DELIVERY')->first();///tipo debe ser DELIVERY || LOCAL || ETC si hubiese otro
         $estado = estado_ordenes::where('nombre','PREPARANDOSE')->first();////LUEGO HAREMOS QUE LAS ORDENES SIEMPRE ESTEN ORDENADAS DE LA PRIMERA = PASO 1 ...
         /////instanciamos valores de la orden
         $orden = new orden();
@@ -85,7 +85,7 @@ class OrdenController extends Controller
         $orden->comprobante = 0;//$request->comprobante;///AQUI LLEGARA EL NUMERO DEL SISTEMA DE FACTURACION, MANDAR NUMERO 1111
         $orden->tiempo_espera_total = $request->tiempo_espera;///el tiempo de espera por ahora mandalo como la sumatoria de todos los tiempo de espera dividos entre 2 
         $orden->estado_ordenes_id = $estado->id;
-        $orden->tipo_orden_id = $request->tipo->id;
+        $orden->tipo_orden_id = $tipo->id;
         $orden->mesa_id = ($request->mesa!=0) ? $request->mesa:null;
         if($tipo->nombre == 'LOCAL'){
             $user = usuario::where('nombre','local')->first();/////DEBEMOS TENER UN USUARIO REGISTRADO CON NOMBRE "LOCAL" asi en mayusculas
@@ -97,14 +97,14 @@ class OrdenController extends Controller
             $orden->usuario_id = Auth::user()->id;
         }
         $orden->save();
-        foreach($request->productos as $key => $item){
+        foreach($request->detalle as $key => $item){
             $det_orden = new detalle_orden();
-            $det_orden->producto_id = $item->producto_id;
+            $det_orden->producto_id = $item['producto_id'];
             $det_orden->orden_id = $orden->id;
-            $det_orden->cantidad = $item->cantidad;
-            $det_orden->subtotal = $item->subtotal;
+            $det_orden->cantidad = $item['cantidad'];
+            $det_orden->subtotal = $item['subtotal'];
             $det_orden->promociones_id = null;
-            $det_orden->comentario = $item->comentario;
+            $det_orden->comentario = "nada";
             $det_orden->save();
         }
 

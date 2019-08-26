@@ -59,13 +59,12 @@ function eliminarProd(x){
     orden_actual.detalle = orden_actual.detalle.filter(pos=> pos.producto_id!=x );
     $(`#ele-orden-item-${x}`).remove();    
 }
-$('#mesas').change(()=>{
-	orden_actual.mesa = parseInt($('#mesas')[0].value);
-});
-$('#orden').submit(async (e)=>{
-e.preventDefault();
-let x = await ajaxRequest('/sistema/orden',orden_actual);
-if(x.out){
-	console.log(x.data);
+async function send(){
+    orden_actual.mesa = parseInt($('#mesas')[0].value);
+    let x = await ajaxRequest('/sistema/orden',orden_actual);
+    if(x.out){
+     console.log(x.data);
+    }
 }
-});
+
+
