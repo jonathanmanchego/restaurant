@@ -6,6 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="{{url('/css/all.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/css_boot/bootstrap.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/app.css')}}">
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="{{url('/css/admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
 </head>
 <body>
 	<div class="wrapp">
@@ -17,6 +19,7 @@
 				<li><a href="{{url('/')}}"><span>INICIO</span></a></li>
 				<li><a href="{{url('/productos')}}"><span>PRODUCTOS</span></a></li>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				<li><a href="{{url('/articulos')}}"><span>ARTICULOS</span></a></li>
 				<li><a class="toBuy" href="{{url('/pedido')}}"><i class="far fa-clipboard"></i></a></li>
 =======
@@ -26,6 +29,13 @@
 				<li><a class="toBuy" href="{{route('Carrito')}}"><i class="far fa-clipboard"></i></a></li>
 >>>>>>> Stashed changes
 			
+=======
+				<li><a href="{{url('/articulos')}}"><span>ARTÍCULOS</span></a></li>
+				<li><a href="{{url('/contacto')}}"><span>CONTACTO</span></a></li>
+				<li><a href="{{url('/nosotros')}}"><span>NOSOTROS</span></a></li>
+				<li> <a class="toBuy" href="{{ route('Carrito') }}"><span><i class="fa fa-shopping-cart" aria-hidden="true" ></i></span></a>
+                </li>
+>>>>>>> Stashed changes
 				<!-- Authentication Links -->
 				@guest
 					<li class="nav-item">
@@ -94,7 +104,42 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< Updated upstream
 	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="/js/js_boot/bootstrap.min.js"></script>
+=======
+	<script type="text/javascript" src="{{url('/js/jquery-3.4.1.min.js')}}"></script>
+	<script src="{{url('/js/customs/helper.js')}}"></script>
+	<script type="text/javascript" src="{{url('/js/js_boot/bootstrap.min.js')}}"></script>
+	<script src="{{ asset('js/app.js') }}" defer></script>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<img src="/img/logo.png">
+				</div>
+				<div class="col-sm-4">
+					<ul class="list-group">
+						<li class="list-group-item style-1"><a href="{{url('/')}}">Inicio</a></li>
+						<li class="list-group-item style-1"><a href="{{url('/productos')}}">Productos</a></li>
+						<li class="list-group-item style-1"><a href="{{url('/articulos')}}">Artículos</a></li>
+						<li class="list-group-item style-1"><a href="{{url('/contacto')}}">Contacto</a></li>
+						<li class="list-group-item style-1"><a href="{{url('/nosotros')}}">Nosotros</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="list-group">
+						<li class="list-group-item style-1 list-group-label"><h3>SÍGUENOS EN :</h3></li>
+						<li class="list-group-item style-1"><a href="#">Facebook <i class="fa fa-facebook"></i></a></li>
+						<li class="list-group-item style-1"><a href="#">Twitter <i class="fa fa-twitter"></i></a></li>
+						<li class="list-group-item style-1"><a href="#">Instagram <i class="fa fa-instagram"></i></a></li>
+						<li class="list-group-item style-1"><a href="#">Youtube <i class="fa fa-youtube"></i></a></li>
+					</ul>
+				</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+>>>>>>> Stashed changes
 </body>
 </html>

@@ -16,10 +16,28 @@ class CartaController extends Controller
      */
     public function index()
     {
+<<<<<<< Updated upstream
         $data = carta::getAll();
         $headers = carta::getHeaders();
         // return $data;
         return view('sistema.carta.index',['data' => $data,'title' =>'CARTA','action'=> '/carta','headers' => $headers]);
+=======
+        if($req->ajax()){
+            return self::activa();
+        }else{
+            $data = carta::getAll();
+            $headers = carta::getHeaders();
+            $cartaCurrent = carta::where('estado', '1')->first();
+            $productos = producto::all();
+            $productosActuales = carta_item::where('carta_id', $cartaCurrent->id)->get();
+            JavaScript::put([
+                'carta_actual' => $cartaCurrent,
+                'productos_actual' => $productosActuales
+            ]);
+            return view('sistema.carta.index', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers, 'carta_activa' => $cartaCurrent, 'productos' => $productos, 'productos_actual' => $productosActuales]);
+        }
+        
+>>>>>>> Stashed changes
     }
 
     /**

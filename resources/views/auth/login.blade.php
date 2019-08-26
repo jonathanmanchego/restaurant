@@ -1,5 +1,35 @@
 @extends('layout.public')
+<<<<<<< Updated upstream
 
+=======
+@section('slider-carousel')
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+   @isset($sli)
+    @foreach($sli as $key => $s)
+    <div class="carousel-item @if($key == 0) active @endif">
+      <img src="{{ url('/img/slider/'.$s->nombre)}}" class="d-block w-100" alt="">
+    </div>
+    @endforeach
+    @endisset
+    {{-- <div class="carousel-item">
+      <img src="{{ url('img/slider/slider2.jpg')}}" class="d-block w-100" alt="">
+    </div> --}}
+    {{-- <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div> --}}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon arrow" aria-hidden="true "></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon arrow" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+@endsection
+>>>>>>> Stashed changes
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
