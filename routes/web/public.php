@@ -26,6 +26,7 @@ Route::get('/carrito/reset','CarritoController@reset')->name('reset');
 Route::get('/carrito/add/{producto}/{cantidadAdd}','CarritoController@add')->name('addToCar');
 Route::get('/carrito/update/{producto}/{cantidadAdd}','CarritoController@update')->name('updateCar');
 Route::get('/carrito/remove/{producto}/{cantidadRemove}','CarritoController@remove')->name('removeToCar');
+Route::get('/carrito/remove/{id}','CarritoController@removeItem')->name('del-item');
 Route::get('/carrito/show','CarritoController@show')->name('Carrito');
 Route::get('/carrito/completo','CarritoController@hacerPedido');
 // PRODUCTOS ROUTES

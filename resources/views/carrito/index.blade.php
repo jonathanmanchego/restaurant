@@ -19,6 +19,11 @@
                             <div class="row justify-content-center">
                                 <div class="card mb-3" style="max-width: 540px;">
                                     <div class="row no-gutters">
+                                        <a class="ml-auto" href="{{route('del-item',['id' => $item->id])}}">
+                                            <button type="button" class="close" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </a>
                                         <div class="col-md-4">
                                             <img src="{{url('/uploads/'.$item->imagen)}}" class="card-img" alt="{{$item->nombre}}">
                                         </div>
@@ -78,6 +83,8 @@
     </div>
 </div>
 {{-- <script type="text/javascript" src="{{url('/js/customs/public/script.js')}}"></script> --}}
+
+@endsection
 <script type="text/javascript">
  function add(x){
     $.ajax({
@@ -149,7 +156,5 @@
     });
  }
 </script>
-
-@endsection
 
 

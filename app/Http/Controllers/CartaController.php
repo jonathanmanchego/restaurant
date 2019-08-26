@@ -19,9 +19,9 @@ class CartaController extends Controller
      */
     public function index(Request $req)
     {
-        if($req->ajax()){
+        if ($req->ajax()) {
             return self::activa();
-        }else{
+        } else {
             $data = carta::getAll();
             $headers = carta::getHeaders();
             $cartaCurrent = carta::where('estado', '1')->first();
@@ -33,7 +33,6 @@ class CartaController extends Controller
             ]);
             return view('sistema.carta.indexx', ['data' => $data, 'title' => 'CARTA', 'action' => '/carta', 'headers' => $headers, 'carta_activa' => $cartaCurrent, 'productos' => $productos, 'productos_actual' => $productosActuales]);
         }
-        
     }
 
     /**
@@ -140,31 +139,40 @@ class CartaController extends Controller
         $cartaCurrent = carta::where('estado', '1')->first();
         $productosActuales = carta_item::where('carta_id', $cartaCurrent->id)->get();
         $datos = $cartaCurrent->getProductos;
-        foreach( $datos as $key => $prod){
+        foreach ($datos as $key => $prod) {
+            $prod->item_id = $productosActuales[$key]->id;
             $prod->stock = $productosActuales[$key]->stock;
-            $prod->cat = $prod->categoria->nombre;
+            $prod->categoria;
         }
         return $datos;
     }
     public function instanciando(Request $request)
     {
         $data = null;
-        if(!empty($request->productos)){
-            foreach ($request->productos as $prod) {
-                $aux = carta_item::where('carta_id', $prod['carta_id'])->where('producto_id', $prod['producto_id'])->first();
-                if ($aux) {
-                    $c_i = carta_item::find($aux->id);
-                    $c_i->stock = $prod['stock'];
-                    $c_i->save();
-                } else {
-                    carta_item::create($prod);
-                }
+        foreach ($request->data as $prod) {
+            $aux = carta_item::where('carta_id', $request->carta_id)->where('producto_id', $prod['id'])->first();
+            if ($aux) {
+                $c_i = carta_item::find($aux->id);
+                $c_i->stock = $prod['stock'];
+                $c_i->save();
+            } else {
+                $c_i = new carta_item();
+                $c_i->carta_id = $request->carta_id;
+                $c_i->producto_id = $prod['id'];
+                $c_i->stock = $prod['stock'];
+                $c_i->save();
+                // carta_item::create($prod);
             }
+            $data[] = $c_i;
         }
+        // $cartaCurrent = carta::where('estado', '1')->first();
+        // $productosActuales = carta_item::where('carta_id', $cartaCurrent->id)->get();
+        return $data;
     }
     public function renovando(Request $request)
     {
         $aux = carta_item::where('carta_id', $request['carta_id'])->where('producto_id', $request['producto_id'])->first();
         $aux->delete();
+        return $aux;
     }
 }

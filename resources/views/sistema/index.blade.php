@@ -1,4 +1,7 @@
 @extends('layout.sistema')
+@section('slider-carousel')
+@parent
+@endsection
 @section('content')
 	@if (session('success'))
 		<div class="alert alert-success bglight alert-dismissible" data-auto-dismiss="3000">

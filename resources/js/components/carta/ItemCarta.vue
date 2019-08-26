@@ -1,4 +1,5 @@
 <template>
+	
 	<tr :id="item.id">
 		<td>{{item.id}}</td>
 		<td>{{item.nombre}}</td>
@@ -10,35 +11,34 @@
 			{{item.precio}}
 		</td>
 		<td>
-			{{item.cat}}
+			{{item.categoria.nombre}}
 		</td>
 		<td>
-			<button class="btn btn-danger" @click="eliminarProd(item.id)"><span class="fa fa-close"></span></button>
+			<button class="btn btn-danger" @click="eliminarProd(index,item.id,item.item_id)"><span class="fa fa-close"></span></button>
 		</td>
 	</tr>
 </template>
 <script>
+	import events from '../../events/events.js';
 	export default{
+		created(){
+		},
 		mounted(){
 
 		},
 		data(){
 			return {
-				// item : {
-				// 	id : 10,
-				// 	codigo : "asa",
-				// 	nombre : "papa ..",
-				// 	stock : 50,
-				// 	precio : 23.50,
-				// 	categoria: "desayuno"
-				// }
+				laoding: true
 			}
 		},
 		props:{
-			item: Object
+			item: Object,
+			index : Number
 		},
 		methods:{
-
+			eliminarProd : (pos,item_id,x)=>{
+				events.$emit('remove-item',pos,item_id,x);
+			}
 		}
 	}
 </script>

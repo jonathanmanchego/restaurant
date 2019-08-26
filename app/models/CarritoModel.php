@@ -54,6 +54,16 @@ class CarritoModel
 		}
 		return array('out' => "success");
 	}
+	public function removeProducto(producto $prod){
+		$N = $this->verifiyItem($prod->id);
+		if($N != -1){
+			$this->cantidadItems -= $this->productos[$N]->total;
+			$this->cantidadTotal--;
+			$this->total -= $this->productos[$N]->subTotal;
+			unset($this->productos[$N]);
+		}
+		return array('out' => "success");
+	}
 	public function getItem()
 	{
 		return $this->cantidadItems;

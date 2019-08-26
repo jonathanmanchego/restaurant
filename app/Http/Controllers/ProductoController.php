@@ -15,11 +15,20 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        $data = producto::all();
-        $headers = producto::getHeaders();
-        return view('sistema.producto.index',['data' => $data,'title' => 'PRODUCTO','action' => '/producto' , 'headers' => $headers]);
+        if($req->ajax()){
+            $datos = producto::all();
+            foreach( $datos as $prod){
+                $prod->categoria;
+            }
+            return $datos;
+        }else{
+            $data = producto::all();
+            $headers = producto::getHeaders();
+            return view('sistema.producto.index',['data' => $data,'title' => 'PRODUCTO','action' => '/producto' , 'headers' => $headers]);
+        }
+        
     }
 
     /**

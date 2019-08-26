@@ -117,15 +117,15 @@ async function agregarProd(x){
         // }
     // });
 }
-async function guardarPedido(){
-    productos_carta.forEach(act => {
-        act.stock = $(`#counter_${act.producto_id}`)[0].value;
-    });
-    let y = await ajaxRequest('/sistema/carta/instanciando', {productos:productos_carta});
-    if(y.out){
-        location.reload();
-    }
-}
+// async function guardarPedido(){
+//     productos_carta.forEach(act => {
+//         act.stock = $(`#counter_${act.producto_id}`)[0].value;
+//     });
+//     let y = await ajaxRequest('/sistema/carta/instanciando', {productos:productos_carta});
+//     if(y.out){
+//         location.reload();
+//     }
+// }
     // $("#buscarprod").on("keyup", function(){
     //     console.log($(this).val());
     //     var data = {

@@ -7,11 +7,12 @@ use restaurant\Http\Controllers\Controller;
 use restaurant\models\producto;
 use restaurant\models\zona;
 use restaurant\models\tipo_documento;
-
+use restaurant\models\sucursal;
 class GeneralController extends Controller
 {
     public function index(){
-        return view('index',['title' => 'RESTAURANT']);
+        $sli = sucursal::take(3)->orderBy('id','desc')->get();
+        return view('index',['title' => 'RESTAURANT','sli' => $sli]);
     }
     /**
      * Exhibicion de los productos

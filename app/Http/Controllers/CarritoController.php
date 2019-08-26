@@ -49,6 +49,12 @@ class CarritoController extends Controller
         \Session::put('carrito', $car);
         return $x;
     }
+    public function removeItem(ProductosModel $id){
+        $car = \Session::get('carrito');
+        $x = $car->removeProducto($id);
+        \Session::put('carrito', $car);
+        return redirect()->route('Carrito');
+    }
     public function reset()
     {
         \Session::get('carrito')->reset();

@@ -66,17 +66,10 @@
 		@endif
 	</div>
 	<div class="container-crud">
-		<div class="opciones">
-			<a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-default1" ><span class="fa fa-list"></span>  INSTANCIAR</a>
-		</div>
 		<tabla-carta></tabla-carta>
 	</div>
-	<div class="col-xs-12">
-		<div class="text-center">
-			<button  type="button" class="btn btn-success" onclick="guardarPedido()">Guardar</button>
-		</div>
-	</div>
-	@include('sistema.carta.modal-producto')
+	{{-- @include('sistema.carta.modal-producto') --}}
+	<tabla-productos></tabla-productos>
 	
 @endsection
 @include('partials.scripts.index')
