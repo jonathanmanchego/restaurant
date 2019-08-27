@@ -55,3 +55,12 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => 'sisAut
     Route::get('/chef','OrdenController@listar');
     Route::post('/orden/detalle', 'OrdenController@detalle');
 });
+Route::group(['prefix' => 'sistema','as' => 'sistema::','middleware' => ['sis-auth:sis','usuario-administrador']],function(){
+
+    Route::resource('/orden','OrdenController');
+    Route::resource('/carta','CartaController');
+    Route::resource('/carta-item','CartaItemController');
+    Route::post('/carta-item/buscar','CartaController@buscarProducto');
+    Route::post('/carta/buscar','CartaController@buscarProducto');
+    Route::delete('/carta-item/delete/{id}','CartaItemController@destroy');
+});

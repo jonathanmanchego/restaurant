@@ -24,4 +24,8 @@ class Sistema extends Middleware
             return route('sis-login');
         }
     }
+    private function permisoadmin()
+    {
+        return session()->get('rol_nombre') == 'administrador';
+    }
 }

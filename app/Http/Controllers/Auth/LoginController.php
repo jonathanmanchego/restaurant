@@ -43,7 +43,7 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
-        return redirect('/')->with('success','Ingreso Exitoso');
+        return redirect()->intended($this->redirectPath())->with('success','Ingreso Exitoso');
     }
 
     public function username(){
