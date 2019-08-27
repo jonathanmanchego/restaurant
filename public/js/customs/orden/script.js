@@ -48,7 +48,7 @@ $(".btn-agregar2").on("click",function(){
             <td>${nombre_item}</td>
             <td>${precio_item}</td>
             <td>${stock}</td>
-            <td><input class="counter" type="number" min="1" max="${stock}" value="1"></td>
+            <td><input id="cantidad_${id_item}" class="counter" type="number" min="1" max="${stock}" value="1"></td>
             <td>${precio_item}</td>
             <td><button class="btn btn-danger" onclick="eliminarProd(${id_item})"><span class="fa fa-close"></span></button></td>
             </tr>`;
@@ -59,8 +59,14 @@ function eliminarProd(x){
     orden_actual.detalle = orden_actual.detalle.filter(pos=> pos.producto_id!=x );
     $(`#ele-orden-item-${x}`).remove();    
 }
+function contarCantidades(){
+    orden_actual.detalle.forEach(e=>{
+        e.cantidad = parseInt($(`#cantidad_${e.producto_id}`)[0].value);
+    });
+}
 async function send(){
     orden_actual.mesa = parseInt($('#mesas')[0].value);
+    contarCantidades();
     let x = await ajaxRequest('/sistema/orden',orden_actual);
     if(x.out){
      console.log(x.data);

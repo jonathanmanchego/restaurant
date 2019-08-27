@@ -14,6 +14,9 @@ use restaurant\models\estado_ordenes;
 use restaurant\models\orden;
 use restaurant\models\tipo_orden;
 use Auth;
+use restaurant\models\estado_mesa;
+use restaurant\models\usuario;
+
 class OrdenController extends Controller
 {
     
@@ -76,8 +79,10 @@ class OrdenController extends Controller
     public function store(Request $request)
     {
         /////DIFERENCIAMOS SI ES LOCAL O DELIVERY
-        $tipo = tipo_orden::where('nombre','DELIVERY')->first();///tipo debe ser DELIVERY || LOCAL || ETC si hubiese otro
+        $tipo = tipo_orden::where('nombre','LOCAL')->first();///tipo debe ser DELIVERY || LOCAL || ETC si hubiese otro
         $estado = estado_ordenes::where('nombre','PREPARANDOSE')->first();////LUEGO HAREMOS QUE LAS ORDENES SIEMPRE ESTEN ORDENADAS DE LA PRIMERA = PASO 1 ...
+        $estado_mesa = estado_mesa::where('nombre','OCUPADA')->first();
+        $cartaActiva = carta::where('estado', 1)->first();
         /////instanciamos valores de la orden
         $orden = new orden();
         $orden->total = $request->total;
@@ -97,6 +102,9 @@ class OrdenController extends Controller
             $orden->usuario_id = Auth::user()->id;
         }
         $orden->save();
+        $mesa = mesa::find($orden->mesa_id);
+        $mesa->estado_mesas_id = $estado_mesa->id;
+        $mesa->save();
         foreach($request->detalle as $key => $item){
             $det_orden = new detalle_orden();
             $det_orden->producto_id = $item['producto_id'];
@@ -106,10 +114,12 @@ class OrdenController extends Controller
             $det_orden->promociones_id = null;
             $det_orden->comentario = "nada";
             $det_orden->save();
+            $item_to_process = carta_item::where('carta_id',$cartaActiva->id)->where('producto_id',$item['producto_id'])->first();
+            $item_to_process->stock -=  $item['cantidad'];
+            $item_to_process->save();
         }
 
     }
-
     /**
      * Display the specified resource.
      *
