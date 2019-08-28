@@ -4,6 +4,7 @@ namespace restaurant\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+
 class Sistema extends Middleware
 {
     /**
@@ -24,8 +25,9 @@ class Sistema extends Middleware
             return route('sis-login');
         }
     }
-    private function permisoadmin()
-    {
-        return session()->get('rol_nombre') == 'administrador';
-    }
+        // private function permiso()
+    // {
+    //     return session()->get('rol_nombre') == 'mozo';
+    // }
+
 }

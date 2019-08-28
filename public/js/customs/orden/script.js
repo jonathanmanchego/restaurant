@@ -67,7 +67,7 @@ function contarCantidades(){
 async function send(){
     orden_actual.mesa = parseInt($('#mesas')[0].value);
     contarCantidades();
-    let x = await ajaxRequest('/sistema/orden',orden_actual);
+    let x = await ajaxRequest('/sistema/orden/save',orden_actual);
     if(x.out){
      console.log(x.data);
     }

@@ -53,6 +53,10 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \restaurant\Http\Middleware\Authenticate::class,
         'sisAuth' => \restaurant\Http\Middleware\Sistema::class,
+        'adminAuth' => \restaurant\Http\Middleware\AdministradorMid::class,
+        'mozoAuth' => \restaurant\Http\Middleware\MozoMid::class,
+        'chefAuth' => \restaurant\Http\Middleware\ChefMid::class,
+        'cajaAuth' => \restaurant\Http\Middleware\CajaMid::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

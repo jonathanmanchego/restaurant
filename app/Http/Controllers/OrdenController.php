@@ -45,7 +45,7 @@ class OrdenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function new()
     {
         //$headers = zona::getPull();
         $mesas = mesa::all();
@@ -76,7 +76,7 @@ class OrdenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function saveOrden(Request $request)
     {
         /////DIFERENCIAMOS SI ES LOCAL O DELIVERY
         $tipo = tipo_orden::where('nombre','LOCAL')->first();///tipo debe ser DELIVERY || LOCAL || ETC si hubiese otro

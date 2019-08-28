@@ -1,7 +1,7 @@
 <!-- Optionally, you can add icons to the links -->
 <li class="active"><a href="{{url('/sistema')}}"><i class="fas fa-link"></i> <span>Inicio</span></a></li>
 @if(Auth::user()->tipo->nombre == 'MOZO' || Auth::user()->tipo->nombre == 'ADMIN')
-<li><a href="{{ url('/sistema/orden') }}"><i class="fas fa-link"></i> <span>Crear Pedido</span></a></li>
+<li><a href="{{ url('/sistema/ordenes/agregar') }}"><i class="fas fa-link"></i> <span>Crear Pedido</span></a></li>
 <li><a href="{{ url('/sistema/mesas-show') }}"><i class="fas fa-table"></i> <span>Ver Mesas</span></a></li>
 @endif
 @if(Auth::user()->tipo->nombre == 'ADMIN')

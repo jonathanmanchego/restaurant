@@ -6,6 +6,7 @@ use restaurant\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use restaurant\models\sucursal;
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -45,9 +46,10 @@ class LoginController extends Controller
         return redirect('/empleados/login')->with('success','Sesion Finalizada');
     }
 
-    protected function authenticated()
+    protected function authenticated(Request $request, $user)
     {
-        return redirect('/sistema')->with('success','Ingreso Exitoso');
+        $user->tipo;
+        return redirect('/sistema')->with('success',"Ingreso Exitoso");
     }
 
     public function username(){
