@@ -62,11 +62,12 @@ class OrdenController extends Controller
             }
         }
         JavaScript::put([
-            'productos' => $productos
+            'productos' => $productos,
+            'mesas' => $mesas
         ]);
         // $productos = carta_item::with('productos')->where('carta_id', $cartaActiva->id)->get();
         // return $productos;
-        return view('sistema.orden.crear', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'productos' => $productos]);
+        return view('sistema.orden.crearF', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'productos' => $productos]);
         //return view('sistema.orden.crear',['title' => 'NUEVA ORDEN','action' => '/orden']);
     }
 
@@ -78,7 +79,7 @@ class OrdenController extends Controller
      */
     public function saveOrden(Request $request)
     {
-        /////DIFERENCIAMOS SI ES LOCAL O DELIVERY
+        /////DIFERENCIAMOS SI ES LOCAL y sus estado y tipos
         $tipo = tipo_orden::where('nombre','LOCAL')->first();///tipo debe ser DELIVERY || LOCAL || ETC si hubiese otro
         $estado = estado_ordenes::where('nombre','PREPARANDOSE')->first();////LUEGO HAREMOS QUE LAS ORDENES SIEMPRE ESTEN ORDENADAS DE LA PRIMERA = PASO 1 ...
         $estado_mesa = estado_mesa::where('nombre','OCUPADA')->first();
@@ -92,16 +93,11 @@ class OrdenController extends Controller
         $orden->estado_ordenes_id = $estado->id;
         $orden->tipo_orden_id = $tipo->id;
         $orden->mesa_id = ($request->mesa!=0) ? $request->mesa:null;
-        if($tipo->nombre == 'LOCAL'){
-            $user = usuario::where('nombre','local')->first();/////DEBEMOS TENER UN USUARIO REGISTRADO CON NOMBRE "LOCAL" asi en mayusculas
-            $orden->empleado_usuario_id = Auth::user()->id;
-            $orden->usuario_id = $user->id;
-        }else if($tipo->nombre == 'DELIVERY'){
-            $user = empleado::where('nombre','DELIVERY')->first();////DEBEMOS TENER UN EMPLEADO QUE SE LLAME DELIVERY
-            $orden->empleado_usuario_id = $user->id;
-            $orden->usuario_id = Auth::user()->id;
-        }
+        $user = usuario::where('nombre','local')->first();/////DEBEMOS TENER UN USUARIO REGISTRADO CON NOMBRE "LOCAL" asi en mayusculas
+        $orden->empleado_usuario_id = Auth::user()->id;
+        $orden->usuario_id = $user->id;
         $orden->save();
+        //////
         $mesa = mesa::find($orden->mesa_id);
         $mesa->estado_mesas_id = $estado_mesa->id;
         $mesa->save();

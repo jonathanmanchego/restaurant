@@ -22,17 +22,11 @@
 	                        <table id="example1" class="table table-bordered table-hover">
 	                            <thead>
 	                                <tr>
-	                                    <th>#</th>
-	                                    <th>Codigo</th>
-	                                    <th>Nombre</th>
-	                                    <th>Precio</th>
-	                                    
-	                                    <th>Categoria</th>
-	                                    <th>Agregar</th>
+										<th v-for="(title,key) in titles" v-bind:key="key">{{ title }}</th>
 	                                </tr>
 	                            </thead>
 	                            <tbody id="busqueda_producto">
-	                            	<item-tabla-productos v-for="(ele,key) in productos" v-bind:key="key" v-bind:item="ele"></item-tabla-productos>
+	                            	<item-tabla-productos v-for="(ele,key) in productos" v-bind:key="key" v-bind:item="ele" v-bind:headers="[titles[1].toLowerCase()]"></item-tabla-productos>
 	                            </tbody>
 	                        </table>
 	                    </div>
@@ -52,7 +46,7 @@
 			
 		},
 		mounted(){
-			axios.get('http://localhost:8000/sistema/producto')
+			axios.get(`http://localhost:8000/${this.ruta}`)
 				.then(res=>{
 					this.productos = res.data;
 					this.load = false;
@@ -63,6 +57,10 @@
 			return {
 				productos : []
 			}
+		},
+		props:{
+			titles : Array,
+			ruta : String
 		}
 	}
 </script>

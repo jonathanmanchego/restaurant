@@ -19,15 +19,17 @@
                             <div class="row justify-content-center">
                                 <div class="card mb-3" style="max-width: 540px;">
                                     <div class="row no-gutters">
-                                        <a class="ml-auto" href="{{route('del-item',['id' => $item->id])}}">
-                                            <button type="button" class="close" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </a>
+                                        
                                         <div class="col-md-4">
                                             <img src="{{url('/uploads/'.$item->imagen)}}" class="card-img" alt="{{$item->nombre}}">
                                         </div>
                                         <div class="col-md-8">
+                                                <a class="ml-auto" href="{{route('del-item',['id' => $item->id])}}">
+                                                        <button type="button" class="close" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </a>
+                                          
                                             <div class="card-body">
                                                 <h5 class="card-title">{{$item->nombre}}</h5>
                                                 <div class="container">

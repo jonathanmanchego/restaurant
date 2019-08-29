@@ -7,19 +7,28 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/all.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{url('/css/css_boot/bootstrap.css')}}">
+	<script type="text/javascript" src="{{url('/js/js_boot/bootstrap.min.js')}}"></script>
 	<link rel="stylesheet" type="text/css" href="{{url('/css/app.css')}}">
+	<!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/db71cea23f.js"></script>
 </head>
 <body>
 	<div class="wrapp" id="app">
-		<nav class="wrapp_nav">
-			<div class="logo-space">
+		<nav class="navbar navbar-expand-lg navbar-light wrapp_nav">
+			<div class="logo-space ">
 				<img src="/img/logoPrincipal.png">
 			</div>
-			<ul>
-				<li><a href="{{url('/')}}"><span>INICIO</span></a></li>
-				<li><a href="{{url('/productos')}}"><span>PRODUCTOS</span></a></li>
-				<li><a href="{{url('/articulos')}}"><span>ARTICULOS</span></a></li>
-				<li><a class="toBuy" href="{{route('Carrito')}}"><i class="far fa-clipboard"></i></a></li>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="{{url('/')}}"><span>INICIO</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="{{url('/productos')}}"><span>PRODUCTOS</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="{{url('/articulos')}}"><span>ARTÍCULOS</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="{{url('/contacto')}}"><span>CONTACTO</span></a></li>
+				<li class="nav-item"><a class="nav-link" href="{{url('/nosotros')}}"><span>NOSOTROS</span></a></li>
+				<li class="nav-item"><a class="nav-link toBuy"  href="{{route('Carrito')}}"><i class="far fa-clipboard"></i>&nbsp;</a></li>
 			
 				<!-- Authentication Links -->
 				@guest
@@ -33,11 +42,12 @@
 					@endif
 				@else
 					<li class="nav-item dropdown">
-						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-							{{ Auth::user()->nombre }} <span class="caret"></span>
+						<a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							{{ Auth::user()->nombre }}<span class="caret"></span>
 						</a>
 
-						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="{{ route('profile') }}">{{ __('Perfil') }}</a>
 							<a class="dropdown-item" href="{{ route('logout') }}"
 							   onclick="event.preventDefault();
 											 document.getElementById('logout-form').submit();">
@@ -51,6 +61,7 @@
 					</li>
 				@endguest
 			</ul>
+			</div>
 		</nav>
 		{{-- SLIDER BOOTSTRAP --}}
 		@section('slider-carousel')
@@ -87,7 +98,36 @@
 	</div>
 	<script type="text/javascript" src="{{url('/js/jquery-3.4.1.min.js')}}"></script>
 	<script src="{{url('/js/customs/helper.js')}}"></script>
-	<script type="text/javascript" src="{{url('/js/js_boot/bootstrap.min.js')}}"></script>
+	
 	<script src="{{ asset('js/app.js') }}" defer></script>
+	<br><br>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<img src="/img/logo.png">
+				</div>
+				<div class="col-sm-4">
+					<ul class="list-group">
+						<li class="list-group-item style-1"><a href="{{url('/')}}">Inicio</a></li>
+						<li class="list-group-item style-1"><a href="{{url('/productos')}}">Productos</a></li>
+						<li class="list-group-item style-1"><a href="{{url('/articulos')}}">Artículos</a></li>
+						<li class="list-group-item style-1"><a href="{{url('/contacto')}}">Contacto</a></li>
+						<li class="list-group-item style-1"><a href="{{url('/nosotros')}}">Nosotros</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="list-group">
+						<li class="list-group-item style-1 list-group-label"><h3>SÍGUENOS EN :</h3></li>
+						<li class="list-group-item style-1"><a href="#">Facebook <i class="fab fa-facebook-f"></i></a></li>
+						<li class="list-group-item style-1"><a href="#">Twitter <i class="fab fa-twitter"></i></a></li>
+						<li class="list-group-item style-1"><a href="#">Instagram <i class="fab fa-instagram"></i></a></li>
+						<li class="list-group-item style-1"><a href="#">Youtube <i class="fab fa-youtube"></i></a></li>
+					</ul>
+				</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

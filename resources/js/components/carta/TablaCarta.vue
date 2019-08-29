@@ -2,10 +2,10 @@
 	<div class="box-body tabla-container">
 		<div class="gen-btn">
 			<div class="gen-item">
-				<a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-default1" ><span class="fa fa-list"></span>  INSTANCIAR</a>
+				<a class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-default1" ><span class="fa fa-list"></span>  PRODUCTOS</a>
 			</div>
 			<div class="gen-item">
-				<button class="btn btn-success btn-block" @click="agregarProd()">Guardar</button>
+				<button class="btn btn-success btn-block" @click="agregarProd()">GUARDAR</button>
 			</div>
 		</div>
 		<table class="table table-bordered table-hover dataTable" id="tabla-data-productos">
@@ -25,7 +25,7 @@
 				<item-carta v-for="(producto,key) in productos" v-bind:key="key" v-bind:item="producto" v-bind:index="key"></item-carta>
 			</tbody>
 		</table>
-		<success messagge="CARTA GUARDADA"></success>
+		<success v-show="success"  messagge="CARTA GUARDADA"></success>
 	</div>
 </template>
 <script>
@@ -43,13 +43,14 @@
 				    	.then(res=>{
 				    		console.log(res.data);
 				    		this.productos.splice(key,1);
-				    		// this.productos = this.productos.filter(pos=> pos.producto_id != data );
 				    	});
 			    }else{
 			    	this.productos.splice(key,1);
 			    }
 			});
 			events.$on('add-producto',(item) =>{
+				item.item_id = 0;
+				item.stock = 0;
 				this.productos.push(item);
 			});
 		},
@@ -65,7 +66,8 @@
 			return {
 				productos : [],
 				data : {},
-				load: true
+				load: true,
+				success: false
 			}
 		},
 		methods:{
@@ -80,7 +82,10 @@
 						this.productos.forEach((x,pos)=>{
 							x.item_id = res.data[pos].id;
 						});
-						events.$emit('success-event');
+						this.success = true;
+						setTimeout(()=>{
+							this.success = false;
+						},2500);
 						console.log(res.data);
 					})
 					.catch((e)=>{

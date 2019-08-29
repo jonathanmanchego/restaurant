@@ -8,6 +8,8 @@ use restaurant\models\estado_ordenes;
 use restaurant\models\orden;
 use restaurant\models\tipo_orden;
 use restaurant\models\empleado;
+use restaurant\models\carta_item;
+use restaurant\models\carta;
 use Auth;
 class CarritoModel
 {
@@ -72,7 +74,8 @@ class CarritoModel
 	public function saveProductos(){
 		$tipo_orden = tipo_orden::where('nombre','DELIVERY')->first();
         $mesa = mesa::where('nombre','DELIVERY')->first();
-        $estado = estado_ordenes::where('nombre','PREPARANDOSE')->first();////LUEGO HAREMOS QUE LAS ORDENES SIEMPRE ESTEN ORDENADAS DE LA PRIMERA = PASO 1 ...
+		$estado = estado_ordenes::where('nombre','PREPARANDOSE')->first();////LUEGO HAREMOS QUE LAS ORDENES SIEMPRE ESTEN ORDENADAS DE LA PRIMERA = PASO 1 ...
+		$cartaActiva = carta::where('estado', 1)->first();
         $orden = new orden();
         $orden->tipo_orden_id = $tipo_orden->id;
         $orden->mesa_id = $mesa->id;
@@ -93,7 +96,10 @@ class CarritoModel
             $det_orden->subtotal = $item->subTotal;
             $det_orden->promociones_id = null;
             $det_orden->comentario = $item->comentario;
-            $det_orden->save();
+			$det_orden->save();
+			$item_to_process = carta_item::where('carta_id',$cartaActiva->id)->where('producto_id',$item['id'])->first();
+            $item_to_process->stock -=  $item->total;
+            $item_to_process->save();
         }
 	}
 	public function tiempoEspera(){

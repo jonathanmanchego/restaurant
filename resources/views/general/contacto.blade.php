@@ -1,5 +1,14 @@
 @extends('layout.public')
 @section('content')
+<div class="page-header" style="background-color: rgba(0, 0, 0, 0.6); background-image: url(/img/bannertest.jpg); text-shadow: black 1px 1px 5px; background-position: 50% -7.4px;" >
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Contacto</h1>
+            </div>
+        </div>
+    </div>
+</div><br><br>
     <div class="container">
         <div class="row">
             <div class="col-sm-7">

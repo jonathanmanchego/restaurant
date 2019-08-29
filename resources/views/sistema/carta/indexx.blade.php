@@ -69,8 +69,10 @@
 		<tabla-carta></tabla-carta>
 	</div>
 	{{-- @include('sistema.carta.modal-producto') --}}
-	<tabla-productos></tabla-productos>
-	
+	<tabla-productos v-bind:titles="['#','Codigo','Nombre','Precio','Categoria','Agregar']" v-bind:ruta="'sistema/producto'"></tabla-productos>
 @endsection
 @include('partials.scripts.index')
+@section('scripts')
+<script src="{{url('/js/app.js') }}" defer></script>
+@endsection
 <script src="{{url('/js/customs/carta/script.js')}}"></script>

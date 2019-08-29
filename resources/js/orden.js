@@ -20,11 +20,11 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-////COMPONENTS FOR TABLA
-Vue.component('tabla-carta', require('./components/carta/TablaCarta.vue').default);
-Vue.component('item-carta', require('./components/carta/ItemCarta.vue').default);
-Vue.component('item-tabla-productos', require('./components/productos/item-modal-listado.vue').default);
-Vue.component('tabla-productos', require('./components/productos/modal-listado.vue').default);
+// ////COMPONENTS FOR TABLA
+// Vue.component('tabla-carta', require('./components/carta/TablaCarta.vue').default);
+// Vue.component('item-carta', require('./components/carta/ItemCarta.vue').default);
+// Vue.component('item-tabla-productos', require('./components/productos/item-modal-listado.vue').default);
+// Vue.component('tabla-productos', require('./components/productos/modal-listado.vue').default);
 
 
 //////WIDGETS
@@ -34,7 +34,6 @@ Vue.component('spiner', require('./components/widgets/Spiner.vue').default);
 /////COMPONENTES FOR ORDEN
 Vue.component('mesas', require('./components/mesa/ListadoMesas.vue').default);
 Vue.component('tabla-orden', require('./components/orden/TablaOrden.vue').default);
-Vue.component('item-orden', require('./components/orden/ItemOrden.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

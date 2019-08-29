@@ -1,112 +1,132 @@
 @extends('layout.public')
 
 @section('content')
+<div class="page-header" style="background-color: rgba(0, 0, 0, 0.6); background-image: url(/img/bannertest.jpg); text-shadow: black 1px 1px 5px; background-position: 50% -7.4px;" >
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Perfil</h1>
+            </div>
+        </div>
+    </div>
+</div><br><br>
 <div class="container">
-    <div class="row justify-content-center">
-     
-        <div class="col-md-8">
-           
-            @if (session('fail'))
-                <div class="alert alert-danger ">{{session('fail')}}</div>
-            @endif
-            <div class="card bg-secondary text-white">
-                <div class="card-header"><i class="far fa-user fa-1x"></i> {{ __('Perfil') }} </div>
-
-                <div class="card-body">
-                    <form method="POST" action="">
-                        @csrf
-
-                        <div class="form-group row">
-                            <div class="row col-md-11">
-                                <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
-                                <div class="col-md-8">
-                                    <input id="nombre" type="text" class="form-control" name="nombre" value="{{ Auth::user()->nombre }}" autofocus>
-                                </div>
-                            </div>
+<br><br>
+    <div class="row">   
+    @if (session('fail'))
+    <div class="alert alert-danger ">{{session('fail')}}</div>
+    @endif
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <i class="fa fa-fw fa-user fa-5x"></i>
+        </div>
+        <div class="col-sm-10">
+        
+            <form method="POST" action="">
+                @csrf
+                <div class="form-group row">
+                    <div class="row col-md-6">
+                        <label for="nombre" class="col-md-3 col-form-label">{{ __('Nombres') }}</label>
+                        <div class="col-md-9">
+                            <input id="nombre" type="text" class="form-control" name="nombre" value="{{ Auth::user()->nombre }}" autofocus>
                         </div>
-                        <div class="form-group row">
-                            <div class="row col-md-11">
-                                <label for="apellido" class="col-md-4 col-form-label text-md-right">{{ __('Apellido') }}</label>
-                                <div class="col-md-8">
-                                    <input id="apellido" type="text" class="form-control" name="apellido" value="{{ Auth::user()->apellido }}" autofocus>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="row col-md-6">
+                        <label for="apellido" class="col-md-3 col-form-label">{{ __('Apellidos') }}</label>
+                        <div class="col-md-9">
+                            <input id="apellido" type="text" class="form-control" name="apellido" value="{{ Auth::user()->apellido }}" autofocus>
                         </div>
-                        <div class="form-group row">
-                            <div class="row col-md-11">
-                                <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
-                                <div class="col-md-8">
-                                    <input id="telefono" type="text" class="form-control" name="telefono" value="{{ Auth::user()->telefono }}" autofocus>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                             <div class="row col-md-11">
-                                <label for="celular" class="col-md-4 col-form-label text-md-right">{{ __('Celular') }}</label>
-                                <div class="col-md-8">
-                                    <input id="celular" type="text" class="form-control" name="celular" value="{{ Auth::user()->celular }}" autofocus>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="row col-md-2">
+                        <label for="nombre" class="col-md-12 col-form-label">{{ __('E-mail') }}</label>
+                    </div>
+                    <div class="row col-md-10">
                         
-                        <div class="form-group row">
-                            <div class="row col-md-11">
-                                <label for="zona" class="col-md-4 col-form-label text-md-right">{{ __('Zonas') }}</label>
-                                <div class="col-md-8">
-                                    <select name="zona" id="zona" class="form-control">
-                                        <option selected value="{{Auth::user()->zona->id}}">{{Auth::user()->zona->nombre}}</option>
-                                        @foreach ($zonas as $zona)
-                                            <option value="{{$zona->id}}">{{$zona->nombre}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                        <div class="col-md-12">
+                            <input id="nombre" type="text" class="form-control" name="nombre" value="{{ Auth::user()->nombre }}@gmail.com" autofocus>
                         </div>
-                        <div class="form-group row">
-                            <div class="row col-md-11">
-                                <label for="direccion" class="col-md-4 col-form-label text-md-right">{{ __('Dirección') }}</label>
-                                <div class="col-md-8">
-                                    <input id="direccion" type="text" class="form-control" name="direccion" value="{{ Auth::user()->direccion }}" autofocus>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="row col-md-6">
+                        <label for="telefono" class="col-md-3 col-form-label">{{ __('Telefono') }}</label>
+                        <div class="col-md-9">
+                            <input id="telefono" type="text" class="form-control" name="telefono" value="{{ Auth::user()->telefono }}" autofocus>
                         </div>
-                        <div class="form-group row">
-                            <div class="row col-md-11">
-                                <label for="tipo_documento" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Documento') }}</label>
+                    </div>
+                    <div class="row col-md-6">
+                        <label for="celular" class="col-md-3 col-form-label">{{ __('Celular') }}</label>
+                        <div class="col-md-9">
+                            <input id="celular" type="text" class="form-control" name="celular" value="{{ Auth::user()->celular}}" autofocus>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="form-group row">
+                    <div class="row col-md-6">
+                        <label for="zona" class="col-md-3 col-form-label">{{ __('Zona') }}</label>
+                        <div class="col-md-9">
+                            <select name="zona" id="zona" class="form-control">
+                                @foreach ($zonas as $zona)
+                                    @if($zona['id'] == Auth::user()->zonas_id )
+                                        <option selected value="{{$zona['id']}}">{{$zona['nombre']}}</option>
+                                    @endif
+                                    @if($zona['id'] != Auth::user()->zonas_id)
+                                        <option value="{{$zona['id']}}">{{$zona['nombre']}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row col-md-6">
+                        <label for="direccion" class="col-md-3 col-form-label">{{ __('Dirección') }}</label>
+                        <div class="col-md-9">
+                            <input id="direccion" type="text" class="form-control" name="direccion" value="{{ Auth::user()->direccion }}" autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="row col-md-6">
+                        <label for="tipo_documento" class="col-md-3 col-form-label">{{ __('Tipo Documento') }}</label>
 
-                                <div class="col-md-8">
-                                    <select name="tipo_documento" id="tipo_documento" class="form-control @error('tipo_documento') is-invalid @enderror">
-                                        <option value="{{Auth::user()->doc->id}}">{{Auth::user()->doc->nombre}}</option>
-                                        @foreach ($tipo_docs as $tipo_doc)
-                                            <option value="{{$tipo_doc->id}}">{{$tipo_doc->nombre}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row col-md-11">
-                                <label for="nrodocumento" class="col-md-4 col-form-label text-md-right">{{ __('N° Documento') }}</label>
-                                <div class="col-md-8">
-                                    <input id="nrodocumento" type="text" class="form-control" name="nrodocumento" value="{{ Auth::user()->nrodocumento }}"  autocomplete="nrodocumento" autofocus>
-                                </div>
-                            </div>
+                        <div class="col-md-9">
+                            <select name="tipo_documento" id="tipo_documento" class="form-control @error('tipo_documento') is-invalid @enderror">
+                                @foreach ($tipo_docs as $tipo_doc)
+                                    <option value="{{$tipo_doc['id']}}">{{$tipo_doc['nombre']}}</option>
+                                        @if($zona['id'] == Auth::user()->zonas_id )
+                                        <option selected value="{{$tipo_doc['id']}}">{{$tipo_doc['nombre']}}</option>
+                                    @endif
+                                    @if($zona['id'] != Auth::user()->zonas_id)
+                                        <option value="{{$tipo_doc['id']}}">{{$tipo_doc['nombre']}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-lg-8 mx-auto">
-                                <button type="submit" class=" w-100 btn btn-primary">
-                                    {{ __('Guardar') }}
-                                </button>
-                            </div>
+                    </div>
+                    <div class="row col-md-6">
+                        <label for="nrodocumento" class="col-md-3 col-form-label">{{ __('N° Doc.') }}</label>
+                        <div class="col-md-9">
+                            <input id="nrodocumento" type="text" class="form-control" name="nrodocumento" value="{{ Auth::user()->nrodocumento }}"  autocomplete="nrodocumento" autofocus>
                         </div>
-                    </form>
-                    <br>
-                    <div class="form-group row ">
+                    </div>
+                </div>
+                <div class="form-group row mb-0">
                     <div class="col-lg-8 mx-auto">
-                        <button type="submit" type="button" class="w-100 btn btn-link" data-toggle="modal" data-target="#myModal">
-                           <font color="white"> {{ __('Cambiar Contraseña') }}</font>
+                        <button type="submit" class=" w-100 btn btn-primary">
+                            {{ __('Guardar') }}
                         </button>
                     </div>
-                    </div>
-                    
+                </div>
+            </form>
+            <br>
+            <div class="form-group row ">
+                <div class="col-lg-8 mx-auto">
+                    <button type="submit" type="button" class="w-100 btn btn-link" data-toggle="modal" data-target="#myModal">
+                        {{ __('Cambiar Contraseña') }} 
+                    </button>
                 </div>
             </div>
         </div>
@@ -143,6 +163,6 @@
         </div>
 
     </div>
-</div>
+</div><br><br>
 <!-- end modal-->
 @endsection

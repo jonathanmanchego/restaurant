@@ -8,9 +8,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="shortcut icon" href="{{url('/img/favicon.ico')}}" type="image/x-icon">
   <title>{{$title}}</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="shortcut icon" href="{{url('/img/favicon.ico')}}" type="image/x-icon">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   {{-- BOOSTRAP CSS ONLINE --}}
@@ -371,7 +371,7 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{url('/css/admin/js/adminlte.min.js')}}"></script>
 <script src="{{url('/js/customs/helper.js')}}"></script>
-<script src="{{url('/js/app.js') }}" defer></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

@@ -1,7 +1,7 @@
 <template>
 	<tr :id="'item-productos-'+item.id">
 	    <td>{{item.id}}</td>
-	    <td>{{item.codigo}}</td>
+		<td>{{ item[this.headers[0]] }}</td>
 	    <td>{{item.nombre}}</td>
 	    <td>{{item.precio}} </td>
 	    
@@ -22,7 +22,6 @@
 
 		},
 		mounted(){
-
 		},
 		data(){
 			return {
@@ -31,12 +30,12 @@
 		},
 		props:{
 			item: Object,
-			index : Number
+			index : Number,
+			headers : Array
 		},
 		methods: {
 			agregarProd: (x)=>{
-				x.item_id = 0;
-				x.stock = 0;
+				
 				events.$emit('add-producto',x);
 			}
 		}

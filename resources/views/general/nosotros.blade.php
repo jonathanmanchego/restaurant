@@ -1,11 +1,15 @@
 @extends('layout.public')
 @section('content')
+<div class="page-header" style="background-color: rgba(0, 0, 0, 0.6); background-image: url(/img/bannertest.jpg); text-shadow: black 1px 1px 5px; background-position: 50% -7.4px;" >
     <div class="container">
-    <div class="row">
-    <div class="col-sm-12">
-        <h3>Acerca de Nosotros</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Acerca de Nosotros</h1>
+            </div>
+        </div>
     </div>
-    </div>
+</div><br><br>
+<div class="container">
         <div class="row">
        
             <div class="col-sm-5">
@@ -22,5 +26,5 @@
                         o Administrar adecuadamente sus recursos, orientándolos hacia el respeto por el medio ambiente y al mejoramiento de la sociedad.</p>
 			</div>
         </div>
-    </div>
+</div>
 @endsection
