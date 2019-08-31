@@ -25,7 +25,11 @@ Vue.component('tabla-carta', require('./components/carta/TablaCarta.vue').defaul
 Vue.component('item-carta', require('./components/carta/ItemCarta.vue').default);
 Vue.component('item-tabla-productos', require('./components/productos/item-modal-listado.vue').default);
 Vue.component('tabla-productos', require('./components/productos/modal-listado.vue').default);
-
+//////CAJERO 
+Vue.component('ordenes', require('./components/cajero/ordenes.vue').default);
+Vue.component('orden', require('./components/cajero/orden.vue').default);
+/////PRODUCTOS
+Vue.component('add-producto', require('./components/productos/add.vue').default);
 
 //////WIDGETS
 Vue.component('success', require('./components/widgets/Success.vue').default);

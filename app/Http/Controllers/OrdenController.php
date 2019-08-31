@@ -35,9 +35,20 @@ class OrdenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        return view('sistema.orden.index',['title' => 'ORDENES','action' => '/orden']);
+        if($req->ajax()){
+            $ordenes = orden::orderBy('id','desc')->get();
+            foreach ($ordenes as $key => $value) {
+                $value->getDetalleOrdenes;
+                $value->tipo;
+                $value->estado;
+                $value->mesa;
+            }
+            return $ordenes;
+        }else{
+            return view('sistema.orden.index',['title' => 'ORDENES','action' => '/orden']);
+        }
     }
 
     /**
@@ -159,5 +170,11 @@ class OrdenController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function cobrar(){
+        return view('sistema.cajero.index',['title'=> "Cajero"]);
+    }
+    public function realizarCobro(){
+
     }
 }

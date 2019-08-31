@@ -6,7 +6,8 @@
     <div class="col-lg-12">
         <div class="box box-danger">
             <div class="box-body">
-                <div class="form-group">                     
+                <div class="form-group row">
+                                         
                     <div class="col-md-3">
                         <label for="mesas">Mesa :</label>
                         <select name="mesa" id="mesas" class="form-control" required>
@@ -53,26 +54,27 @@
                         </tr> --}}
                     </tbody>
                 </table>
-                <div class="form-group">
-                    <div class="col-xs-6 col-md-3">
+                <br>
+                <div class="form-group row">
+                    <div class="col-md-3">
                         <div class="input-group">
                             <span class="input-group-addon">Subtotal:</span>
                             <input type="text" class="form-control" placeholder="" name="subtotal" readonly="readonly">
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-3">
+                    <div class="col-md-3">
                         <div class="input-group">
                             <span class="input-group-addon">IGV:</span>
                             <input type="text" class="form-control" placeholder="" name="igv" readonly="readonly">
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-3">
+                    <div class="col-md-3">
                         <div class="input-group">
                             <span class="input-group-addon">Descuento:</span>
                             <input type="text" class="form-control" placeholder="" name="descuento" value="0.00" readonly="readonly">
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-3">
+                    <div class="col-md-3">
                         <div class="input-group">
                             <span class="input-group-addon">Total:</span>
                             <input type="text" class="form-control" placeholder="" name="total" readonly="readonly">

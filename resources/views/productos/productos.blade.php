@@ -25,7 +25,7 @@
     <div class="col-sm-6 col-md-6 col-lg-6 text-center"> 
         <input type="text" class="form-control" id="in-buscar" placeholder="Buscar en Carta">
     </div>
-    <div class="col-sm-2 col-md-2 col-lg-3 text-center"> 
+    <div class="col-sm-2 col-md-2 col-lg-2 text-center"> 
         <button  class="btn btn-warning form-control" id="btn-buscar"><i class="fa fa-search" aria-hidden="true"></i>
 </button>
     </div>

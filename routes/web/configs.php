@@ -60,4 +60,8 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => ['sisAu
         Route::get('ordenes/agregar', 'OrdenController@new')->name('agregar_venta');
         Route::post('ordenes/save','OrdenController@saveOrden');    
     });
+    Route::group(['middleware' => 'cajaAuth'],function(){
+        Route::get('ordenes/cobrar', 'OrdenController@cobrar')->name('cobrar_venta');
+        Route::post('ordenes/cobrar','OrdenController@realizarCobro');    
+    });
 });

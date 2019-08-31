@@ -17,9 +17,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
   {{-- BOOSTRAP CSS OFFLINE --}}
   {{-- <link rel="stylesheet" type="text/css" href="{{url('/bootstrap-4.3.1-dist/css_boot/bootstrap.min.css')}}"> --}}
-  <link rel="stylesheet" href="{{url('/css/admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+  {{--<link rel="stylesheet" href="{{url('/css/admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">--}}
+  <link rel="stylesheet" type="text/css" href="{{url('/css/css_boot/bootstrap.css')}}">
+	
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{url('/css/admin/bower_components/font-awesome/css/font-awesome.min.css')}}">
+  <link rel="stylesheet" href="{{url('/css/fontawesome-free-5.10.2-web/css/all.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{url('/css/all.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{url('/css/admin/bower_components/Ionicons/css/ionicons.min.css')}}">
@@ -81,18 +83,18 @@ desired effect
     </a>
 
     <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav class="navbar navbar-expand justify-content-between" style="display: ;" role="navigation">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
       <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
+      <div class="navbar-custom-menu justify-content-center">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="far fa-envelope"></i>
               <span class="label label-success">2</span>
             </a>
@@ -103,7 +105,7 @@ desired effect
                 <ul class="menu">
                   <li><!-- start message -->
                     <a href="#">
-                      <div class="pull-left">
+                      <div class="float-left">
                         <!-- User Image -->
                         <img src="/img/avatar2.png" class="img-circle" alt="User Image">
                       </div>
@@ -118,7 +120,7 @@ desired effect
                   </li>
                   <li><!-- start message -->
                     <a href="#">
-                      <div class="pull-left">
+                      <div class="float-left">
                         <!-- User Image -->
                         <img src="/img/avatar2.png" class="img-circle" alt="User Image">
                       </div>
@@ -141,9 +143,9 @@ desired effect
           <!-- /.messages-menu -->
 
           <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
+          <li class="dropdown notifications-menu nav-item">
             <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="far fa-bell"></i>
               <span class="label label-warning">3</span>
             </a>
@@ -176,7 +178,7 @@ desired effect
           <!-- Tasks Menu -->
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="far fa-flag"></i>
               <span class="label label-danger">1</span>
             </a>
@@ -213,7 +215,7 @@ desired effect
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
           <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <img src="/img/avatar2.png" class="user-image" alt="Manchego Sosa Jonathan">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -223,7 +225,7 @@ desired effect
         </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fas fa-cogs"></i></a>
+            <a href="#"  class="nav-link dropdown-toggle"  data-toggle="control-sidebar"><i class="fas fa-cogs"></i></a>
           </li>
         </ul>
       </div>
@@ -359,11 +361,13 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="{{url('/css/admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{url('/js/jquery-3.4.1.min.js')}}"></script>
 
 @yield('scripts')
 <!-- Bootstrap 3.3.7 -->
-<script src="{{url('/css/admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+	<script type="text/javascript" src="{{url('/js/js_boot/bootstrap.min.js')}}"></script>
+
 {{-- BOOTSTRAP JS ONLINE --}}
 {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --}}
 {{-- BOOTSTRAP JS OFFLINE --}}
@@ -371,6 +375,7 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{url('/css/admin/js/adminlte.min.js')}}"></script>
 <script src="{{url('/js/customs/helper.js')}}"></script>
+<script src="https://kit.fontawesome.com/db71cea23f.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

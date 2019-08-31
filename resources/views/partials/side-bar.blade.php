@@ -5,10 +5,10 @@
 
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
-        <div class="pull-left image">
+        <div class="float-left image">
           <img src="/img/avatar2.png" class="img-circle" alt="User Image">
         </div>
-        <div class="pull-left info">
+        <div class="float-left info">
           <p>{{ Auth::user()->nombre . ' ' .Auth::user()->apellido }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> {{Auth::user()->tipo->nombre}}</a>

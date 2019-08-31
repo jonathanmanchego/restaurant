@@ -3,6 +3,7 @@
 namespace restaurant\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class CajaMid
 {
@@ -15,6 +16,9 @@ class CajaMid
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->tipo->nombre == "ADMIN" || Auth::user()->tipo->nombre == "CAJERO" ){
+            return $next($request);
+        }
         return $next($request);
     }
 }

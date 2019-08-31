@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="{{url('/js/js_boot/bootstrap.min.js')}}"></script>
 	<link rel="stylesheet" type="text/css" href="{{url('/css/app.css')}}">
 	<!-- Font Awesome -->
+	<link rel="stylesheet" href="{{url('/css/fontawesome-free-5.10.2-web/css/all.min.css')}}">
     <script src="https://kit.fontawesome.com/db71cea23f.js"></script>
 </head>
 <body>
@@ -98,7 +99,6 @@
 	</div>
 	<script type="text/javascript" src="{{url('/js/jquery-3.4.1.min.js')}}"></script>
 	<script src="{{url('/js/customs/helper.js')}}"></script>
-	
 	<script src="{{ asset('js/app.js') }}" defer></script>
 	<br><br>
 	<footer>
