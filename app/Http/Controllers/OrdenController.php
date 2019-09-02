@@ -44,6 +44,7 @@ class OrdenController extends Controller
                 $value->tipo;
                 $value->estado;
                 $value->mesa;
+                $value->getEmpleado;
             }
             return $ordenes;
         }else{

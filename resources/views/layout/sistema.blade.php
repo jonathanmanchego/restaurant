@@ -83,7 +83,7 @@ desired effect
     </a>
 
     <!-- Header Navbar -->
-    <nav class="navbar navbar-expand justify-content-between" style="display: ;" role="navigation">
+    <nav class="navbar navbar-expand justify-content-between" style=" padding: 0rem; line-height: 1;" role="navigation">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
@@ -94,12 +94,12 @@ desired effect
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <a href="#" style="display: block; " class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="far fa-envelope"></i>
-              <span class="label label-success">2</span>
+              <span class="label label-success">55</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 2 messages</li>
+              <li class="header">You have 55 messages</li>
               <li>
                 <!-- inner menu: contains the messages -->
                 <ul class="menu">
@@ -145,7 +145,7 @@ desired effect
           <!-- Notifications Menu -->
           <li class="dropdown notifications-menu nav-item">
             <!-- Menu toggle button -->
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <a href="#" style="display: block;" class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="far fa-bell"></i>
               <span class="label label-warning">3</span>
             </a>
@@ -178,7 +178,7 @@ desired effect
           <!-- Tasks Menu -->
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <a href="#" style="display: block; " class="nav-link dropdown-toggle" data-toggle="dropdown">
               <i class="far fa-flag"></i>
               <span class="label label-danger">1</span>
             </a>
@@ -192,7 +192,7 @@ desired effect
                       <!-- Task title and progress text -->
                       <h3>
                         Revisa tus licencias
-                        <small class="pull-right">45%</small>
+                        <small class="float-right">45%</small>
                       </h3>
                       <!-- The progress bar -->
                       <div class="progress xs">
@@ -215,7 +215,7 @@ desired effect
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
           <!-- Menu Toggle Button -->
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <a href="#" style="display: block; " class="nav-link dropdown-toggle" data-toggle="dropdown">&nbsp;
               <!-- The user image in the navbar-->
               <img src="/img/avatar2.png" class="user-image" alt="Manchego Sosa Jonathan">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -225,7 +225,7 @@ desired effect
         </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#"  class="nav-link dropdown-toggle"  data-toggle="control-sidebar"><i class="fas fa-cogs"></i></a>
+            <a href="#"  style="display: block; " class="nav-link dropdown-toggle"  data-toggle="control-sidebar"><i class="fas fa-cogs"></i></a>
           </li>
         </ul>
       </div>
@@ -264,7 +264,7 @@ desired effect
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
-    <div class="pull-right hidden-xs">
+    <div class="float-right hidden-xs">
       {{-- <a href="{{route('logout')}}">
         <i class="fas fa-sign-out-alt fa-lg"></i>
       </a> --}}
@@ -311,8 +311,8 @@ desired effect
             <a href="javascript:;">
               <h4 class="control-sidebar-subheading">
                 Custom Template Design
-                <span class="pull-right-container">
-                    <span class="label label-danger pull-right">70%</span>
+                <span class="float-right-container">
+                    <span class="label label-danger float-right">70%</span>
                   </span>
               </h4>
 
@@ -337,7 +337,7 @@ desired effect
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Report panel usage
-              <input type="checkbox" class="pull-right" checked>
+              <input type="checkbox" class="float-right" checked>
             </label>
 
             <p>

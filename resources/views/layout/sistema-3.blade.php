@@ -90,7 +90,7 @@ desired effect
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="far fa-envelope"></i>
-              <span class="label label-success">2</span>
+              <span class="label label-success">22</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 2 messages</li>

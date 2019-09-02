@@ -23,10 +23,10 @@
     </li>
     <!-- Menu Footer-->
     <li class="user-footer">
-      <div class="pull-left">
+      <div class="float-left">
         <a href="#" class="btn btn-default btn-flat">Profile</a>
       </div>
-      <div class="pull-right">
+      <div class="float-right">
         <a class="btn btn-default btn-flat" href="#"
            onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">

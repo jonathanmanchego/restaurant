@@ -272,7 +272,7 @@ a:focus {
   margin-right: 5px;
 }
 .main-header .navbar .nav > li > a > .label {
-  position: absolute;
+  position: static;
   top: 9px;
   right: 7px;
   text-align: center;
@@ -596,6 +596,7 @@ a:focus {
   .sidebar-mini.sidebar-collapse .sidebar-menu li.header {
     display: none !important;
     -webkit-transform: translateZ(0);
+    transform:translateZ(0);
   }
   .sidebar-mini.sidebar-collapse .main-header .logo {
     width: 50px;

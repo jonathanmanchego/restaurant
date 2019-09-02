@@ -1,11 +1,12 @@
 <template>
-	<div class="modal fade" id="modal-default1">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
+
+<div class="modal fade bd-example-modal-lg" id="modal-default1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-content">
 	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	                <span aria-hidden="true">&times;</span></button>
-	                <h4 class="modal-title">Lita de Productos</h4>
+					 <h4 class="modal-title">Lita de Productos</h4>
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 	            </div>
 	            <div class="modal-body">
 	                <div class="row">
@@ -13,8 +14,7 @@
 	                        <input type="text" style="text-transform:uppercase;" class="form-control" id="buscarprod">
 	                    </div>
 	                    <div class="col-md-3">
-	                        
-	                                    <button id="btn-agregar" type="button" class="btn btn-success btn-flat btn-block"><span class="fa fa-plus"></span> Agregar</button>
+	                        <button id="btn-agregar" type="button" class="btn btn-success "><span class="fa fa-plus"></span> Agregar</button>
 	                    </div>                                           
 	                </div>
 	                <div class="row">
@@ -36,8 +36,9 @@
 	                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
 	            </div>
 	        </div>
-	    </div>
-	</div>
+    </div>
+  </div>
+</div>
 </template>
 <script>
 	import events from '../../events/events.js';

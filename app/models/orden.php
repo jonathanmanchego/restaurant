@@ -21,4 +21,7 @@ class orden extends Model
     public function mesa(){
         return $this->belongsTo(mesa::class,'mesa_id');
     }
+    public function getEmpleado(){
+        return $this->belongsTo(empleado::class,'empleado_usuario_id');            
+    }
 }

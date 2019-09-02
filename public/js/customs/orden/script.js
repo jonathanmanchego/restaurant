@@ -54,7 +54,7 @@ $(".btn-agregar2").on("click",function(){
                 <td>${nombre_item}</td>
                 <td>${precio_item}</td>
                 <td>${stock}</td>
-                <td><input id="cantidad_${id_item}" class="counter" type="number" min="1" max="${stock}" value="1"></td>
+                <td><input id="cantidad_${id_item}" class="counter" type="number" min="1" max="${stock}" value="1"  style="width:60px;"></td>
                 <td>${precio_item}</td>
                 <td><button class="btn btn-danger" onclick="eliminarProd(${id_item})"><span class="fa fa-close"></span></button></td>
                 </tr>`;

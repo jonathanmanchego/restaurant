@@ -1,78 +1,33 @@
-<template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Mesa</span>
-                </div>
-                <input type="text" disabled class="form-control" :value=orden.mesa.numero>
-            </div>
-            <div class="col-md-5 input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Fecha</span>
-                </div>
-                <input type="text" disabled class="form-control" :value="orden.fecha">
-            </div>
-            <div class="col-md-5 input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Mesa</span>
-                </div>
-                <input type="text" disabled class="form-control" :value=orden.mesa.numero>
-            </div>
-        </div>
-        <div class="row">
-
-        </div>
-        <div class="row">
-            
-        </div>
-        <div class="row">
-
-        </div>
-        <div class="row">
-
-        </div>
+<template >
+    <div class="container" >
+        Orden N° {{ orden.id}} 
+        <button @click="mostrarorden" class="btn btn-info">
+                Notification <span class="badge badge-primary"></span>
+        </button>
+        <ul v-show=mostrar>
+            <li v-for="i in 10" :key=i>{{ i }}</li>
+        </ul>
     </div>
 </template>
 <script>
+import events from '../../events/events.js';
 import * as moment from 'moment';
 export default{
     mounted(){
-
     },
     created(){
-
     },
     data(){
         return {
-            orden: {
-                mesa: {
-                    id: 3,
-                    numero: 5
-                },
-                valor_unitario : 5.24,
-                codigo: "PO53252",
-                unidad_medida: "NIU",
-                afectacion_igv : "Gravado",
-                tasa_isc : null,
-                cod_tipo_sistema_isc: null,
-                pvp:  null,
-                tasa_percep: null,
-                tasa_detracc: null,
-                user_id: 4
-            }
+            mostrar : false
         }
     },
+    props:{
+        orden: Object
+    },
     methods:{
-        send: function(){
-            axios
-                .post('http://www.facturacion.runait.com/productos',this.producto)
-                .then(res => {
-                    console.log(res.data);
-                })
-                .catch(e=>{
-                    console.error(e);
-                });
+        mostrarorden: function(){
+            this.mostrar = !this.mostrar;
         }
     }
 }

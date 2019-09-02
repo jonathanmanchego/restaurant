@@ -73,6 +73,6 @@
 @endsection
 @include('partials.scripts.index')
 @section('scripts')
-<script src="{{url('/js/app.js') }}" defer></script>
+	<script src="{{url('/js/app.js') }}" ></script>
 @endsection
 <script src="{{url('/js/customs/carta/script.js')}}"></script>
