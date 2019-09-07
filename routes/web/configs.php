@@ -33,6 +33,7 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => ['sisAu
         // MESAS
         Route::resource('/estado_mesas','EstadoMesaController');
         Route::resource('/mesa','MesaController');
+        Route::get('/mesas_layout','MesaController@layout');
         // CARTA
         Route::resource('/tipo_carta','TipoCartaController');
         Route::resource('/categoria','CategoriaController');

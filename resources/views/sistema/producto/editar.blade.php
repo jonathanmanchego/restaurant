@@ -17,12 +17,30 @@
 			<form class="form" action="{{url('/sistema'.$action)}}" method="POST">
 				@csrf
 			    @method('PUT')
-				@foreach ($headers as $head)
-				  	<div class="form-group">
-					    <label for="{{$head}}Input">{{strtoupper($head)}}</label>
-					    <input id="{{$head}}Input" class="form-control" type="text" name="{{$head}}" placeholder="{{$head}}" @if ($head == 'id') readonly @else {{""}} @endif value="{{$data->$head}}">
-					</div>
-				@endforeach
+				<div class="form-group">
+					<label for="idInput">ID</label>
+					<input id="idInput" class="form-control" name="id" placeholder="0" readonly value="{{$data->id}}">
+				</div>
+				<div class="form-group">
+					<label for="nombreInput">NOMBRE</label>
+					<input id="nombreInput" class="form-control" name="nombre" placeholder="nombre" value="{{$data->nombre}}">
+				</div>
+				<div class="form-group">
+					<label for="descInput">DESCRIPCION</label>
+					<input id="descInput" class="form-control" name="descripcion" placeholder="descripcion" value="{{$data->descripcion}}">
+				</div>
+				<div class="form-group">
+					<label for="precInput">PRECIO</label>
+					<input id="precInput" type="number" class="form-control" name="precio" placeholder="0,00" step="0.01" value="{{$data->precio}}">
+				</div>
+				<div class="form-group">
+					<label for="codInput">CODIGO</label>
+					<input id="codInput" class="form-control" name="codigo" placeholder="#af342" value="{{$data->codigo}}">
+				</div>
+				<div class="form-group">
+					<label for="tEsInput">TIEMPO DE ESPERA</label>
+					<input id="tEsInput" class="form-control" type="number" name="tiempo_espera" placeholder="En minutos" value="{{$data->tiempo_espera}}">
+				</div>
 				<div class="form-group">
 					<label for="categoriaInput">CATEGORIA</label>
 					<select name="categoria" class="form-control" id="">

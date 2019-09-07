@@ -1,12 +1,10 @@
 <template >
-    <div class="container" >
-        Orden N° {{ orden.id}} 
-        <button @click="mostrarorden" class="btn btn-info">
-                Notification <span class="badge badge-primary"></span>
+    <div class="card-header d-flex align-items-center" >
+        <span>Orden N° {{ orden.id}} </span>
+        <button @click="toggleModal" class="ml-auto btn btn-secondary">
+                <i class="fas fa-hand-holding-usd"></i>
         </button>
-        <ul v-show=mostrar>
-            <li v-for="i in 10" :key=i>{{ i }}</li>
-        </ul>
+        <modal :productos="orden.get_detalle_ordenes" v-if="mostrar" @close="toggleModal"></modal>
     </div>
 </template>
 <script>
@@ -26,7 +24,7 @@ export default{
         orden: Object
     },
     methods:{
-        mostrarorden: function(){
+        toggleModal: function(){
             this.mostrar = !this.mostrar;
         }
     }

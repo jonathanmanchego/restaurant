@@ -41,6 +41,9 @@ class OrdenController extends Controller
             $ordenes = orden::orderBy('id','desc')->get();
             foreach ($ordenes as $key => $value) {
                 $value->getDetalleOrdenes;
+                foreach($value['getDetalleOrdenes'] as $detalle){
+                    $detalle->getProducto;
+                }
                 $value->tipo;
                 $value->estado;
                 $value->mesa;

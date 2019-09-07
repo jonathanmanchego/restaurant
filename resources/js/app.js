@@ -33,7 +33,10 @@ Vue.component('add-producto', require('./components/productos/add.vue').default)
 
 //////WIDGETS
 Vue.component('success', require('./components/widgets/Success.vue').default);
+Vue.component('error', require('./components/widgets/Error.vue').default);
 Vue.component('spiner', require('./components/widgets/Spiner.vue').default);
+Vue.component('modal', require('./components/widgets/Modal.vue').default);
+Vue.component('item-modal', require('./components/widgets/ItemModal.vue').default);
 
 /////COMPONENTES FOR ORDEN
 Vue.component('mesas', require('./components/mesa/ListadoMesas.vue').default);

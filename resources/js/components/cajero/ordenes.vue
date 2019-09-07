@@ -1,8 +1,20 @@
 <template>
     <div class="cajero-vista">
-        <div v-for="(orden,key) in ordenes" v-bind:key="key" class="cajero-item">
-            <orden v-bind:orden=orden ></orden>
-            <div  class="cajero-item-container">
+        <div v-if="loading" class="cajero-item empty">
+
+        </div>
+        <div v-if="loading" class="cajero-item empty">
+
+        </div>
+        <div v-if="loading" class="cajero-item empty">
+
+        </div>
+        <div v-if="loading" class="cajero-item empty">
+
+        </div>
+        <div v-for="(orden,key) in ordenes" v-bind:key="key" class="card cajero-item">
+            <orden v-bind:orden=orden></orden>
+            <div class=" card-body cajero-item-container">
                 <div class="cajero-item-header">
                     <span>ORDEN N°{{ orden.id }}</span>
                     </div>
@@ -38,8 +50,9 @@ import events from '../../events/events.js';
 import * as moment from 'moment';
 export default{
     mounted(){
-        axios.get('/sistema/orden')
+        axios.get('http://localhost:8000/sistema/orden')
             .then(res=>{
+                this.loading = false;
                 this.ordenes = res.data;
                 this.totalProductos();
             })
@@ -52,7 +65,8 @@ export default{
     },
     data(){
         return {
-            ordenes : []
+            ordenes : [],
+            loading: true
         }
     },
     methods:{
@@ -74,18 +88,25 @@ export default{
 .cajero-vista{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: .2rem;
+    grid-gap: .5rem;
     width: 95%;
     margin: 0 auto;
 }
 .cajero-vista .cajero-item{
     width: 100%;
     border: 1px solid #000;
-    padding: 5%;
+    /* padding: 5%; */
     cursor: pointer;
 }
-.cajero-vista .cajero-item:hover{
-    background-color: rgba(69, 102, 173, 0.4);
+.cajero-vista .cajero-item.empty{
+    width: 100%;
+    height: 220px;
+    transition: all 1s ease;
+    border:none;
+    border-radius: 2%;
+    background: linear-gradient(266deg, #c0c0c0, rgb(175, 175, 175), #c0c0c0);
+    background-size: 600% 600%;
+    animation: loading 1.5s infinite linear;
 }
 .cajero-vista .cajero-item .cajero-item-container{
     display: grid;
@@ -111,5 +132,20 @@ export default{
 }
 .cajero-vista .cajero-item .cajero-item-container .cajero-item-content .fila-cajero-item .item-col{
     width: 50%;
+}
+ @-webkit-keyframes loading {
+    0%{background-position:0% 46%}
+    50%{background-position:100% 55%}
+    100%{background-position:0% 46%}
+}
+@-moz-keyframes loading {
+    0%{background-position:0% 46%}
+    50%{background-position:100% 55%}
+    100%{background-position:0% 46%}
+}
+@keyframes loading {
+    0%{background-position:0% 46%}
+    50%{background-position:100% 55%}
+    100%{background-position:0% 46%}
 }
 </style>

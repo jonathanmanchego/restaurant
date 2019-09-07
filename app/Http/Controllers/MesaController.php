@@ -94,4 +94,9 @@ class MesaController extends Controller
         mesa::destroy($id);
         return redirect('/sistema/mesa');
     }
+    public function layout()
+    {
+        $data = mesa::all();
+        return view('sistema.mesa.layout-mesa',['data' => $data,'title' => 'MESAS LAYOUT','action' => '/mesas_layout']);
+    }
 }

@@ -1,5 +1,5 @@
 <template>
-	<div id="modal-msg" class="bg-primary">
+	<div id="modal-msg" class="bg-danger">
 		<div class="modal-cont">
 			<!-- <button class="close" @click="cerrar()"><span aria-hidden="true">&times;</span></button> -->
 			<button class="close" @click="$emit('close')"><i class="fas fa-times"></i></button>
