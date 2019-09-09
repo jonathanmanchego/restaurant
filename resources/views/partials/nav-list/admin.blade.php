@@ -49,6 +49,7 @@
     <li><a href="{{url('/sistema/producto')}}">Producto</a></li>
     
     <li><a href="{{url('/sistema/carta')}}">Carta</a></li>
+    <li><a href="{{url('/sistema/ambiente')}}">Ambientes</a></li>
   </ul>
 </li>
 <li class="treeview">

@@ -19,6 +19,14 @@
 					@endforeach
 			    </select>
 			</div>
+			<div class="form-group">
+				<label for="ambiente">AMBIENTE</label>
+				<select class="form-control" name="ambiente_id" id="ambiente">
+					@foreach ($ambientes as $amb)	 
+						<option value="{{$amb->id}}">{{$amb->nombre}}</option>
+					@endforeach
+				</select>
+			</div>
 		  {{-- <div class="form-group">
 		    <label for="idInput">ID</label>
 		    <input id="idInput" class="form-control" type="text" readonly value="{{$data->id}}">

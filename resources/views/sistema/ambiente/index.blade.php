@@ -30,9 +30,6 @@
 				<span>ESTADO</span>
 			</div>
 			<div class="listado-header-item">
-					<span>AMBIENTE</span>
-				</div>
-			<div class="listado-header-item">
 				<span>VER/EDITAR</span>
 			</div>
 		</div>
@@ -43,16 +40,7 @@
 						<span>{{$ele->$header}}</span>
 					</div>
 				@endforeach
-					<div class="listado-item-ele">
-						<span>{{$ele->estado->nombre}}</span>
-					</div>
-					<div class="listado-item-ele">
-						@if(!empty($ele->ambiente->nombre))
-							<span>{{$ele->ambiente->nombre}}</span>
-						@else
-							<span>NO ASIGNADO</span>
-						@endif
-					</div>
+					
 				<div class="listado-item-ele"><a href="{{'\sistema'.$action.'/'.$ele->id}}/edit"><i class="far fa-edit"></i></a></div>
 			</div>
 		@endforeach

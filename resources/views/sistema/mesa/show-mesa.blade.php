@@ -113,22 +113,14 @@ cx = cv.getContext('2d');
 		    {
 		        objetoActual = objetos[i];
 		        inicioY = event.clientY - objetos[i].y;
-		        inicioX = event.clientX - objetos[i].x;
+                inicioX = event.clientX - objetos[i].x;
+                objetoActual.color = "#00a65a";
+                console.log(objetoActual.name);
+                actualizar();
 		        break;
 		    }
         }
         //alert(coords.left + " y " + coords.top);
-	};
-	cv.onmousemove = function(event)
-	{
-	    //alert("on mouse");
-	    if(objetoActual !== null)
-	    {
-		    objetoActual.x = event.clientX - inicioX;
-		    objetoActual.y = event.clientY - inicioY;
-		    actualizar();
-	    }
-
 	};
 	cv.onmouseup = function(event)
 	{
@@ -146,21 +138,11 @@ cx = cv.getContext('2d');
 		    {
 		        objetoActual = objetos[i];
 		        inicioY = e.touches[0].clientY - objetos[i].y;
-		        inicioX = e.touches[0].clientX - objetos[i].x;
+                inicioX = e.touches[0].clientX - objetos[i].x;
+                console.log(objetoActual.name);
 		        break;
 		    }
 		}
-	};
-	cv.ontouchmove = function(e)
-	{
-	    //alert("on mouse");
-	    if(objetoActual !== null)
-	    {
-		    objetoActual.x = e.touches[0].clientX - inicioX;
-		    objetoActual.y = e.touches[0].clientY - inicioY;
-		    actualizar();
-	    }
-
 	};
 	cv.ontouchend = function(e)
 	{

@@ -33,7 +33,12 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => ['sisAu
         // MESAS
         Route::resource('/estado_mesas','EstadoMesaController');
         Route::resource('/mesa','MesaController');
+        Route::get('/mesas-show','MesaController@mesaShow');
         Route::get('/mesas_layout','MesaController@layout');
+        Route::post('/mesas_layout/save','MesaController@saveLayout');
+        Route::post('/mesas_layout/cambiarAmbiente','MesaController@cambiarAmbiente');
+        // AMBIENTES 
+        Route::resource('/ambiente','AmbienteController');
         // CARTA
         Route::resource('/tipo_carta','TipoCartaController');
         Route::resource('/categoria','CategoriaController');
