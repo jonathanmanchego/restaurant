@@ -30,6 +30,7 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => ['sisAu
         // ORDENES
         Route::resource('/tipo_orden','TipoOrdenController');
         Route::resource('/estado_ordenes','EstadoOrdenController');
+        Route::post('/orden/selectMesa','OrdenController@selectMesa');
         // MESAS
         Route::resource('/estado_mesas','EstadoMesaController');
         Route::resource('/mesa','MesaController');

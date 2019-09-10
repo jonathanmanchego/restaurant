@@ -81,6 +81,7 @@ async function send(){
     let x = await ajaxRequest('/sistema/ordenes/save',orden_actual);
     if(x.out){
      console.log(x.data);
+     location.reload();
     }
 }
 

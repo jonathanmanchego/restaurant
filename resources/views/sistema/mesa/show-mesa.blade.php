@@ -21,7 +21,7 @@
 	<button onclick="saveCoords()" class="btn btn-success">Guardar</button>
 @endsection
 <script>
-var cv, cx, objetos, objetoActual = null;
+var cv, cx, objetos, objetoActual = null, objetoAnterior= null;
 var inicioX = 0, inicioY =0;
 var img = new Image();
 img.src = '';
@@ -98,6 +98,15 @@ async function cambiarCanvas(id){
 		actualizar();
     }
 }
+async function selectMesa(idMesa){
+	//alert("gaaaaaa"+idMesa);
+	let data = {idMesa: idMesa};
+	let x = await ajaxRequest('/sistema/orden/selectMesa',data);
+	if(x.out){
+		console.log(x.data);
+	}
+	
+}
 window.onload = function()
 {
 cv = document.getElementById('lienzo');
@@ -111,11 +120,16 @@ cx = cv.getContext('2d');
 		{
 		    if(objetos[i].x < event.clientX - coords.left && (objetos[i].width + objetos[i].x > event.clientX - coords.left) && objetos[i].y < event.clientY - coords.top && (objetos[i].height + objetos[i].y > event.clientY - coords.top))
 		    {
+				if(objetoAnterior !== null){
+					objetoAnterior.color = "#cfcfcf";
+				}
 		        objetoActual = objetos[i];
 		        inicioY = event.clientY - objetos[i].y;
                 inicioX = event.clientX - objetos[i].x;
-                objetoActual.color = "#00a65a";
-                console.log(objetoActual.name);
+				objetoActual.color = "#00a65a";
+				objetoAnterior = objetos[i];
+				//console.log(objetoActual.idMesa);
+				selectMesa(objetoActual.idMesa);
                 actualizar();
 		        break;
 		    }

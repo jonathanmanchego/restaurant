@@ -64,6 +64,7 @@ class OrdenController extends Controller
     {
         //$headers = zona::getPull();
         $mesas = mesa::all();
+        $mesa = \Session::get('mesa');
         $productos = producto::all();
         $cartaActiva = carta::where('estado', 1)->first();
         $itemActiva = carta_item::where('carta_id',$cartaActiva->id)->get();
@@ -82,7 +83,7 @@ class OrdenController extends Controller
         ]);
         // $productos = carta_item::with('productos')->where('carta_id', $cartaActiva->id)->get();
         // return $productos;
-        return view('sistema.orden.crearF', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'productos' => $productos]);
+        return view('sistema.orden.crearF', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'mesaGlobal' => $mesa, 'productos' => $productos]);
         //return view('sistema.orden.crear',['title' => 'NUEVA ORDEN','action' => '/orden']);
     }
 
@@ -129,7 +130,7 @@ class OrdenController extends Controller
             $item_to_process->stock -=  $item['cantidad'];
             $item_to_process->save();
         }
-
+        \Session::put('mesa', null);
     }
     /**
      * Display the specified resource.
@@ -180,5 +181,10 @@ class OrdenController extends Controller
     }
     public function realizarCobro(){
 
+    }
+    public function selectMesa(Request $request){
+        \Session::put('mesa', $request->idMesa);
+        $mensaje= " ga " . \Session::get('mesa');
+        return $mensaje;
     }
 }

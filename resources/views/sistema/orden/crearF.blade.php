@@ -3,21 +3,28 @@
 
 @section('content')
 <div class="row">
+    @if(!empty($mesaGlobal))
     <div class="col-lg-12">
         <div class="box box-danger">
             <div class="box-body">
                 <div class="form-group row">
                                          
                     <div class="col-md-3">
-                        <label for="mesas">Mesa :</label>
-                        <select name="mesa" id="mesas" class="form-control" required>
+                        <label for="mesas">Mesa ID {{$mesaGlobal}} :</label>
+                        {{--<select name="mesa" id="mesas" class="form-control" required>
                             <option value="">Seleccione la Mesa</option>
                             @foreach ($mesas as $key => $mesa)
                                 @if($mesa->estado->nombre == 'LIBRE')
                                     <option value="{{$mesa->id}}">Mesa #{{$mesa->numero}}</option>
                                 @endif
                             @endforeach
-                        </select>
+                        </select>--}}
+                        @foreach ($mesas as $key => $mesa)
+                            @if($mesa->id == $mesaGlobal)
+                                <input name="mesa" id="mesas" class="form-control" type="hidden" value="{{$mesa->id}}"></option>
+                                <p>Mesa #{{$mesa->numero}}</p>
+                            @endif
+                        @endforeach
                     </div>   
                     <div class="col-md-3">
                         <label for="">Fecha:</label>
@@ -94,6 +101,11 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="col-lg-12">
+        <a class="btn btn-primary" href="{{ url('/sistema/mesas-show') }}">Seleccionar Mesa</a>
+    </div>
+    @endif
 </div> 
 @endsection
 @include('sistema.orden.modal-producto')
