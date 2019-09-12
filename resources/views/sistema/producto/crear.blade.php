@@ -17,31 +17,31 @@
 		@csrf
 		<div class="form-group">
 		    <label for="idInput">ID</label>
-		    <input id="idInput" class="form-control" name="id" placeholder="0" readonly>
+		    <input id="idInput" class="form-control @error('id') is-invalid @enderror" name="id" placeholder="0" readonly value="{{ old('id') }}">
 		</div>
 		<div class="form-group">
 		    <label for="nombreInput">NOMBRE</label>
-		    <input id="nombreInput" class="form-control" name="nombre" placeholder="nombre">
+		    <input id="nombreInput" class="form-control @error('id') is-invalid @enderror" name="nombre" placeholder="nombre">
 		</div>
 		<div class="form-group">
 		    <label for="descInput">DESCRIPCION</label>
-		    <input id="descInput" class="form-control" name="descripcion" placeholder="descripcion">
+		    <input id="descInput" class="form-control @error('id') is-invalid @enderror" name="descripcion" placeholder="descripcion">
 		</div>
 		<div class="form-group">
 		    <label for="precInput">PRECIO</label>
-		    <input id="precInput" type="number" class="form-control" name="precio" placeholder="0,00" step="0.01">
+		    <input id="precInput" type="number" class="form-control @error('id') is-invalid @enderror" name="precio" placeholder="0,00" step="0.01">
 		</div>
 		<div class="form-group">
 		    <label for="codInput">CODIGO</label>
-		    <input id="codInput" class="form-control" name="codigo" placeholder="#af342" >
+		    <input id="codInput" class="form-control @error('id') is-invalid @enderror" name="codigo" placeholder="#af342" >
 		</div>
 		<div class="form-group">
 		    <label for="tEsInput">TIEMPO DE ESPERA</label>
-		    <input id="tEsInput" class="form-control" type="number" name="tiempo_espera" placeholder="En minutos" >
+		    <input id="tEsInput" class="form-control @error('id') is-invalid @enderror" type="number" name="tiempo_espera" placeholder="En minutos" >
 		</div>
 		<div class="form-group">
 			<label for="categoriaInput">CATEGORIA</label>
-			<select name="categoria" class="form-control" id="">
+			<select name="categoria" class="form-control @error('id') is-invalid @enderror" id="">
 				@foreach ($categorias as $cate)
 					<option value="{{$cate->id}}">{{$cate->nombre}}</option>
 				@endforeach
@@ -49,11 +49,11 @@
 		</div>
 		<div class="form-group">
 		    <label for="ImagenInput">IMAGEN</label>
-		    <input id="ImagenInput" class="form-control-file" type="file" name="image" >
+		    <input id="ImagenInput" class="form-control @error('id') is-invalid @enderror-file" type="file" name="image" >
 		</div>
 		<div class="form-group">
 		    <label for="VideoInput">VIDEO</label>
-		    <input id="VideoInput" class="form-control-file" type="file" name="video" >
+		    <input id="VideoInput" class="form-control @error('id') is-invalid @enderror-file" type="file" name="video" >
 		</div>
 		<div class="form-group">
 			<label>ESTADO DEL PRODUCTO</label>
@@ -68,7 +68,7 @@
 		</div>
 		<div class="form-group">
 		    <label for="FechaInput">FECHA VALIDEZ</label>
-		    <input id="FechaInput" class="form-control" type="date" name="fecha_validez" >
+		    <input id="FechaInput" class="form-control @error('fecha_validez') is-invalid @enderror" type="date" name="fecha_validez" value="{{ old('fecha_validez') }}" >
 		</div>
 		{{-- <div class="form-group">
 		    <label for="nombreInput">NOMBRE</label>

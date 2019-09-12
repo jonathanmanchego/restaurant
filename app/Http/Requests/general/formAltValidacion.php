@@ -24,7 +24,7 @@ class formAltValidacion extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:45|unique:tipo_documento,nombre,'.$this->route('id')
+            'nombre' => 'required|max:45|unique:tipo_documento,nombre,'.$this->route('tipodocumento')
         ];
     }
 }

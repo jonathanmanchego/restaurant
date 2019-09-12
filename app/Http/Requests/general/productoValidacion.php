@@ -28,7 +28,7 @@ class productoValidacion extends FormRequest
             'descripcion' => 'max:250',
             'image' => 'image|nullable',
             'precio' => 'required',
-            'codigo' => 'required|max:10|unique:producto,codigo,'.$this->producto,
+            'codigo' => 'required|max:10|unique:producto,codigo,'.$this->route('producto'),
             'eliminado' => 'nullable|required',
             'tiempo_espera' => 'required',
             'video' => 'file|nullable'

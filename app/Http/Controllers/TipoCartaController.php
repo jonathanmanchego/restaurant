@@ -4,7 +4,7 @@ namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
 use restaurant\models\tipo_carta;
-use restaurant\Http\Requests\general\formAltValidacion;
+use restaurant\Http\Requests\general\TipoCartaValidacion;
 
 class TipoCartaController extends Controller
 {
@@ -38,7 +38,7 @@ class TipoCartaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(formAltValidacion $request)
+    public function store(TipoCartaValidacion $request)
     {
         $tu = new tipo_carta();
         $tu->nombre = $request->input('nombre');
@@ -77,7 +77,7 @@ class TipoCartaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(formAltValidacion $request, $id)
+    public function update(TipoCartaValidacion $request, $id)
     {
         $td = tipo_carta::find($id);
         $td->nombre = $request->input('nombre');

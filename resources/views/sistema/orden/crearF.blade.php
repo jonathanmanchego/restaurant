@@ -10,8 +10,8 @@
                 <div class="form-group row">
                                          
                     <div class="col-md-3">
-                        <label for="mesas">Mesa ID {{$mesaGlobal}} :</label>
-                        {{--<select name="mesa" id="mesas" class="form-control" required>
+                       {{-- <label for="mesas">Mesa ID {{$mesaGlobal}} :</label>
+                        <select name="mesa" id="mesas" class="form-control" required>
                             <option value="">Seleccione la Mesa</option>
                             @foreach ($mesas as $key => $mesa)
                                 @if($mesa->estado->nombre == 'LIBRE')
@@ -21,8 +21,8 @@
                         </select>--}}
                         @foreach ($mesas as $key => $mesa)
                             @if($mesa->id == $mesaGlobal)
-                                <input name="mesa" id="mesas" class="form-control" type="hidden" value="{{$mesa->id}}"></option>
-                                <p>Mesa #{{$mesa->numero}}</p>
+                                <input name="mesa" id="mesas" class="form-control" type="hidden" value="{{$mesa->id}}" readonly="readonly"></option>
+                                <br><h3>&nbsp;<b>Mesa Nro : {{$mesa->numero}}</b> <a class="btn btn-primary"  href="{{ url('/sistema/mesas-show') }}"><i class="fa fa-search-plus"></i></a></h3>
                             @endif
                         @endforeach
                     </div>   

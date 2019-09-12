@@ -27,9 +27,6 @@
 				</div>
 			@endforeach
 			<div class="listado-header-item">
-				<span>ESTADO</span>
-			</div>
-			<div class="listado-header-item">
 				<span>VER/EDITAR</span>
 			</div>
 		</div>

@@ -14,17 +14,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   {{-- BOOSTRAP CSS ONLINE --}}
-  {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   {{-- BOOSTRAP CSS OFFLINE --}}
-  {{-- <link rel="stylesheet" type="text/css" href="{{url('/bootstrap-4.3.1-dist/css_boot/bootstrap.min.css')}}"> --}}
+  <link rel="stylesheet" type="text/css" href="{{url('/bootstrap-4.3.1-dist/css_boot/bootstrap.min.css')}}">
   {{--<link rel="stylesheet" href="{{url('/css/admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">--}}
-  <link rel="stylesheet" type="text/css" href="{{url('/css/css_boot/bootstrap.css')}}">
+  {{-- <link rel="stylesheet" type="text/css" href="{{url('/css/css_boot/bootstrap.css')}}"> --}}
 	
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{url('/css/fontawesome-free-5.10.2-web/css/all.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{url('/css/all.min.css')}}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="{{url('/css/admin/bower_components/Ionicons/css/ionicons.min.css')}}">
+  {{-- <link rel="stylesheet" href="{{url('/css/admin/bower_components/Ionicons/css/ionicons.min.css')}}"> --}}
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('/css/admin/css/AdminLTE.min.css')}}">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -224,9 +224,9 @@ desired effect
           @include('partials.user-info.drop-user')
         </li>
           <!-- Control Sidebar Toggle Button -->
-          <li>
+          {{-- <li>
             <a href="#"  style="display: block; " class="nav-link dropdown-toggle"  data-toggle="control-sidebar"><i class="fas fa-cogs"></i></a>
-          </li>
+          </li> --}}
         </ul>
       </div>
     </nav>
@@ -279,7 +279,7 @@ desired effect
   </footer>
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+  {{-- <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
       <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
@@ -349,7 +349,7 @@ desired effect
       </div>
       <!-- /.tab-pane -->
     </div>
-  </aside>
+  </aside> --}}
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->
@@ -369,9 +369,9 @@ desired effect
 	<script type="text/javascript" src="{{url('/js/js_boot/bootstrap.min.js')}}"></script>
 
 {{-- BOOTSTRAP JS ONLINE --}}
-{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --}}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 {{-- BOOTSTRAP JS OFFLINE --}}
-{{-- <script type="text/javascript" src="{{url('/bootstrap-4.3.1-dist/js_boot/bootstrap.min.js')}}"></script> --}}
+<script type="text/javascript" src="{{url('/bootstrap-4.3.1-dist/js_boot/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{url('/css/admin/js/adminlte.min.js')}}"></script>
 <script src="{{url('/js/customs/helper.js')}}"></script>

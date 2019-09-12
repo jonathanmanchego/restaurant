@@ -76,7 +76,7 @@ class EstadoMesaController extends Controller
     public function update(estadoMesaValidacion $request, $id)
     {
         estado_mesa::find($id)->update($request->all());
-        return redirect('/sistema/estado_mesa');
+        return redirect('/sistema/estado_mesas');
     }
 
     /**

@@ -24,7 +24,7 @@ class estadoMesaValidacion extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:45|unique:estado_mesas,nombre,'.$this->route('id')
+            'nombre' => 'required|max:45|unique:estado_mesas,nombre,'.$this->route('estado_mesa')
         ];
     }
 }

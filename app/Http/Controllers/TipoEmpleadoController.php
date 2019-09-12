@@ -4,7 +4,7 @@ namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
 use restaurant\models\tipo_empleado;
-use restaurant\Http\Requests\general\formAltValidacion;
+use restaurant\Http\Requests\general\TipoEmpleadoValidacion;
 
 class TipoEmpleadoController extends Controller
 {
@@ -39,7 +39,7 @@ class TipoEmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(formAltValidacion $request)
+    public function store(TipoEmpleadoValidacion $request)
     {
         $tu = new tipo_empleado();
         $tu->nombre = $request->input('nombre');
@@ -78,7 +78,7 @@ class TipoEmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(formAltValidacion $request, $id)
+    public function update(TipoEmpleadoValidacion $request, $id)
     {
         $tu = tipo_empleado::find($id);
         $tu->nombre = $request->input('nombre');

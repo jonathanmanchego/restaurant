@@ -25,7 +25,7 @@ class mesaValidacion extends FormRequest
     {
         return [
             'capacidad' => 'required',
-            'numero' => 'required|max:10'
+            'numero' => 'required|max:10|unique:mesa,numero,'.$this->route('mesa')
         ];
     }
 }

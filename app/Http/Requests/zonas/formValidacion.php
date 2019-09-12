@@ -24,7 +24,7 @@ class formValidacion extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:100|unique:zonas,nombre,'.$this->route('id')
+            'nombre' => 'required|max:100|unique:zonas,nombre,'.$this->route('zona')
         ];
     }
 }

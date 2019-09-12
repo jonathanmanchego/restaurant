@@ -19,7 +19,7 @@
 		</a>
 	</div>
 	@if (!empty($data[0]))
-	<div class="listado">
+	<div class="listado w-100">
 		<div class="listado-headers">
 			@foreach ($headers as $header)
 				<div class="listado-header-item">

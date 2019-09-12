@@ -25,7 +25,7 @@ class estadoOrdenValidacion extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:45|unique:estado_ordenes,nombre,'.$this->route('id')
+            'nombre' => 'required|max:45|unique:estado_ordenes,nombre,'.$this->route('estado_ordene')
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace restaurant\Http\Controllers;
 
 use Illuminate\Http\Request;
 use restaurant\models\categoria;
-use restaurant\Http\Requests\general\formAltValidacion;
+use restaurant\Http\Requests\general\CategoriaValidacion;
 class CategoriaController extends Controller
 {
     /**
@@ -37,7 +37,7 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(formAltValidacion $request)
+    public function store(CategoriaValidacion $request)
     {
         $tu = new categoria();
         $tu->nombre = $request->input('nombre');
@@ -76,7 +76,7 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(formAltValidacion $request, $id)
+    public function update(CategoriaValidacion $request, $id)
     {
         $td = categoria::find($id);
         $td->nombre = $request->input('nombre');

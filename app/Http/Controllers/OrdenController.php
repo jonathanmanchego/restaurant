@@ -184,7 +184,7 @@ class OrdenController extends Controller
     }
     public function selectMesa(Request $request){
         \Session::put('mesa', $request->idMesa);
-        $mensaje= " ga " . \Session::get('mesa');
+        $mensaje= "mesaid=". \Session::get('mesa');
         return $mensaje;
     }
 }
