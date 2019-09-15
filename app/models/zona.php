@@ -16,7 +16,7 @@ class zona extends Model
     }
     public static function getPull()
     {
-        return ['nombre'];
+        return ['id','nombre'];
     }
     public function getUsuarios()
     {

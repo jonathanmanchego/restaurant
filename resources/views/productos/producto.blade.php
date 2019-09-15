@@ -32,7 +32,12 @@
                         </a>
                     </div>
                 </div>
-            </div>
+			</div>
+			@if($dato->video)
+				<div class="row">
+						<video src="{{url('/uploads/'.$dato->video)}}" preload controls></video>
+				</div>
+			@endif
         @endif
     </div>
 </div>

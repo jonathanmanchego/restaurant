@@ -14,7 +14,7 @@
 			{{item.categoria.nombre}}
 		</td>
 		<td>
-			<button class="btn btn-danger" @click="eliminarProd(index,item.id,item.item_id)"><span class="fas fa-close"></span></button>
+			<button class="btn btn-danger" @click="eliminarProd(index,item.id,item.item_id)"><span class="fas fa-times"></span></button>
 		</td>
 	</tr>
 </template>

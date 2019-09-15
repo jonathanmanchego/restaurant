@@ -16,7 +16,7 @@ class categoria extends Model
     }
     public static function getPull()
     {
-        return ['nombre'];
+        return ['id','nombre'];
     }
     public function getItem()
     {

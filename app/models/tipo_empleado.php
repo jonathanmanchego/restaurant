@@ -14,7 +14,7 @@ class tipo_empleado extends Model
     	return ['id','nombre'];
     }
     public static function getPull(){
-    	return ['nombre'];
+    	return ['id','nombre'];
     }
     public function __construct($id = 0, $nombre = "")
     {

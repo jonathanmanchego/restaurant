@@ -14,7 +14,7 @@ class tipo_carta extends Model
     	return ['id','nombre'];
     }
     public static function getPull(){
-        return ['nombre'];
+        return ['id','nombre'];
     }
     public function getCarta(){
 		return $this->hasMany(carta::class);

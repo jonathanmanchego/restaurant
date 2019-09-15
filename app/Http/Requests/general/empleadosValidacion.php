@@ -29,7 +29,7 @@ class empleadosValidacion extends FormRequest
             'celular' => 'nullable',
             'telefono' => 'nullable',
             'direccion' => 'nullable',
-            'username' => 'required|max:44|unique:usuario,username',
+            'username' => 'required|max:44|unique:empleado,username,'.$this->route('empleado'),
             'password' => 'required|min:8|max:16|unique:usuario,password',
             'tipo_documento' => 'required',
             'tipo_empleado' => 'required'

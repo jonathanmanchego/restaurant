@@ -14,6 +14,6 @@ class unidad_medida extends Model
     	return ['id','nombre'];
     }
     public static function getPull(){
-        return ['nombre'];
+        return ['id','nombre'];
     }
 }

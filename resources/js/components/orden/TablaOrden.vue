@@ -4,7 +4,9 @@
 			<div class="box box-danger">
 				<div class="box-body">
 					<div class="form-group col-md-12">                     
-						<mesas v-model="orden_actual.mesa"></mesas>
+						<!-- <mesas v-model="orden_actual.mesa"></mesas> -->
+							<input name="mesa" id="mesas" class="form-control" type="hidden" :value="mesaSelected.id" readonly="readonly" />
+							<br><h3>&nbsp;<b>Mesa Nro : {{ mesaSelected.numero}}</b> <a class="btn btn-primary"  href="/sistema/mesas-show"><i class="fa fa-search-plus"></i></a></h3>
 						<div class="col-md-2">
 							<label for="">Producto:</label>
 							<button id="" type="button" class="btn btn-primary btn-flat btn-block" data-toggle="modal" data-target="#modal-default1" >Productos <span class="fas fa-list"></span></button>
@@ -106,6 +108,17 @@
 					total : 0,
 					detalle: []
 				}
+			}
+		},
+		computed:{
+			mesaSelected : function(){
+				let ans = 0;
+				mesas.forEach(x=>{
+					if(x.numero == mesa){
+						ans = x;
+					}
+				});
+				return ans;
 			}
 		},
 		methods:{

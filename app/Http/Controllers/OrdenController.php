@@ -79,12 +79,13 @@ class OrdenController extends Controller
         }
         JavaScript::put([
             'productos' => $productos,
-            'mesas' => $mesas
+            'mesas' => $mesas,
+            'mesa'=> $mesa
         ]);
         // $productos = carta_item::with('productos')->where('carta_id', $cartaActiva->id)->get();
         // return $productos;
         return view('sistema.orden.crearF', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'mesaGlobal' => $mesa, 'productos' => $productos]);
-        //return view('sistema.orden.crear',['title' => 'NUEVA ORDEN','action' => '/orden']);
+        // return view('sistema.orden.crear',['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'mesaGlobal' => $mesa]);
     }
 
     /**

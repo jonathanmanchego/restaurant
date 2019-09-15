@@ -17,6 +17,6 @@ class tipo_documento extends Model
     	return ['id','nombre','descripcion'];
 	}
 	public static function getPull(){
-		return ['nombre','descripcion'];
+		return ['id','nombre','descripcion'];
 	}
 }

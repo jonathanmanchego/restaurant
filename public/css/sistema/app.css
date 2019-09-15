@@ -4,8 +4,14 @@ img {
 }
 
 .container-crud .form {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+}
+.container-crud .form button {
+  grid-column: 1/span 2;
 }
 .container-crud .opciones {
   width: 30%;

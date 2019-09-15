@@ -17,46 +17,92 @@
 		@csrf
 		<div class="form-group">
 		    <label for="idInput">ID</label>
-		    <input id="idInput" class="form-control @error('id') is-invalid @enderror" name="id" placeholder="0" readonly value="{{ old('id') }}">
+		    <input id="idInput" class="form-control" name="id" placeholder="0" readonly value="{{ old('id') }}">
 		</div>
 		<div class="form-group">
 		    <label for="nombreInput">NOMBRE</label>
-		    <input id="nombreInput" class="form-control @error('id') is-invalid @enderror" name="nombre" placeholder="nombre">
+			<input id="nombreInput" class="form-control @error('nombre') is-invalid @enderror" name="nombre" placeholder="nombre">
+			@error('nombre')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+			@enderror
 		</div>
 		<div class="form-group">
 		    <label for="descInput">DESCRIPCION</label>
-		    <input id="descInput" class="form-control @error('id') is-invalid @enderror" name="descripcion" placeholder="descripcion">
+			<input id="descInput" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" placeholder="descripcion">
+			@error('descripcion')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+			@enderror
 		</div>
 		<div class="form-group">
 		    <label for="precInput">PRECIO</label>
-		    <input id="precInput" type="number" class="form-control @error('id') is-invalid @enderror" name="precio" placeholder="0,00" step="0.01">
+			<input id="precInput" type="number" class="form-control @error('precio') is-invalid @enderror" name="precio" placeholder="0,00" step="0.01">
+			@error('precio')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+			@enderror
 		</div>
 		<div class="form-group">
 		    <label for="codInput">CODIGO</label>
-		    <input id="codInput" class="form-control @error('id') is-invalid @enderror" name="codigo" placeholder="#af342" >
+			<input id="codInput" class="form-control @error('codigo') is-invalid @enderror" name="codigo" placeholder="#af342" >
+			@error('codigo')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+			@enderror
 		</div>
 		<div class="form-group">
 		    <label for="tEsInput">TIEMPO DE ESPERA</label>
-		    <input id="tEsInput" class="form-control @error('id') is-invalid @enderror" type="number" name="tiempo_espera" placeholder="En minutos" >
+			<input id="tEsInput" class="form-control @error('tiempo_espera') is-invalid @enderror" type="number" name="tiempo_espera" placeholder="En minutos" >
+			@error('tiempo_espera')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+			@enderror
 		</div>
 		<div class="form-group">
 			<label for="categoriaInput">CATEGORIA</label>
-			<select name="categoria" class="form-control @error('id') is-invalid @enderror" id="">
+			<select name="categoria" class="form-control @error('categoria') is-invalid @enderror" id="">
 				@foreach ($categorias as $cate)
 					<option value="{{$cate->id}}">{{$cate->nombre}}</option>
 				@endforeach
 			</select>
+			@error('categoria')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+			@enderror
 		</div>
 		<div class="form-group">
-		    <label for="ImagenInput">IMAGEN</label>
-		    <input id="ImagenInput" class="form-control @error('id') is-invalid @enderror-file" type="file" name="image" >
+			<label >IMAGEN</label>
+			<div class="custom-file">
+				<input id="ImagenInput" class="custom-file-input @error('image') is-invalid @enderror" type="file" name="image" >
+				<label for="ImagenInput" class="custom-file-label">IMAGEN</label>
+				@error('image')
+					<span class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@enderror
+			</div>
 		</div>
 		<div class="form-group">
-		    <label for="VideoInput">VIDEO</label>
-		    <input id="VideoInput" class="form-control @error('id') is-invalid @enderror-file" type="file" name="video" >
+			<label>VIDEO</label>
+			<div class="custom-file">
+				<input id="VideoInput" class="custom-file-input @error('video') is-invalid @enderror" type="file" name="video" >
+				<label for="VideoInput" class="custom-file-label">VIDEO</label>
+				@error('video')
+					<span class="invalid-feedback" role="alert">
+						<strong>{{ $message }}</strong>
+					</span>
+				@enderror
+			</div>
 		</div>
-		<div class="form-group">
-			<label>ESTADO DEL PRODUCTO</label>
+		<div class="form-group" >
+			<label>ESTADO DEL PRODUCTO</label><br>
 			<div class="form-check form-check-inline">
 			  	<input class="form-check-input" type="radio" id="boxEliminado" name="eliminado" value="0">
 			  	<label class="form-check-label" for="boxEliminado">Inactivo</label>
@@ -65,6 +111,11 @@
 				<input class="form-check-input" type="radio" id="box2Eliminado" name="eliminado" value="1">
 			  	<label class="form-check-label" for="box2Eliminado">Activo</label>
 			</div>
+			@error('eliminado')
+				<span class="invalid-feedback" role="alert">
+					<strong>{{ $message }}</strong>
+				</span>
+			@enderror
 		</div>
 		<div class="form-group">
 		    <label for="FechaInput">FECHA VALIDEZ</label>

@@ -2177,6 +2177,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2213,6 +2215,17 @@ __webpack_require__.r(__webpack_exports__);
         detalle: []
       }
     };
+  },
+  computed: {
+    mesaSelected: function mesaSelected() {
+      var ans = 0;
+      mesas.forEach(function (x) {
+        if (x.numero == mesa) {
+          ans = x;
+        }
+      });
+      return ans;
+    }
   },
   methods: {
     send: function send() {
@@ -56693,7 +56706,7 @@ var render = function() {
             }
           }
         },
-        [_c("span", { staticClass: "fa fa-close" })]
+        [_c("span", { staticClass: "fas fa-times" })]
       )
     ])
   ])
@@ -57052,72 +57065,78 @@ var render = function() {
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "box box-danger" }, [
           _c("div", { staticClass: "box-body" }, [
-            _c(
-              "div",
-              { staticClass: "form-group col-md-12" },
-              [
-                _c("mesas", {
-                  model: {
-                    value: _vm.orden_actual.mesa,
-                    callback: function($$v) {
-                      _vm.$set(_vm.orden_actual, "mesa", $$v)
-                    },
-                    expression: "orden_actual.mesa"
-                  }
-                }),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("label", { attrs: { for: "procesar" } }, [
-                    _vm._v("Procesar:")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success btn-block",
-                      attrs: { id: "procesar" },
-                      on: {
-                        click: function($event) {
-                          return _vm.calcular()
-                        }
-                      }
-                    },
-                    [
-                      _vm._v("Calcular"),
-                      _c("i", { staticClass: "fas fa-calculator" })
-                    ]
-                  )
+            _c("div", { staticClass: "form-group col-md-12" }, [
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  name: "mesa",
+                  id: "mesas",
+                  type: "hidden",
+                  readonly: "readonly"
+                },
+                domProps: { value: _vm.mesaSelected.id }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _c("h3", [
+                _vm._v(" "),
+                _c("b", [
+                  _vm._v("Mesa Nro : " + _vm._s(_vm.mesaSelected.numero))
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-2" }, [
-                  _c("label", { attrs: { for: "procesar" } }, [
-                    _vm._v("Terminar:")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success btn-block",
-                      attrs: { id: "procesar" },
-                      on: {
-                        click: function($event) {
-                          return _vm.send()
-                        }
+                _vm._m(0)
+              ]),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("label", { attrs: { for: "procesar" } }, [
+                  _vm._v("Procesar:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-block",
+                    attrs: { id: "procesar" },
+                    on: {
+                      click: function($event) {
+                        return _vm.calcular()
                       }
-                    },
-                    [
-                      _vm._v("Enviar "),
-                      _c("i", { staticClass: "fas fa-paper-plane" })
-                    ]
-                  )
-                ])
-              ],
-              1
-            ),
+                    }
+                  },
+                  [
+                    _vm._v("Calcular"),
+                    _c("i", { staticClass: "fas fa-calculator" })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c("label", { attrs: { for: "procesar" } }, [
+                  _vm._v("Terminar:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btn-block",
+                    attrs: { id: "procesar" },
+                    on: {
+                      click: function($event) {
+                        return _vm.send()
+                      }
+                    }
+                  },
+                  [
+                    _vm._v("Enviar "),
+                    _c("i", { staticClass: "fas fa-paper-plane" })
+                  ]
+                )
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "table",
@@ -57126,7 +57145,7 @@ var render = function() {
                 attrs: { id: "tbventas" }
               },
               [
-                _vm._m(1),
+                _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -57194,13 +57213,13 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
-              _vm._m(3)
+              _vm._m(4)
             ])
           ]),
           _vm._v(" "),
-          _vm._m(4)
+          _vm._m(5)
         ])
       ]),
       _vm._v(" "),
@@ -57215,6 +57234,19 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { href: "/sistema/mesas-show" }
+      },
+      [_c("i", { staticClass: "fa fa-search-plus" })]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

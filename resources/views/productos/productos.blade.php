@@ -49,7 +49,7 @@
                                 <span>Precio</span>
                                 <span>S/.{{number_format($item->precio,2,".",",")}}</span>
                             </p>
-                            <a href="{{route('productoMostrar',['id' => $item->id])}}" class="btn btn-default">
+                            <a href="{{route('productoMostrar',['id' => $item->id])}}" class="btn btn-info">
                                 {{__('Detalles')}}
                             </a>
                             <a href="{{route('addToCar',['producto' => $item->id,'cantidadAdd' => 1])}}" class="btn btn-warning">
