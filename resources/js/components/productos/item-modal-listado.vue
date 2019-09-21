@@ -35,7 +35,7 @@
 		},
 		methods: {
 			agregarProd: (x)=>{
-				
+				x.cantidad = 1;
 				events.$emit('add-producto',x);
 			}
 		}

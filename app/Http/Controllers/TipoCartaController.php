@@ -80,7 +80,7 @@ class TipoCartaController extends Controller
     public function update(TipoCartaValidacion $request, $id)
     {
         $td = tipo_carta::find($id);
-        $td->nombre = $request->input('nombre');
+        $td->nombre = strtoupper($request->input('nombre'));
         $td->save();
         return redirect('/sistema/tipo_carta');
     }

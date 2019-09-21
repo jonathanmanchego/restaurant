@@ -38,7 +38,10 @@ class TipoOrdenController extends Controller
      */
     public function store(tipoOrdenValidacion $request)
     {
-        tipo_orden::create($request->all());
+        // tipo_orden::create($request->all());
+        $tp = new tipo_orden();
+        $tp->nombre = strtoupper($request->input('nombre'));
+        $tp->save();
         return redirect('/sistema/tipo_orden');
     }
 
@@ -75,7 +78,9 @@ class TipoOrdenController extends Controller
      */
     public function update(tipoOrdenValidacion $request, $id)
     {
-        tipo_orden::find($id)->update($request->all());
+        $tp = tipo_orden::find($id);
+        $tp->nombre = strtoupper($request->input('nombre'));
+        $tp->save();
         return redirect('/sistema/tipo_orden');
     }
 

@@ -3,7 +3,7 @@
 		<div class="col-lg-12">
 			<div class="box box-danger">
 				<div class="box-body">
-					<div class="form-group col-md-12">                     
+					<div class="col-md-12">                     
 						<!-- <mesas v-model="orden_actual.mesa"></mesas> -->
 							<input name="mesa" id="mesas" class="form-control" type="hidden" :value="mesaSelected.id" readonly="readonly" />
 							<br><h3>&nbsp;<b>Mesa Nro : {{ mesaSelected.numero}}</b> <a class="btn btn-primary"  href="/sistema/mesas-show"><i class="fa fa-search-plus"></i></a></h3>
@@ -37,7 +37,7 @@
 							<item-orden v-for="(item,key) in orden_actual.detalle" v-bind:key="key" v-bind:item="item"></item-orden>
 						</tbody>
 					</table>
-					<div class="form-group">
+					<div class="row">
 						<div class="col-xs-6 col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">Total:</span>
@@ -59,7 +59,7 @@
 						<div class="col-xs-6 col-md-3">
 							<div class="input-group">
 								<span class="input-group-addon">Total:</span>
-								<input type="text" class="form-control" placeholder="" readonly="readonly">
+								<input type="text" class="form-control" placeholder="" readonly="readonly" :value="totalCalculado">
 							</div>
 						</div>
 					</div>   
@@ -86,6 +86,7 @@
 							aux = i;	
 						}
 					}
+
 					if(aux != -1){
 						console.log("Repetido");
 					}else{
@@ -114,11 +115,19 @@
 			mesaSelected : function(){
 				let ans = 0;
 				mesas.forEach(x=>{
-					if(x.numero == mesa){
+					if(x.id == mesa){
 						ans = x;
 					}
 				});
 				return ans;
+			},
+			totalCalculado :  function(){
+				let total = 0;
+				this.orden_actual.detalle.forEach(x=>{
+					total +=x.subtotal;
+					console.log("totalOrden ==> ", total , x);
+				});
+				return total;
 			}
 		},
 		methods:{
@@ -135,7 +144,7 @@
 				this.orden_actual.total = ans;
 			}
 		}
-	}
+	};
 </script>
 <style>
 .tabla-container{

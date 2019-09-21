@@ -2,12 +2,10 @@ var cv, cx, objetos, objetoActual = null;
 var inicioX = 0, inicioY =0;
 var img = new Image();
 img.src = '';
-
 async function saveCoords()
 {
 	let coordenadasxy = "";
-     for (var i = 0; i < objetos.length; i++)
-    {
+     for (var i = 0; i < objetos.length; i++){
        //console.log("objeto " + i + ": X = "+ parseInt(objetos[i].x) + " - Y = " + parseInt(objetos[i].y) );
 	   coordenadasxy += objetos[i].idMesa + "*" + parseInt(objetos[i].x) + "/" + parseInt(objetos[i].y) + "|";
     }
@@ -22,8 +20,7 @@ function actualizar ()
 {
 	cx.fillStyle = '#7f93a6';
 	cx.fillRect(0,0, 800, 550);
-    for (var i = 0; i < objetos.length; i++)
-    {
+    for (var i = 0; i < objetos.length; i++){
 		let mesax = parseInt(objetos[i].x) , mesay= parseInt(objetos[i].y);
         cx.fillStyle = objetos[i].color;
         cx.fillRect(mesax, mesay, objetos[i].width, objetos[i].height);
@@ -34,46 +31,30 @@ function actualizar ()
 	} 
 }
 async function cambiarCanvas(valuename){
-	/*objetos = [];
-	objetos.push({
-	x: 0, y: 0,
-	width: 60, height: 60,
-	color: '#cfcfcf',
-	name : 'MESA TEST'
-	});
-	
-    actualizar();*/
     let ambVal = document.getElementById("selectAmbiente").value.split("/", 2);
-    let id = ambVal[0]
+    let id = ambVal[0];
     document.getElementById("ambienteNombre").innerHTML =  ambVal[1];
 	let data = {idAmbiente: id};
-	
 	let x = await ajaxRequest('/sistema/mesas_layout/cambiarAmbiente',data);
-	if(x.out)
-	{
-		//console.log(JSON.stringify(x.data) + " LISTO " + x.data[0]['capacidad']);
+	if(x.out){//console.log(JSON.stringify(x.data) + " LISTO " + x.data[0]['capacidad']);
 		objetos = [];
 		if(x.data.length > 0){
 			let pos = 0;
 			let posx= pos , posy = pos; 
 			for (let mesa of x.data) 
-			{
-				if(mesa.coordenadas != null){
+			{	if(mesa.coordenadas != null){
 					var mesaxy = mesa.coordenadas.split("/", 2);
 					posx= parseInt(mesaxy[0]) ; 
 					posy = parseInt(mesaxy[1]);
 				}
-				//console.log(mesa.capacidad);
 				objetos.push({
 				x: posx, y: posy,
 				width: 60, height: 60,
-				color: '#cfcfcf',
-				name : 'MESA ' + mesa.numero,
-				idMesa : mesa.id
+				color: '#cfcfcf', 
+				name : 'MESA ' + mesa.numero, idMesa : mesa.id
 				});
 				pos = pos + 10;
-			}
-			
+			}	
 		}
 		actualizar();
     }

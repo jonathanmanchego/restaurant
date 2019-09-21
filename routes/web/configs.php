@@ -27,6 +27,8 @@ Route::group(['prefix' => 'sistema','as' => 'sistema::', 'middleware' => ['sisAu
         Route::post('/restaurant/{id}/slider','restaurantController@slider');
         Route::resource('/menu','MenuController');
         Route::resource('/igv','IgvController');
+        //DASHBOARD
+        Route::post('/dashboard','OrdenController@datosGrafico');
         // ORDENES
         Route::resource('/tipo_orden','TipoOrdenController');
         Route::resource('/estado_ordenes','EstadoOrdenController');

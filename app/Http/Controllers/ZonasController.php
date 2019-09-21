@@ -41,7 +41,7 @@ class ZonasController extends Controller
     public function store(formValidacion $request)
     {
         $zona = new zona();
-        $zona->nombre = $request->input('nombre');
+        $zona->nombre = strtoupper($request->input('nombre'));
         $zona->save();
         return redirect('/sistema/zona');
     }
@@ -80,7 +80,7 @@ class ZonasController extends Controller
     public function update(formValidacion $request, $id)
     {
         $zona = zona::find($id);
-        $zona->nombre = $request->input('nombre');
+        $zona->nombre = strtoupper($request->input('nombre'));
         $zona->save();
         return redirect('/sistema/zona');
         // return redirect(url($))

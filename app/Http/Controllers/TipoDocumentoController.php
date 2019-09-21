@@ -80,7 +80,7 @@ class TipoDocumentoController extends Controller
     public function update(formAltValidacion $request, $id)
     {
         $td = tipo_documento::find($id);
-        $td->nombre = $request->input('nombre');
+        $td->nombre = strtoupper($request->input('nombre'));
         $td->descripcion = $request->input('descripcion');
         $td->save();
         return redirect('/sistema/tipodocumento');

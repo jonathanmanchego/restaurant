@@ -8,7 +8,7 @@
 			{{item.stock}}
 		</td>
         <td>
-			<input type="number" class="borde border-secondary text-center form-control-plaintext" min="1" :max="item.stock" autocomplete="off" style="width:35%" v-model="item.cantidad">
+			<input type="number" class="borde border-secondary text-center form-control-plaintext" min="1" :max="item.stock" autocomplete="off" style="width:50%" v-model="item.cantidad">
 		</td>
 		<td>
 			<div class="input-group">
@@ -17,7 +17,7 @@
             </div>
 		</td>
 		<td>
-			<button class="btn btn-danger" @click="eliminarProd(index,item.id,item.item_id)"><span class="fa fa-close"></span></button>
+			<button class="btn btn-danger" @click="eliminarProd(index,item.id,item.item_id)"><span class="fas fa-times"></span></button>
 		</td>
 	</tr>
 </template>

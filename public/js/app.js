@@ -2220,11 +2220,19 @@ __webpack_require__.r(__webpack_exports__);
     mesaSelected: function mesaSelected() {
       var ans = 0;
       mesas.forEach(function (x) {
-        if (x.numero == mesa) {
+        if (x.id == mesa) {
           ans = x;
         }
       });
       return ans;
+    },
+    totalCalculado: function totalCalculado() {
+      var total = 0;
+      this.orden_actual.detalle.forEach(function (x) {
+        total += x.subtotal;
+        console.log("totalOrden ==> ", total, x);
+      });
+      return total;
     }
   },
   methods: {
@@ -2338,6 +2346,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     agregarProd: function agregarProd(x) {
+      x.cantidad = 1;
       _events_events_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('add-producto', x);
     }
   }
@@ -56962,7 +56971,7 @@ var render = function() {
         ],
         staticClass:
           "borde border-secondary text-center form-control-plaintext",
-        staticStyle: { width: "35%" },
+        staticStyle: { width: "50%" },
         attrs: {
           type: "number",
           min: "1",
@@ -57031,7 +57040,7 @@ var render = function() {
             }
           }
         },
-        [_c("span", { staticClass: "fa fa-close" })]
+        [_c("span", { staticClass: "fas fa-times" })]
       )
     ])
   ])
@@ -57065,7 +57074,7 @@ var render = function() {
       _c("div", { staticClass: "col-lg-12" }, [
         _c("div", { staticClass: "box box-danger" }, [
           _c("div", { staticClass: "box-body" }, [
-            _c("div", { staticClass: "form-group col-md-12" }, [
+            _c("div", { staticClass: "col-md-12" }, [
               _c("input", {
                 staticClass: "form-control",
                 attrs: {
@@ -57158,7 +57167,7 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-xs-6 col-md-3" }, [
                 _c("div", { staticClass: "input-group" }, [
                   _c("span", { staticClass: "input-group-addon" }, [
@@ -57215,11 +57224,27 @@ var render = function() {
               _vm._v(" "),
               _vm._m(3),
               _vm._v(" "),
-              _vm._m(4)
+              _c("div", { staticClass: "col-xs-6 col-md-3" }, [
+                _c("div", { staticClass: "input-group" }, [
+                  _c("span", { staticClass: "input-group-addon" }, [
+                    _vm._v("Total:")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "",
+                      readonly: "readonly"
+                    },
+                    domProps: { value: _vm.totalCalculado }
+                  })
+                ])
+              ])
             ])
           ]),
           _vm._v(" "),
-          _vm._m(5)
+          _vm._m(4)
         ])
       ]),
       _vm._v(" "),
@@ -57310,21 +57335,6 @@ var staticRenderFns = [
             value: "0.00",
             readonly: "readonly"
           }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-6 col-md-3" }, [
-      _c("div", { staticClass: "input-group" }, [
-        _c("span", { staticClass: "input-group-addon" }, [_vm._v("Total:")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "", readonly: "readonly" }
         })
       ])
     ])

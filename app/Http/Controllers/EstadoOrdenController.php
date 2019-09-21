@@ -81,7 +81,7 @@ class EstadoOrdenController extends Controller
     public function update(estadoOrdenValidacion $request, $id)
     {
         $tu = estado_ordenes::find($id);
-        $tu->nombre = $request->input('nombre');
+        $tu->nombre = strtoupper($request->input('nombre'));
         $tu->save();
         return redirect('/sistema/estado_ordenes');
     }

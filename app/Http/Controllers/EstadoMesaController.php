@@ -38,7 +38,10 @@ class EstadoMesaController extends Controller
      */
     public function store(estadoMesaValidacion $request)
     {
-        estado_mesa::create($request->all());
+        // estado_mesa::create($request->all());
+        $ee = new estado_mesa();
+        $ee->nombre = $request->input('nombre');
+        $ee->save();
         return redirect('/sistema/estado_mesas');
     }
 
@@ -75,7 +78,9 @@ class EstadoMesaController extends Controller
      */
     public function update(estadoMesaValidacion $request, $id)
     {
-        estado_mesa::find($id)->update($request->all());
+        $ee = estado_mesa::find($id);
+        $ee->nombre = strtoupper($request->input('nombre'));
+        $ee->save();
         return redirect('/sistema/estado_mesas');
     }
 

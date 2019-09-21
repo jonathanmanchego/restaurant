@@ -84,8 +84,8 @@ class OrdenController extends Controller
         ]);
         // $productos = carta_item::with('productos')->where('carta_id', $cartaActiva->id)->get();
         // return $productos;
-        return view('sistema.orden.crearF', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'mesaGlobal' => $mesa, 'productos' => $productos]);
-        // return view('sistema.orden.crear',['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'mesaGlobal' => $mesa]);
+        // return view('sistema.orden.crearF', ['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'mesaGlobal' => $mesa, 'productos' => $productos]);
+        return view('sistema.orden.crear',['title' => 'NUEVA ORDEN','action' => '/orden', 'mesas' => $mesas, 'mesaGlobal' => $mesa]);
     }
 
     /**
@@ -187,5 +187,11 @@ class OrdenController extends Controller
         \Session::put('mesa', $request->idMesa);
         $mensaje= "mesaid=". \Session::get('mesa');
         return $mensaje;
+    }
+    public function datosGrafico(Request $request){
+        $ordenes= orden::selectRaw('SUM(total) as total_ventas')->whereYear('fecha', '2019')->selectRaw('month(fecha) as mes')->groupBy('mes')->get();
+        //$ordenes= orden::whereYear('fecha', '=', 2019)->orderByRaw('MONTH(Fecha)')->raw('SUM(total) as total_ventas')->get();//usar procedimientos almacenados DB::select('exec sp_nombre("año", "mes", etc)');
+        //SELECT SUM(total) FROM orden where YEAR(Fecha)=2019 GROUP BY MONTH(Fecha)
+        return $ordenes;
     }
 }

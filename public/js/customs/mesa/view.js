@@ -6,8 +6,7 @@ function actualizar ()
 {
 	cx.fillStyle = '#7f93a6';
 	cx.fillRect(0,0, 800, 550);
-    for (var i = 0; i < objetos.length; i++)
-    {
+    for (var i = 0; i < objetos.length; i++){
 		let mesax = parseInt(objetos[i].x) , mesay= parseInt(objetos[i].y);
         cx.fillStyle = objetos[i].color;
         cx.fillRect(mesax, mesay, objetos[i].width, objetos[i].height);
@@ -20,7 +19,6 @@ function actualizar ()
 async function cambiarCanvas(){
     let id = document.getElementById("selectAmbiente").value;
 	let data = {idAmbiente: id};
-	
 	let x = await ajaxRequest('/sistema/mesas_layout/cambiarAmbiente',data);
 	if(x.out)
 	{
@@ -52,7 +50,7 @@ async function cambiarCanvas(){
     }
 }
 async function selectMesa(idMesa){
-	//alert("gaaaaaa"+idMesa);
+	//alert("id mesa"+idMesa);
 	let data = {idMesa: idMesa};
 	let x = await ajaxRequest('/sistema/orden/selectMesa',data);
 	if(x.out){
@@ -70,8 +68,7 @@ cambiarCanvas();
 	{
         let coords = cv.getBoundingClientRect();
 	    //alert("mouse down");
-		for (var i = 0; i < objetos.length; i++)
-		{
+		for (var i = 0; i < objetos.length; i++){
 		    if(objetos[i].x < event.clientX - coords.left && (objetos[i].width + objetos[i].x > event.clientX - coords.left) && objetos[i].y < event.clientY - coords.top && (objetos[i].height + objetos[i].y > event.clientY - coords.top))
 		    {
 				if(objetoAnterior !== null){
@@ -91,8 +88,7 @@ cambiarCanvas();
         //alert(coords.left + " y " + coords.top);
 	};
 	cv.onmouseup = function(event)
-	{
-	    //alert("mouse up");
+	{	//alert("mouse up");
 		objetoActual = null;
 	}
     //celulares

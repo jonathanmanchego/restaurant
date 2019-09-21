@@ -81,7 +81,7 @@ class TipoEmpleadoController extends Controller
     public function update(TipoEmpleadoValidacion $request, $id)
     {
         $tu = tipo_empleado::find($id);
-        $tu->nombre = $request->input('nombre');
+        $tu->nombre = strtoupper($request->input('nombre'));
         $tu->save();
         return redirect('/sistema/tipoempleado');
     }

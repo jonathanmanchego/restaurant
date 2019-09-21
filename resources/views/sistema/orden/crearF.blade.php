@@ -1,7 +1,6 @@
 @extends('layout.sistema')
-
-
 @section('content')
+<div class="container-crud">
 <div class="row">
     @if(!empty($mesaGlobal))
     <div class="col-lg-12">
@@ -107,9 +106,9 @@
     </div>
     @endif
 </div> 
+</div>
 @endsection
 @include('sistema.orden.modal-producto')
 @section('scripts')
-
 <script type="text/javascript" src="{{url('/js/customs/orden/script.js')}}"></script>
 @endsection
