@@ -1,18 +1,23 @@
 var cv, cx, objetos, objetoActual = null, objetoAnterior= null;
 var inicioX = 0, inicioY =0;
 var img = new Image();
-img.src = '';
+var img = new Image();
+img.src = '/img/layoutmesas/mesa.png';
+var fondo = new Image();
+fondo.src = '/img/layoutmesas/fondo_layout.jpg';
 function actualizar ()
 {
-	cx.fillStyle = '#7f93a6';
+	cx.fillStyle = '#7f93a6';//color si no carga la imagen
 	cx.fillRect(0,0, 800, 550);
+	cx.drawImage(fondo,0, 0, 800, 550);
+	//cx.fillRect(0,0, 800, 550);
     for (var i = 0; i < objetos.length; i++){
 		let mesax = parseInt(objetos[i].x) , mesay= parseInt(objetos[i].y);
-        cx.fillStyle = objetos[i].color;
+       	cx.fillStyle = objetos[i].color;
         cx.fillRect(mesax, mesay, objetos[i].width, objetos[i].height);
-        cx.drawImage(img,mesax, mesay , 65, 65);
-        cx.font = "10px Arial"; cx.fillStyle = "#FF0000";
-        cx.fillText(objetos[i].name , mesax + 5, mesay + 30);
+        cx.drawImage(img,mesax, mesay , 60, 60);
+        cx.font = "12px Arial"; cx.fillStyle = "#ffffff";
+        cx.fillText(objetos[i].name , mesax + 12, mesay + 35);
         //console.log("obejto " + i + ": X = "+ objetos[i].x + " - Y = " + objetos[i].y );
 	} 
 }
@@ -39,7 +44,7 @@ async function cambiarCanvas(){
 				x: posx, y: posy,
 				width: 60, height: 60,
 				color: '#cfcfcf',
-				name : 'MESA ' + mesa.numero,
+				name : 'Nro ' + mesa.numero,
 				idMesa : mesa.id
 				});
 				pos = pos + 10;

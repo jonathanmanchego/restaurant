@@ -15,7 +15,6 @@
 			{{session('alerta')}}
 		</div>
 	@endif
-	<h1>SISTEMA</h1>
 	@include('sistema.dashboard.index')
 @endsection
 @section("scripts")
@@ -31,22 +30,29 @@
 			}, timeout);
 		});
 	});
-	var nombreMes = {
-    '1' : 'Enero',
-    '2' : 'Febrero',
-    '3' : 'Marzo',
-    '4' : 'Abril',
-    '5' : 'Mayo',
-    '6' : 'Junio',
-    '7' : 'Julio',
-    '8' : 'Agosto',
-    '9' : 'Septiembre',
-    '10' : 'Octubre',
-	'11' : 'Noviembre',
-	'12' : 'Diciembre'}
-    
+	var nombreMes = {'1' : 'Enero','2' : 'Febrero','3' : 'Marzo','4' : 'Abril','5' : 'Mayo','6' : 'Junio','7' : 'Julio','8' : 'Agosto','9' : 'Septiembre','10' : 'Octubre','11' : 'Noviembre','12' : 'Diciembre'}
+    var coloresArr = ['rgb(255, 99, 132)',  'rgb(255, 159, 64)','rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)'];
+	var areaChartOptions;
 	function crearGrafico(idCanvas, tipoGrafico, etiquetas, valores, colores, titulo)
 	{
+		
+		if(tipoGrafico === "pie"){
+			areaChartOptions = {
+				responsive : true,
+				scales:{yAxes:[{ticks:{beginAtZero:true}}]}
+			}
+		}else
+		{
+			areaChartOptions = {
+				responsive : true,
+				scales:{yAxes:[{ticks:{beginAtZero:true}}]},
+				legend: {display: false}
+			}
+		}
+		if(tipoGrafico === "line"){
+			colores = 'rgba(60,141,188,0.9)';
+		}
+		
 		var ctx= document.getElementById(idCanvas).getContext("2d");
 		var myChart= new Chart(ctx,{
 			type:tipoGrafico,
@@ -58,35 +64,41 @@
 						backgroundColor: colores
 				}]
 			},
-			options:{
-				scales:{
-					yAxes:[{ticks:{beginAtZero:true}}]
-				}
-			}
+			options: areaChartOptions
 		});
 	}
-	async function obtenerDatos(val){
-	var data = {
-		year : val
-    };
-    console.log("val ... "+val);
-    let x = await ajaxRequest('/sistema/dashboard',data);
-    	if(x.out){
-		 var meses = x.data.map(function(mesnum){
-			 return mesnum.mes
-		 })
-		 var valores = x.data.map(function(valor){
-			 return valor.total_ventas
-		 })
-		 console.log(valores);
-		 crearGrafico("myChart2" ,"bar", nombreMes[meses], valores, ['rgb(66, 134, 244,0.5)','rgb(74, 135, 72,0.5)','rgb(229, 89, 50,0.5)'], "Titulo2");
+	async function obtenerDatos(idChart, tipoChart ,parametro, desChart){
+		var data = {
+			year : parametro
+		};
+    	//console.log("val ... "+year);
+    	let x = await ajaxRequest('/sistema/dashboard',data);
+    	if(x.out)
+		{
+
+			var meses = x.data.map(function(mesnum){
+				return nombreMes[mesnum.mes]
+			})
+			var valores = x.data.map(function(valor){
+				return valor.total_ventas
+			})
+			let contador = 0;
+			var arrColor = [];
+			for (let index = 0; index < x.data.length; index++){
+				if(contador === 5){contador = 0;}
+				arrColor.push(coloresArr[contador]);	
+				contador++;
+			}
+		 //console.log(x.data);
+		 	crearGrafico(idChart ,tipoChart, meses, valores, arrColor, desChart);
 		}	
 	}
 window.onload = function()
 {
 	
-	obtenerDatos("ok");
-	crearGrafico("myChart1" ,"line", ['col1','col2','col3'], [5,9,15], ['rgb(66, 134, 244,0.5)','rgb(74, 135, 72,0.5)','rgb(229, 89, 50,0.5)'], "Titulo1");
+	obtenerDatos("myChart2", "bar", 2019, "Ventas S/.");
+	obtenerDatos("myChart1" ,"line", 2019, "Ventas S/.");
+	obtenerDatos("myChart3" ,"pie", 2019, "Ventas S/.");
 	
 }
 </script>
