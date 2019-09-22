@@ -38,6 +38,7 @@
 			}, timeout);
 		});
 	});
+<<<<<<< Updated upstream
 </script>
 <script>
 function crearGrafico(idCanvas, tipoGrafico, etiquetas, valores, colores, titulo){
@@ -127,6 +128,65 @@ window.onload = function()
 			}
 		}
 	});*/
+=======
+	var nombreMes = {'1' : 'Enero','2' : 'Febrero','3' : 'Marzo','4' : 'Abril','5' : 'Mayo','6' : 'Junio','7' : 'Julio','8' : 'Agosto','9' : 'Septiembre','10' : 'Octubre','11' : 'Noviembre','12' : 'Diciembre'}
+    var coloresArr = ['rgb(255, 99, 132)',  'rgb(255, 159, 64)','rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)'];
+
+	function crearGrafico(idCanvas, tipoGrafico, etiquetas, valores, colores, titulo)
+	{
+		var ctx= document.getElementById(idCanvas).getContext("2d");
+		var myChart= new Chart(ctx,{
+			type:tipoGrafico,
+			data:{
+				labels: etiquetas,
+				datasets:[{
+						label:titulo,
+						data: valores,
+						backgroundColor: colores
+				}]
+			},
+			options:{
+				scales:{
+					yAxes:[{ticks:{beginAtZero:true}}]
+				}
+			}
+		});
+	}
+	async function obtenerDatos(year){
+		var data = {
+			year : year
+		};
+    	//console.log("val ... "+year);
+    	let x = await ajaxRequest('/sistema/dashboard',data);
+    	if(x.out)
+		{
+
+			var meses = x.data.map(function(mesnum){
+				return nombreMes[mesnum.mes]
+			})
+			var valores = x.data.map(function(valor){
+				return valor.total_ventas
+			})
+			let contador = 0;
+			var arrColor = [];
+			for (let index = 0; index < x.data.length; index++) {
+				if(contador === 5){
+					contador = 0;	
+				}
+				arrColor.push(coloresArr[contador]);	
+				contador++;
+			}
+		 console.log(x.data);
+		 	crearGrafico("myChart2" ,"bar", meses, valores, arrColor, "Ventas S/.");
+		}	
+	}
+window.onload = function()
+{
+	
+	obtenerDatos(2019);
+	crearGrafico("myChart1" ,"line", ['col1','col2','col3'], [5,9,15], ['rgb(66, 134, 244,0.5)','rgb(74, 135, 72,0.5)','rgb(229, 89, 50,0.5)'], "Titulo1");
+	
+>>>>>>> Stashed changes
 }
 </script>
 @endsection
