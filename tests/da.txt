@@ -1,0 +1,6 @@
+BEGIN
+       SELECT MONTH(fecha) as mes ,ROUND(SUM(total), 2) AS total_ventas FROM orden WHERE YEAR(Fecha) = year_entrada AND total IS NOT NULL GROUP BY MONTH(Fecha);
+    END
+
+
+graficar_ventas
